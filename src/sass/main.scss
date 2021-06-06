@@ -1,7 +1,13 @@
-/*
- * Главный файл стилей.
- * Все паршалы подключаются сюда.
- */
+@import './common/base-reset';
+@import './common/container';
+@import './common/visually-hidden';
 
-// Стили для файла с примером HTML-фрагмента
-@import './example';
+@import './utils/variables';
+@import './utils/mixins';
+@import './utils/placeholder';
+
+@import './components/btn';
+
+@import './layouts/header';
+@import './layouts/main';
+@import './layouts/footer';
