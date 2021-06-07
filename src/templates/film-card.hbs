@@ -1,0 +1,28 @@
+<div class="film">
+    <img class="film-img" src={{poster_path}} alt={{original_title}}>
+    <a class="link" href={{homepage}}>Watch the trailer</a>
+    <div class="film-info">
+        <h2 class="film-name">{{original_title}}</h2>
+        <div class="film-properties">
+            <ul class="properties">
+                <li>Vote / Votes</li>
+                <li>Popularity</li>
+                <li>Original Title</li>
+                <li>Genre</li>
+            </ul>
+            <ul class="property-value">
+                <li>{{vote_average}} / {{vote_count}}</li>
+                <li>{{popularity}}</li>
+                <li class="film-origin-title">{{original_title}}</li>
+                <li>{{genres}}</li>
+            </ul>
+        </div>
+        <p class="film-about">About</p>
+        <span class="film-description">{{overview}}</span>
+
+        <div class="buttons">
+            <button class="add-watched_button" type="button">add to Watched</button>
+            <button class="add-queue_button" type="button">add to queue</button>
+        </div>
+    </div>
+</div>
