@@ -1,0 +1,14 @@
+<ul class="film-list_gallery" >
+    {{#each this.result}}
+    <li>
+        <img class="film-list_img" src={{poster_path}} alt={{original_title}}>
+        <h2 class="film-list_name">{{original_title}}</h2>
+        <ul class="film-list_info">
+            <li>{{genre_ids}}</li>
+            <li>|</li>
+            <li>{{release_date}}</li>
+            <li>{{vote_average}}</li>
+        </ul>
+    </li>
+    {{/each}}
+</ul>

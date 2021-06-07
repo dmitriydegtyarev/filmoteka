@@ -1,0 +1,11 @@
+.section-main {
+  padding-bottom: 40px;
+  padding-top: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .section-main {
+    padding-bottom: 60px;
+    padding-top: 60px;
+  }
+}
