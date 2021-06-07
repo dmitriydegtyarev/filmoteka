@@ -1,0 +1,31 @@
+.footer {
+    
+    padding-top: 28px;
+    padding-bottom: 29px;
+    background-color: $secondary-background-color;
+
+    &-block{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0;
+        justify-content: center;
+        @include font (400, 14px, 16.41px);
+        color: $text-footer-color;
+
+        a {
+            @include font (400, 14px, 16.41px);
+        }
+
+        .heart-icon {
+            font-size: 14px;
+            color: $accent-color;
+            vertical-align: bottom;
+            margin: 0 10px;
+            padding: 0;
+        }
+    }
+}
+
+
+    
