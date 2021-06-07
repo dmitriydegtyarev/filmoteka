@@ -1,0 +1,47 @@
+.footer {
+  padding-top: 30px;
+  padding-bottom: 28px;
+  background-color: $secondary-background-color;
+
+  &-block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: center;
+    font-family: Roboto; //????
+    @include font(400, 14px, 16.41px);
+    color: $text-footer-color;
+    width: 236px;
+    @media screen and (min-width: $width-tablet) {
+      width: auto;
+    }
+
+    a {
+      @include font(400, 14px, 16.41px);
+    }
+
+    .heart-icon {
+      font-size: 14px;
+      color: $accent-color;
+      vertical-align: baseline;
+      margin: 0 10px;
+      padding: 0;
+    }
+    li:first-child {
+      margin-bottom: 12px;
+      @media screen and (min-width: $width-tablet) {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+@media screen and (min-width: $width-tablet) {
+  .footer {
+    padding-bottom: 30px;
+
+    &-block {
+      @include font(400, 16px, 18.75px);
+    }
+  }
+}
