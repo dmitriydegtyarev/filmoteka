@@ -1,0 +1,118 @@
+/* mobile */
+
+.film-img {
+  height: 356px;
+  margin-bottom: 15px;
+  margin-top: 16px;
+}
+
+.film-name {
+  @include font(500, 20px, 23px);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+.film-properties {
+  display: flex;
+  @include font(500, 12px, 16px);
+  margin-bottom: 20px;
+  // font-weight: 500;
+  // font-size: 12px;
+  // line-height: 16px; /*перемерять для Vote и Popularity */
+}
+
+.properties {
+  color: $text-card-color;
+  margin-right: 41px;
+}
+
+.properties li:not(:last-child),
+.property-value li:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.film-origin-title {
+  text-transform: uppercase;
+}
+
+.film-about {
+  text-transform: uppercase;
+  @include font(500, 12px, 16px);
+  margin-bottom: 10px;
+  // font-weight: 500;
+  // font-size: 12px;
+  // line-height: 16px;
+}
+
+.film-description {
+  @include font(500, 12px, 20px);
+  margin-bottom: 21px;
+  // font-weight: 500;
+  // font-size: 12px;
+  // line-height: 20px;
+}
+
+.buttons {
+  display: flex;
+}
+
+.buttons button {
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-transform: uppercase;
+  @include font(500, 12px, 16px);
+  // font-weight: 500;
+  // font-size: 12px;
+  // line-height: 16px;
+  width: 112px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.add-watched_button {
+  margin-right: 15px;
+}
+
+.buttons button:hover,
+.buttons button:focus {
+  background-color: $accent-color;
+  border: 1px solid $accent-color;
+}
+
+/* tablet */
+@media screen and (min-width: 768px) {
+  .film {
+    display: flex;
+  }
+
+  .left-side {
+    margin-right: 32px;
+  }
+
+  .film-img {
+    height: 374px;
+  }
+}
+
+/* desktop */
+@media screen and (min-width: 1024px) {
+  .left-side {
+    margin-right: 30px;
+  }
+
+  .film-img {
+    height: 478px;
+  }
+
+  .film-name {
+    font-family: Roboto;
+    @include font(500, 30px, 35px);
+    // font-weight: 500;
+    // font-size: 30px;
+    // line-height: 35px;
+  }
+}
