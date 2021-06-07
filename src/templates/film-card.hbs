@@ -1,20 +1,21 @@
 <div class="film">
-    <img class="film-img" src="" alt="">
+    <img class="film-img" src={{poster_path}} alt={{original_title}}>
+    <a class="link" href={{homepage}}>Watch the trailer</a>
     <div class="film-info">
         <h2 class="film-name">{{original_title}}</h2>
         <div class="film-properties">
-            <div class="properties">
-                <p>Vote / Votes</p>
-                <p>Popularity</p>
-                <p>Original Title</p>
-                <p>Genre</p>
-            </div>
-            <div class="property-value">
-                <p>{{vote_average}} / {{vote_count}}</p>
-                <p>{{popularity}}</p>
-                <p class="film-origin-title">{{original_title}}</p>
-                <p>{{genres}}</p>
-            </div>
+            <ul class="properties">
+                <li>Vote / Votes</li>
+                <li>Popularity</li>
+                <li>Original Title</li>
+                <li>Genre</li>
+            </ul>
+            <ul class="property-value">
+                <li>{{vote_average}} / {{vote_count}}</li>
+                <li>{{popularity}}</li>
+                <li class="film-origin-title">{{original_title}}</li>
+                <li>{{genres}}</li>
+            </ul>
         </div>
         <p class="film-about">About</p>
         <span class="film-description">{{overview}}</span>
