@@ -1,0 +1,35 @@
+.film-list_img {
+  height: 398px;
+}
+
+.film-list_name {
+  text-transform: uppercase;
+  @include font(500, 12px, 14px);
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.film-list_info {
+  display: flex;
+  color: $accent-color;
+  @include font(500, 12px, 14px);
+}
+
+@media screen and (min-width: 768px) {
+  .film-list_gallery {
+    display: grid;
+    grid-template-columns: 293px 293px;
+    grid-gap: 30px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .film-list_gallery {
+    grid-template-columns: 274px 274px 274px;
+  }
+
+  .film-list_info,
+  .film-list_name {
+    @include font(500, 12px, 16px);
+  }
+}
