@@ -72,7 +72,9 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.refs=void 0;const e={filmListGallery:document.querySelector(".film-list_gallery")};exports.refs=e;
 },{}],"JfYp":[function(require,module,exports) {
 "use strict";var e=a(require("./axios")),t=a(require("../../templates/film-list.hbs")),l=a(require("../../templates/film-card.hbs")),o=require("../refs");function a(e){return e&&e.__esModule?e:{default:e}}const{filmListGallery:r}=o.refs;e.default.getPopularMovies().then(e=>e.data.results).then(e=>s(e)).catch(e=>console.log(e)),e.default.getMovieOnSearchQuery(e.default.query="reacher").then(e=>console.log(e.data)).catch(e=>console.log(e)),e.default.getMovieById(e.default.id="75780").then(e=>console.log(e.data)).catch(e=>console.log(e));const s=e=>{const l=(0,t.default)(e);console.log(e),r.insertAdjacentHTML("afterbegin",l)};
-},{"./axios":"XF9i","../../templates/film-list.hbs":"fCL1","../../templates/film-card.hbs":"fFoL","../refs":"VyiV"}],"Focm":[function(require,module,exports) {
-"use strict";require("./sass/main.scss"),require("./js/api/axios"),require("./js/api/moviedb");
-},{"./sass/main.scss":"clu1","./js/api/axios":"XF9i","./js/api/moviedb":"JfYp"}]},{},["Focm"], null)
-//# sourceMappingURL=/filmoteka/src.fb6d72fb.js.map
+},{"./axios":"XF9i","../../templates/film-list.hbs":"fCL1","../../templates/film-card.hbs":"fFoL","../refs":"VyiV"}],"UWFw":[function(require,module,exports) {
+const c=document.querySelector(".navigation_home"),e=document.querySelector(".navigation_library");function n(){c.classList.add("accent-home"),e.classList.remove("accent-library")}function t(){c.classList.remove("accent-home"),e.classList.add("accent-library")}c.addEventListener("click",n),e.addEventListener("click",t),window.onload=function(){c.classList.add("accent-home")};
+},{}],"Focm":[function(require,module,exports) {
+"use strict";require("./sass/main.scss"),require("./js/api/axios"),require("./js/api/moviedb"),require("./js/components/navigation");
+},{"./sass/main.scss":"clu1","./js/api/axios":"XF9i","./js/api/moviedb":"JfYp","./js/components/navigation":"UWFw"}]},{},["Focm"], null)
+//# sourceMappingURL=/filmoteka/src.bffc06ea.js.map
