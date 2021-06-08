@@ -1,6 +1,6 @@
 {{! <ul class='film-list_gallery'> }}
 {{#each this}}
-  <li>
+  <li class="film-list_item">
     <img
       class='film-list_img'
       src="https://image.tmdb.org/t/p/w500/{{poster_path}}"
@@ -19,8 +19,10 @@
       <li>
         {{release_date}}
       </li>
-      <li>
+      <li> 
+        <p class="film-vote">
         {{vote_average}}
+        </p>
       </li>
     </ul>
   </li>
