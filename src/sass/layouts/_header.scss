@@ -1,12 +1,10 @@
 
-
 .header {
-    // width: 320px;
-    height: 230px;
+     height: 230px;
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
-    max-width: 1600px;
+     margin: 0 auto;
     background-image: linear-gradient(
         to right,
         rgba(0, 0, 0, 0.56),
@@ -17,9 +15,8 @@
   }
   input::placeholder {
     @include font(100, 12px, 12px);
-    // height: 16px;
-    color:white;
-    // font-family: $font;
+    color: $secondary-text-color;
+    font-family: $font;
   }
   .input {
     background: transparent;
@@ -44,17 +41,26 @@
         left: 324px;
      }
   }
-  .navigation_home-link::after {
-//   position: absolute; 
-    bottom: 0;
-    width: 35px;
-    height: 3px;
-    display: block;
-    content: "";
-    background:#FF6B08;
-    // border-radius: 2px;
-  }
-  
+
+  .accent-library::after {
+    position: absolute; 
+    top: 72px;
+        width: 69px;
+        height: 3px;
+        display: block;
+        content: "";
+        background:#FF6B08;
+        }
+      .accent-home::after {
+          position: absolute; 
+            top: 72px;
+            width: 35px;
+            height: 3px;
+            display: block;
+            content: "";
+            background:#FF6B08;
+           
+          }
   a {
     text-decoration: none;
     
@@ -78,11 +84,6 @@
     color: white
   }
 
-//   .logo-search_svg{
-//       position: absolute;
-//       top: 20px
-//   }
-
   .input-div{
       display: block;
       position: relative;
@@ -105,7 +106,7 @@ line-height: 1.116;
     color: white;
     font-family: $font;
     width: 141px;
-    @media screen and (max-width: 320px) { 
+    @media screen and (max-width: 767px) { 
         display: none;
     }
   }
@@ -117,23 +118,44 @@ line-height: 1.116;
     @media screen and (min-width: 321px) { 
         align-items: center;
     }
+    @media screen and (min-width: 321px) { 
+      justify-content: space-between;
+  }
 
 }
 
 .logo-film{
+  
+  width: 24px;
+  display: block;
     margin-right: 112px;
-    @media screen and (min-width: 321px) { 
-        margin-right: 8px;
+    @media screen and (max-width: 767px) { 
+        margin-right: 112px;
     }
+    @media screen and (min-width: 768px) { 
+      margin-right: 8px;
+  }
 }
 
 .navigation_home{
-    margin-right: 33px
+    margin-right: 33px;
+    width: 35px;
+    
 }
 
 .navigation-h2{
-    @media screen and (min-width: 321px) { 
+  @media screen and (max-width: 767px) { 
+    margin-right: 0;
+};
+    @media screen and (min-width: 768px) { 
         margin-right: 303px;
-    }
-
+    };
+    @media screen and (min-width: 1024px) { 
+      margin-right: 564px;
+  };
 }
+
+.navigation_library{
+  display: block;
+  width: 69px;
+ }
