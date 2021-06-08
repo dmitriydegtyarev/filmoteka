@@ -96,6 +96,10 @@
   .film-img {
     height: 374px;
   }
+
+  .buttons button {
+    width: 125px;
+  }
 }
 
 /* desktop */
@@ -114,5 +118,9 @@
     // font-weight: 500;
     // font-size: 30px;
     // line-height: 35px;
+  }
+
+  .buttons button {
+    width: 136px;
   }
 }
