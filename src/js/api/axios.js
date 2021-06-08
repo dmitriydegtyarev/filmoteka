@@ -6,10 +6,10 @@ const AUTH_TOKEN =
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 axios.defaults.headers.common.Authorization = AUTH_TOKEN;
 
-class TheMovieDataBase {
+class GetMovi {
   constructor() {
     this.searchQuery = '';
-    this.movieId = null;
+    this.movieId = Number;
     this.page = 1;
   }
 
@@ -37,26 +37,13 @@ class TheMovieDataBase {
     this.page = newPage;
   }
 
-  getMovieOnSearchQuery = query =>
-    axios
-      .get(`/search/movie/?query=${this.searchQuery}`)
-      .then(response => console.log(response.data))
-      .catch(error => console.log(error));
+  getMovieOnSearchQuery = query => axios.get(`/search/movie/?query=${this.searchQuery}`);
 
-  getMovieById = id => {
-    axios
-      .get(`/search/movie/?query=${this.id}`)
-      .then(response => console.log(response.data))
-      .catch(error => console.log(error));
-  };
+  getMovieById = id => axios.get(`movie/${this.id}`);
 
-  getPopularMovies = () =>
-    axios
-      .get('/trending/all/day')
-      .then(response => console.log(response.data))
-      .catch(error => console.log(error));
+  getPopularMovies = () => axios.get('/trending/all/day');
 }
 
-const api = new TheMovieDataBase();
+const api = new GetMovi();
 
 export default api;
