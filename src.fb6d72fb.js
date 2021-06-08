@@ -75,4 +75,4 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 },{"./axios":"XF9i","../../templates/film-list.hbs":"fCL1","../../templates/film-card.hbs":"fFoL","../refs":"VyiV"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/api/axios"),require("./js/api/moviedb");
 },{"./sass/main.scss":"clu1","./js/api/axios":"XF9i","./js/api/moviedb":"JfYp"}]},{},["Focm"], null)
-//# sourceMappingURL=/filmoteka/src.00ad0e15.js.map
+//# sourceMappingURL=/filmoteka/src.fb6d72fb.js.map
