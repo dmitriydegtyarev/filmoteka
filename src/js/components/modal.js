@@ -2,17 +2,18 @@ import { refs } from '../refs.js';
 import api from '../api/axios';
 import filmCardTmp from '../../templates/film-card.hbs';
 
-//откритие/закрытие модалки
+
 refs.filmListGallery.addEventListener('click', openModalWindow);
-refs.modalCloseBtn.addEventListener('click', onModalWindowCloseBtn);
-refs.lightbox.addEventListener('click', onOverlayClick);
-window.addEventListener('keydown', onEscPress);
+
 //добавить в просмотренные или в список просмотра
-refs.addWatchedBtn.addEventListener('click', onAddWatchedBtnClick);
-refs.addQueueBtn.addEventListener('click', onAddQueueBtnClick);
+//refs.addWatchedBtn.addEventListener('click', onAddWatchedBtnClick);
+//refs.addQueueBtn.addEventListener('click', onAddQueueBtnClick);
 
 function openModalWindow(e) {
-  // e.preventDefault();
+  refs.modalCloseBtn.addEventListener('click', onModalWindowCloseBtn);
+  refs.lightbox.addEventListener('click', onOverlayClick);
+  window.addEventListener('keydown', onEscPress);
+  
   if (e.target.nodeName !== 'IMG') return;
   refs.lightbox.classList.add('is-open');
   const imgId = e.target.id;
@@ -50,6 +51,7 @@ function onModalWindowCloseBtn() {
   refs.lightbox.classList.remove('is-open');
   refs.lightbox.removeEventListener('click', onOverlayClick);
   window.removeEventListener('keydown', onEscPress);
+  refs.modalCloseBtn.removeEventListener('click', onModalWindowCloseBtn);
 }
 
 function onOverlayClick(e) {
@@ -66,4 +68,4 @@ function onEscPress(e) {
   }
 }
 
-refs.modalCloseBtn.removeEventListener('click', onModalWindowCloseBtn);
+// refs.modalCloseBtn.removeEventListener('click', onModalWindowCloseBtn);
