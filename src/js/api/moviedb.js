@@ -11,10 +11,10 @@ api
   .then(result => renderMarkup(result))
   .catch(error => console.log(error));
 
-api
-  .getMovieOnSearchQuery((api.query = 'reacher'))
-  .then(response => console.log(response.data))
-  .catch(error => console.log(error));
+// api
+//   .getMovieOnSearchQuery((api.query = 'reacher'))
+//   .then(response => console.log(response.data))
+//   .catch(error => console.log(error));
 
 api
   .getMovieById((api.id = '75780'))
