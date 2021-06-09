@@ -1,19 +1,22 @@
 {{#each this}}
   <li class="film-list_item">
     <img
+      id={{id}}
       class='film-list_img'
       src="https://image.tmdb.org/t/p/w500/{{poster_path}}"
       alt={{original_title}}
     />
     <h2 class='film-list_name'>
-      {{original_title}}
+      {{original_title}} {{name}}
     </h2>
     <ul class='film-list_info'>
       <li>
         {{genre_ids}}
       </li>
       <li>
-        |
+        <p class="line">
+         | 
+        </p>
       </li>
       <li>
         {{release_date}}

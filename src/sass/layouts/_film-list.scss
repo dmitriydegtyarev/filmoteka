@@ -15,6 +15,26 @@
   @include font(500, 12px, 14px);
 }
 
+.film-vote {
+  background-color: $accent-color;
+  border-radius: 5px;
+  @include font(500, 10px, 12px);
+  color: $secondary-text-color;
+  padding: 1px 10px;
+  margin-left: 10px;
+}
+
+.line{
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+@media screen and (max-width: 767px) {
+  .film-list_item:not(:last-child){
+  margin-bottom: 20px;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .film-list_gallery {
     display: grid;
