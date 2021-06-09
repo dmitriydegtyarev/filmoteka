@@ -37,7 +37,7 @@ class GetMovi {
     this.page = newPage;
   }
 
-  getMovieOnSearchQuery = query => axios.get(`/search/movie/?query=${this.searchQuery}`);
+  getMovieOnSearchQuery = () => axios.get(`/search/movie?query=${this.searchQuery}`);
 
   getMovieById = id => axios.get(`movie/${this.id}`);
 

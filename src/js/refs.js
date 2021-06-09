@@ -1,5 +1,7 @@
 const refs = {
   filmListGallery: document.querySelector('.film-list_gallery'),
+  inputEl: document.getElementById('input'),
+  errorMessageEl: document.querySelector('.errorMessage'),
   // filmCard: document.guerySelector('.js-film-card'),
   // lightbox: document.guerySelector('.js-lightbox'),
   // addWatchedBtn: document.guerySelector('.add-watched_button'),

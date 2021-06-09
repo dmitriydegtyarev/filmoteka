@@ -1,139 +1,130 @@
-
-
 .header {
-    // width: 320px;
-    height: 230px;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-size: cover;
-    max-width: 1600px;
-    background-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.56),
-        rgba(0, 0, 0, 0.56)
-      ),
-      url(/images/headerfoto.jpg);
-    background-color: black;
-  }
-  input::placeholder {
-    @include font(100, 12px, 12px);
-    // height: 16px;
-    color:white;
-    // font-family: $font;
-  }
-  .input {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #fff;
-    width: 280px;
-    @media screen and (min-width: 321px) {
-        width: 336px;
-    }
-  }
-  .logo-search {
-    position: absolute;
-    left: 268px;
-    top: 1px;
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    stroke-width: 0;
-    stroke: white;
-    fill: white;
-    @media screen and (min-width: 321px) {
-        left: 324px;
-     }
-  }
-  .navigation_home-link::after {
-//   position: absolute; 
-    bottom: 0;
-    width: 35px;
-    height: 3px;
-    display: block;
-    content: "";
-    background:#FF6B08;
-    // border-radius: 2px;
-  }
-  
-  a {
-    text-decoration: none;
-    
-  }
-
-  .navigation_home-link{
-      @include font(500, 12px, 14px);
-      color:$primary-text-color;
-      font-family: $font;
-      width: 35px;
-      
-  }
-  .navigation_library-link{
-    @include font(500, 12px, 14px);
-    color:$primary-text-color;
-    font-family: $font;
-    width: 100px;
+  // width: 320px;
+  height: 230px;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 1600px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url(/images/headerfoto.jpg);
+  background-color: black;
 }
-  
-  .current {
-    color: white
+input::placeholder {
+  @include font(100, 12px, 12px);
+  // height: 16px;
+  color: white;
+  // font-family: $font;
+}
+.input {
+  color: $secondary-text-color;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #fff;
+  width: 280px;
+  @media screen and (min-width: 321px) {
+    width: 336px;
   }
+}
+.logo-search {
+  position: absolute;
+  left: 268px;
+  top: 1px;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  stroke-width: 0;
+  stroke: white;
+  fill: white;
+  @media screen and (min-width: 321px) {
+    left: 324px;
+  }
+}
+.navigation_home-link::after {
+  //   position: absolute;
+  bottom: 0;
+  width: 35px;
+  height: 3px;
+  display: block;
+  content: '';
+  background: #ff6b08;
+  // border-radius: 2px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.navigation_home-link {
+  @include font(500, 12px, 14px);
+  color: $primary-text-color;
+  font-family: $font;
+  width: 35px;
+}
+.navigation_library-link {
+  @include font(500, 12px, 14px);
+  color: $primary-text-color;
+  font-family: $font;
+  width: 100px;
+}
+
+.current {
+  color: white;
+}
 
 //   .logo-search_svg{
 //       position: absolute;
 //       top: 20px
 //   }
 
-  .input-div{
-      display: block;
-      position: relative;
-      @media screen and (min-width: 321px) {
-       margin: 0 auto;
-       width: 336px;
-    }
+.input-div {
+  display: block;
+  position: relative;
+  @media screen and (min-width: 321px) {
+    margin: 0 auto;
+    width: 336px;
   }
+}
 
-  .logo-search_film{
+.logo-search_film {
   width: 24px;
   height: 24px;
+}
+
+.header-h2 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.116;
+  color: white;
+  font-family: $font;
+  width: 141px;
+  @media screen and (max-width: 320px) {
+    display: none;
   }
+}
 
-  .header-h2{
-      font-style: normal;
-font-weight: 500;
-font-size: 30px;
-line-height: 1.116;
-    color: white;
-    font-family: $font;
-    width: 141px;
-    @media screen and (max-width: 320px) { 
-        display: none;
-    }
+.navigation {
+  display: flex;
+  padding-top: 48px;
+  margin-bottom: 41px;
+  @media screen and (min-width: 321px) {
+    align-items: center;
   }
-
-.navigation{
-    display: flex;
-    padding-top: 48px;
-    margin-bottom: 41px;
-    @media screen and (min-width: 321px) { 
-        align-items: center;
-    }
-
 }
 
-.logo-film{
-    margin-right: 112px;
-    @media screen and (min-width: 321px) { 
-        margin-right: 8px;
-    }
+.logo-film {
+  margin-right: 112px;
+  @media screen and (min-width: 321px) {
+    margin-right: 8px;
+  }
 }
 
-.navigation_home{
-    margin-right: 33px
+.navigation_home {
+  margin-right: 33px;
 }
 
-.navigation-h2{
-    @media screen and (min-width: 321px) { 
-        margin-right: 303px;
-    }
-
+.navigation-h2 {
+  @media screen and (min-width: 321px) {
+    margin-right: 303px;
+  }
 }
