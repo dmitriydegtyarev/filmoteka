@@ -40,11 +40,11 @@ class GetMovi {
 
   getMovieOnSearchQuery = () => axios.get(`/search/movie?query=${this.searchQuery}`);
 
-  // getMovieById = id => axios.get(`movie/${this.id}`);
+  getMovieById = id => axios.get(`movie/${this.id}`);
 
   getPopularMovies = () => axios.get(`/trending/all/day?page=${this.page}`);
 
-  // getGanres = () => axios.get('/genre/movie/list');
+  getGanres = () => axios.get('/genre/movie/list');
 }
 
 const api = new GetMovi();
