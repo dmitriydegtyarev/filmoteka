@@ -1,13 +1,63 @@
 .header {
-  // width: 320px;
   height: 230px;
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
-  max-width: 1600px;
+  margin: 0 auto;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url(/images/headerfoto.jpg);
-  background-color: black;
+  background-color: $primary-text-color;
+}
+input::placeholder {
+  @include font(100, 12px, 12px);
+  color: $secondary-text-color;
+  font-family: $font;
+}
+.input {
+  color: $secondary-text-color;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid $secondary-text-color;
+  width: 280px;
+  @media screen and (min-width: 321px) {
+    width: 336px;
+  }
+}
+.logo-search {
+  position: absolute;
+  left: 268px;
+  top: 1px;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  stroke-width: 0;
+  stroke: white;
+  fill: white;
+  @media screen and (min-width: 321px) {
+    left: 324px;
+  }
+}
+
+.accent-library::after {
+  position: absolute;
+  top: 72px;
+  width: 69px;
+  height: 3px;
+  display: block;
+  content: '';
+  background: $accent-color;
+}
+.accent-home::after {
+  position: absolute;
+  top: 72px;
+  width: 35px;
+  height: 3px;
+  display: block;
+  content: '';
+  background: $accent-color;
+}
+a {
+  text-decoration: none;
 }
 
 input::placeholder {
@@ -26,79 +76,90 @@ input::placeholder {
   @media screen and (min-width: 321px) {
     width: 336px;
   }
-}
 
-.logo-search {
-  position: absolute;
-  left: 268px;
-  top: 1px;
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  stroke-width: 0;
-  stroke: white;
-  fill: white;
-  @media screen and (min-width: 321px) {
-    left: 324px;
+  .navigation_library-link {
+    @include font(500, 12px, 14px);
+    color: $primary-text-color;
+    font-family: $font;
+    width: 100px;
   }
-}
 
-.navigation_home-link::after {
-  //   position: absolute;
-  bottom: 0;
-  width: 35px;
-  height: 3px;
-  display: block;
-  content: '';
-  background: #ff6b08;
-  // border-radius: 2px;
-}
-
-a {
-  text-decoration: none;
-}
-
-.navigation_home-link {
-  @include font(500, 12px, 14px);
-  color: $primary-text-color;
-  font-family: $font;
-  width: 35px;
-}
-.navigation_library-link {
-  @include font(500, 12px, 14px);
-  color: $primary-text-color;
-  font-family: $font;
-  width: 100px;
-}
-
-.current {
-  color: white;
-}
-
-.input-div {
-  display: block;
-  position: relative;
-  @media screen and (min-width: 321px) {
-    margin: 0 auto;
-    width: 336px;
+  .current {
+    color: $secondary-text-color;
   }
-}
 
-.logo-search_film {
-  width: 24px;
-  height: 24px;
-}
+  .logo-search {
+    position: absolute;
+    left: 268px;
+    top: 1px;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    stroke-width: 0;
+    stroke: white;
+    fill: white;
+    @media screen and (min-width: 321px) {
+      left: 324px;
+    }
+  }
 
-.header-h2 {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 30px;
-  line-height: 1.116;
-  color: white;
-  font-family: $font;
-  width: 141px;
-  @media screen and (max-width: 320px) {
-    display: none;
+  .navigation_home-link::after {
+    //   position: absolute;
+    bottom: 0;
+    width: 35px;
+    height: 3px;
+    display: block;
+    content: '';
+    background: #ff6b08;
+    // border-radius: 2px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .navigation_home-link {
+    @include font(500, 12px, 14px);
+    color: $primary-text-color;
+    font-family: $font;
+    width: 35px;
+  }
+  .navigation_library-link {
+    @include font(500, 12px, 14px);
+    color: $primary-text-color;
+    font-family: $font;
+    width: 100px;
+  }
+
+  .current {
+    color: white;
+  }
+
+  .input-div {
+    display: block;
+    position: relative;
+    @media screen and (min-width: 321px) {
+      margin: 0 auto;
+      width: 336px;
+    }
+  }
+
+  .logo-search_film {
+    width: 24px;
+    height: 24px;
+  }
+
+  .header-h2 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.116;
+    color: $secondary-text-color;
+    font-family: $font;
+    width: 141px;
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
   }
 }
 
