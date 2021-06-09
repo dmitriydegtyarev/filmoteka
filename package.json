@@ -27,6 +27,11 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+<<<<<<< Updated upstream
+=======
+    "basiclightbox": "^5.0.4",
+    "core-js": "^2.6.12",
+>>>>>>> Stashed changes
     "lodash.debounce": "^4.0.8",
     "pnotify": "^5.2.0"
   }
