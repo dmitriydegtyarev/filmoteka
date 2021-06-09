@@ -1,17 +1,25 @@
-import { refs } from '../refs.js'
+import { refs } from '../refs.js';
+import filmCardTmp from '../../templates/film-card.hbs';
 
 refs.filmListGallery.addEventListener('click', openModalWindow);
 refs.modalCloseBtn.addEventListener('click', onModalWindowCloseBtn);
 refs.lightbox.addEventListener('click', onOverlayClick);
 window.addEventListener('keydown', onEscPress);
     
+   
 function openModalWindow(e) {
     e.preventDefault();
     if (e.target.nodeName !== 'LI') return;
     refs.lightbox.classList.add('is-open');
-    //refs.filmListGallery.forEach((item, index) =>
-        //if()
-        //currentInd = index;)
+    appendFilmMarkup();
+}
+
+function fetchFilm(id){
+    return fetch()
+}
+
+function appendFilmMarkup(film){
+   refs.filmCard.insertAdjancentHTML('beforeend', filmCardTmp(film)); 
 }
 
 function onModalWindowCloseBtn() {
