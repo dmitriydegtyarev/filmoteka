@@ -1,3 +1,4 @@
+// файл после всех merge переименовать в get-movies-class
 import axios from 'axios';
 
 const AUTH_TOKEN =
@@ -10,7 +11,7 @@ class GetMovi {
   constructor() {
     this.searchQuery = '';
     this.movieId = Number;
-    this.page = 1;
+    this.page = 3;
   }
 
   get query() {
@@ -41,7 +42,9 @@ class GetMovi {
 
   getMovieById = id => axios.get(`movie/${this.id}`);
 
-  getPopularMovies = () => axios.get('/trending/all/day');
+  getPopularMovies = () => axios.get(`/trending/all/day?page=${this.page}`);
+
+  getGanres = () => axios.get('/genre/movie/list');
 }
 
 const api = new GetMovi();
