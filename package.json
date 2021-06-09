@@ -30,6 +30,15 @@
     "basiclightbox": "^5.0.4",
     "core-js": "^2.6.12",
     "lodash.debounce": "^4.0.8",
+    "parcel-plugin-static-files-copy": "^2.6.0",
     "pnotify": "^5.2.0"
+  },
+  "staticFiles": {
+    "staticPath": [
+      {
+        "staticPath": "src/images/about-us",
+        "staticOutDir": "images/about-us"
+      }
+    ]
   }
 }
