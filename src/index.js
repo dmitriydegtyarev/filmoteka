@@ -6,6 +6,7 @@ import './js/api/axios';
 import './js/api/moviedb';
 import './js/components/navigation';
 import './js/components/modal';
+import './js/components/footer';
 
 import { refs } from './js/refs';
 import onInputSearch from './js/input';

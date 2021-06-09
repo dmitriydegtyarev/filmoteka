@@ -5,6 +5,7 @@ const refs = {
   errorMessageEl: document.querySelector('.errorMessage'),
   lightbox: document.querySelector('.js-lightbox'),
   modalCloseBtn: document.querySelector('.modal-close-button'),
+  aboutUs: document.querySelector('#about-us'),
   filmListItem: document.querySelector('.film-list_item'),
   addWatchedBtn: document.guerySelector('.add-watched_button'),
   addQueueBtn: document.guerySelector('.add-queue_button'),
