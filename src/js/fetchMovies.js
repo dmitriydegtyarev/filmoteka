@@ -24,7 +24,6 @@ export default function fetchMovies(query) {
       })
       .catch(error => console.log(error));
   } else {
-    // render.clearErrorMessage();
     api
       .getPopularMovies()
       .then(res => {
