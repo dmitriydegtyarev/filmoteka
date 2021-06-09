@@ -21,6 +21,11 @@ function renderMovisBySearchQuery() {
     .catch(error => console.log(error));
 }
 
+// api
+//   .getMovieOnSearchQuery((api.query = 'reacher'))
+//   .then(response => console.log(response.data))
+//   .catch(error => console.log(error));
+
 function renderOneMovieById() {
   api
     .getMovieById((api.id = '75780'))
