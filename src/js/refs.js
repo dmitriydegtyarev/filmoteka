@@ -9,6 +9,7 @@ const refs = {
   // filmEl: document.guerySelector('.film'),
   // mainContainer: document.guerySelector('.js-container'),
   // filmList: document.guerySelector('.film-list'),
+  aboutUs: document.querySelector('#about-us'),
 };
 
 export { refs };
