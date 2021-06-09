@@ -10,5 +10,14 @@ import './js/components/footer';
 
 import { refs } from './js/refs';
 import onInputSearch from './js/input';
+import api from './js/api/axios';
 
 refs.inputEl.addEventListener('input', debounce(onInputSearch, 500));
+
+setTimeout(() => {
+  console.log(api.ganres);
+}, 1000);
+
+console.log(api.page);
+
+console.log(api.searchQuery);

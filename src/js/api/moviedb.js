@@ -5,65 +5,34 @@ import { refs } from '../refs';
 
 const { filmListGallery } = refs;
 
-// function renderPopularMovie() {
-//   api
-//     .getPopularMovies()
-//     .then(response => response.data.results)
-//     .then(result => renderMarkup(result))
-//     .catch(error => console.log(error));
-// }
+export function renderPopularMovie() {
+  api
+    .getPopularMovies()
+    .then(response => response.data.results)
+    .then(result => renderMarkup(result))
+    .catch(error => console.log(error));
+}
 
-// function renderMovisBySearchQuery() {
-//   api
-//     .getMovieOnSearchQuery((api.query = 'taxi'))
-//     .then(response => response.data.results)
-//     .then(result => renderMarkup(result))
-//     .catch(error => console.log(error));
-// }
-
-// api
-//   .getMovieOnSearchQuery((api.query = 'reacher'))
-//   .then(response => console.log(response.data))
-//   .catch(error => console.log(error));
-
-// function renderOneMovieById() {
-//   api
-//     .getMovieById((api.id = '75780'))
-//     .then(response => response.data.results)
-//     .then(result => renderMarkup(result))
-//     .catch(error => console.log(error));
-// }
-
-// api.getGanres().then(response => console.log(response.data.genres));
-
-api
-  .getPopularMovies()
-  .then(response => response.data.results)
-  .then(result => renderMarkup(result))
-  .catch(error => console.log(error));
-
-// api
-//   .getMovieOnSearchQuery((api.query = 'reacher'))
-//   .then(response => console.log(response.data))
-//   .catch(error => console.log(error));
-
-// api
-//   .getMovieById((api.id = '75780'))
-//   .then(response => console.log(response.data))
-//   .catch(error => console.log(error));
+export function renderMovisBySearchQuery(query) {
+  // if (query !== '') {
+  //   api
+  //     .getMovieOnSearchQuery()
+  //     .then(response => {
+  //       if (response.data.results.length === 0) {
+  //         console.log('Выводим ошибку');
+  //       } else {
+  //         console.log('Очищаем ошибку');
+  //       }
+  //       return response.data.results;
+  //     })
+  api
+    .getMovieOnSearchQuery()
+    .then(response => response.data.results)
+    .then(result => renderMarkup(result))
+    .catch(error => console.log(error));
+}
 
 const renderMarkup = result => {
   const markup = moviesTemplate(result);
   filmListGallery.insertAdjacentHTML('afterbegin', markup);
 };
-
-// renderPopularMovie();
-
-// renderMovisBySearchQuery();
-
-// renderOneMovieById();
-
-// api
-//   .getPopularMovies()
-//   .then(response => console.log(response.data.results))
-//   .then({ genre_ids });

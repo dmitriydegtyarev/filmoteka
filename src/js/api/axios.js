@@ -1,5 +1,5 @@
-// файл после всех merge переименовать в get-movies-class
 import axios from 'axios';
+import { renderPopularMovie } from './moviedb';
 
 const AUTH_TOKEN =
   'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmJjZmE2MzcxZjJiNGM1MWE4ZGJiNjc0ZGJhMmJkMyIsInN1YiI6IjYwYmNiYzNmZWE4NGM3MDAyYWU3YTE0YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.anozZCItdqcbHyQtoH8Fm8ne3QlJGCSzSiJGIz6YtsQ';
@@ -9,9 +9,16 @@ axios.defaults.headers.common.Authorization = AUTH_TOKEN;
 
 class GetMovi {
   constructor() {
+    this.page = 1;
+    this.ganres = [];
     this.searchQuery = '';
     this.movieId = Number;
-    this.page = 3;
+    this.init();
+  }
+
+  async init() {
+    await this.getGanres();
+    renderPopularMovie();
   }
 
   get query() {
@@ -38,13 +45,22 @@ class GetMovi {
     this.page = newPage;
   }
 
-  getMovieOnSearchQuery = () => axios.get(`/search/movie?query=${this.searchQuery}`);
+  async getGanres() {
+    const response = await axios.get('/genre/movie/list');
+    return (this.ganres = response.data.genres);
+  }
+
+  async getPopularMovies() {
+    return await axios.get(`/trending/all/day?page=${this.page}`);
+  }
+
+  async getMovieOnSearchQuery() {
+    return await axios.get(`/search/movie?query=${this.searchQuery}&page=${this.page}`);
+  }
+
+  // getMovieOnSearchQuery = () => axios.get(`/search/movie?query=${this.searchQuery}`);
 
   getMovieById = id => axios.get(`movie/${this.id}`);
-
-  getPopularMovies = () => axios.get(`/trending/all/day?page=${this.page}`);
-
-  getGanres = () => axios.get('/genre/movie/list');
 }
 
 const api = new GetMovi();
