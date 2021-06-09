@@ -11,7 +11,7 @@
         rgba(0, 0, 0, 0.56)
       ),
       url(/images/headerfoto.jpg);
-    background-color: black;
+    background-color: $primary-text-color;
   }
   input::placeholder {
     @include font(100, 12px, 12px);
@@ -19,9 +19,10 @@
     font-family: $font;
   }
   .input {
+    color: $secondary-text-color;
     background: transparent;
     border: none;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid $secondary-text-color;
     width: 280px;
     @media screen and (min-width: 321px) {
         width: 336px;
@@ -49,7 +50,8 @@
         height: 3px;
         display: block;
         content: "";
-        background:#FF6B08;
+        background: $accent-color;
+        
         }
       .accent-home::after {
           position: absolute; 
@@ -58,7 +60,7 @@
             height: 3px;
             display: block;
             content: "";
-            background:#FF6B08;
+            background: $accent-color;
            
           }
   a {
@@ -81,7 +83,7 @@
 }
   
   .current {
-    color: white
+    color: $secondary-text-color;
   }
 
   .input-div{
@@ -103,7 +105,7 @@
 font-weight: 500;
 font-size: 30px;
 line-height: 1.116;
-    color: white;
+    color: $secondary-text-color;
     font-family: $font;
     width: 141px;
     @media screen and (max-width: 767px) { 
