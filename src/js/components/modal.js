@@ -1,66 +1,65 @@
-import { refs } from '../refs.js';
-import api from '../api/axios';
-import filmCardTmp from '../../templates/film-card.hbs';
+// import { refs } from '../refs.js';
+// import api from '../api/axios';
+// import filmCardTmp from '../../templates/film-card.hbs';
 
-// откритие/закрытие модалки
-refs.filmListGallery.addEventListener('click', openModalWindow);
-refs.modalCloseBtn.addEventListener('click', onModalWindowCloseBtn);
-refs.lightbox.addEventListener('click', onOverlayClick);
-window.addEventListener('keydown', onEscPress);
-// добавить в просмотренные или в список просмотра
-refs.addWatchedBtn.addEventListener('click', onAddWatchedBtnClick);
-refs.addQueueBtn.addEventListener('click', onAddQueueBtnClick);
-    
-   
-function openModalWindow(e) {
-    e.preventDefault();
-    if (e.target.nodeName !== 'LI') return;
-    refs.lightbox.classList.add('is-open');
-    console.log('e.target.movieId :>> ', e.target.movieId);
-    api.id = e.target.movieId;
+// // откритие/закрытие модалки
+// refs.filmListGallery.addEventListener('click', openModalWindow);
+// refs.modalCloseBtn.addEventListener('click', onModalWindowCloseBtn);
+// refs.lightbox.addEventListener('click', onOverlayClick);
+// window.addEventListener('keydown', onEscPress);
+// // добавить в просмотренные или в список просмотра
+// refs.addWatchedBtn.addEventListener('click', onAddWatchedBtnClick);
+// refs.addQueueBtn.addEventListener('click', onAddQueueBtnClick);
 
-    fetchFilm();
-}
+// function openModalWindow(e) {
+//     e.preventDefault();
+//     if (e.target.nodeName !== 'LI') return;
+//     refs.lightbox.classList.add('is-open');
+//     console.log('e.target.movieId :>> ', e.target.movieId);
+//     api.id = e.target.movieId;
 
-function fetchFilm(id){
-   return api
-       .getMovieById()
-       .then(renderFilmMarkup);
-}
+//     fetchFilm();
+// }
 
-function renderFilmMarkup(film){
-   refs.filmCard.insertAdjancentHTML('beforeend', filmCardTmp(film)); 
-}
+// function fetchFilm(id){
+//    return api
+//        .getMovieById()
+//        .then(renderFilmMarkup);
+// }
 
-function onAddWatchedBtnClick(id) {
-    // дописать логику
+// function renderFilmMarkup(film){
+//    refs.filmCard.insertAdjancentHTML('beforeend', filmCardTmp(film));
+// }
 
-    refs.addWatchedBtn.classList.add('press-btn');
-    refs.addWatchedBtn.textContent = 'Added to Watched';
-}
+// function onAddWatchedBtnClick(id) {
+//     // дописать логику
 
-function onAddQueueBtnClick(id) {
-    // дописать логику
-    refs.addQueueBtn.classList.add('press-btn');
-    refs.addQueueBtn.textContent = 'Added to Queue';
-}
+//     refs.addWatchedBtn.classList.add('press-btn');
+//     refs.addWatchedBtn.textContent = 'Added to Watched';
+// }
 
-function onModalWindowCloseBtn() {
-    refs.lightbox.classList.remove('is-open');
-    refs.lightbox.removeEventListener('click', onOverlayClick);
-    window.removeEventListener('keydown', onEscPress);
-}
+// function onAddQueueBtnClick(id) {
+//     // дописать логику
+//     refs.addQueueBtn.classList.add('press-btn');
+//     refs.addQueueBtn.textContent = 'Added to Queue';
+// }
 
-function onOverlayClick(e) {
-    if (e.target === e.currentTarget) {
-        onModalWindowCloseBtn();
-    }
-}
+// function onModalWindowCloseBtn() {
+//     refs.lightbox.classList.remove('is-open');
+//     refs.lightbox.removeEventListener('click', onOverlayClick);
+//     window.removeEventListener('keydown', onEscPress);
+// }
 
-function onEscPress(e) {
-    if(e.code==='Escape'){
-        onModalWindowCloseBtn();
-    }
-}
+// function onOverlayClick(e) {
+//     if (e.target === e.currentTarget) {
+//         onModalWindowCloseBtn();
+//     }
+// }
 
-refs.modalCloseBtn.removeEventListener('click', onModalWindowCloseBtn);
+// function onEscPress(e) {
+//     if(e.code==='Escape'){
+//         onModalWindowCloseBtn();
+//     }
+// }
+
+// refs.modalCloseBtn.removeEventListener('click', onModalWindowCloseBtn);
