@@ -48,11 +48,11 @@ export function renderMovisBySearchQuery(query) {
   }
 }
 
-export function renderMovieById(id) {
-  api.id = 75146;
+export function getMovieId(event) {
+  api.id = event.target.id;
   api
     .getMovieById()
-    .then(response => console.log(response.data))
+    .then(response => console.log(response.data.id))
     .catch(error => console.log(error));
 }
 
@@ -61,4 +61,4 @@ const renderMarkup = result => {
   filmListGallery.insertAdjacentHTML('afterbegin', markup);
 };
 
-mainSection.addEventListener('click', renderMovieById);
+mainSection.addEventListener('click', getMovieId);

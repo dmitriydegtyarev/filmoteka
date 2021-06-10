@@ -1,6 +1,7 @@
 {{#each this}}
-  <li class="film-list_item">
+  <li class='film-list_item'>
     <img
+      id={{id}}
       class='film-list_img'
       src="https://image.tmdb.org/t/p/w500/{{poster_path}}"
       alt={{original_title}}
@@ -18,9 +19,9 @@
       <li>
         {{release_date}}
       </li>
-      <li> 
-        <p class="film-vote">
-        {{vote_average}}
+      <li>
+        <p class='film-vote'>
+          {{vote_average}}
         </p>
       </li>
     </ul>
