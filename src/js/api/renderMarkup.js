@@ -62,6 +62,11 @@ export function getMovieId(event) {
     })
     // .then(result => renderFilmMarkup(result))
     .catch(error => console.log(error));
+
+  api
+    .getShortInfoMovieById()
+    .then(response => console.log(response.data.results))
+    .catch(error => console.log(error));
 }
 
 const renderMarkup = result => {

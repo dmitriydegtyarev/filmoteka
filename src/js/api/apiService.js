@@ -59,7 +59,11 @@ class GetMovi {
   }
 
   async getMovieById(id) {
-    return await axios.get(`movie/${this.id}`);
+    return await axios.get(`/movie/${this.id}`);
+  }
+
+  async getShortInfoMovieById(id) {
+    return await axios.get(`/movie/${this.id}/videos`);
   }
 }
 
