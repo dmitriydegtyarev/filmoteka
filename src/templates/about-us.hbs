@@ -2,10 +2,10 @@
   <div class='about-us-close'></div>
   <ul class='about-us-content'>
     {{#each this}}
-      <li>
-        <img src='{{photo}}' alt='{{position}}' />
-        <h2>{{name}}</h2>
-        <p>{{position}}</p>
+      <li class='about-us-card'>
+        <img class='about-us-photo' src='{{photo}}' alt='{{position}}' />
+        <h2 class='about-us-name'>{{name}}</h2>
+        <p class='about-us-position'>{{position}}</p>
       </li>
     {{/each}}
   </ul>

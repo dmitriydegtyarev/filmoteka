@@ -1,20 +1,25 @@
 .about-us {
-  background-color: $text-card-color;
+  background-color: $main-background-color;
   &-content {
     overflow-y: scroll;
     height: 100vh;
-    li {
-      img {
-        width: 768px;
-        height: auto;
-      }
-    }
+    width: 350px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    // li {
+    //   img {
+    //     width: 768px;
+    //     height: auto;
+    //   }
+    // }
   }
   &-close {
     position: fixed;
     margin: 10px;
-    top: 0;
-    right: 0;
+    top: 25px;
+    right: 25px;
     color: $accent-color;
     height: 24px;
     width: 24px;
@@ -24,5 +29,23 @@
       line-height: 1;
       font-size: 18px;
     }
+  }
+  &-card {
+    border-radius: 15px;
+    border: $accent-color 2px solid;
+    margin-top: 15px;
+  }
+
+  &-photo {
+    border-radius: 15px 15px 0px 0px;
+  }
+  &-name {
+    margin: 5px;
+    text-align: center;
+    color: $text-footer-color;
+  }
+  &-position {
+    text-align: center;
+    padding-bottom: 5px;
   }
 }
