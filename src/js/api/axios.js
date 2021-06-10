@@ -58,9 +58,11 @@ class GetMovi {
     return await axios.get(`/search/movie?query=${this.searchQuery}&page=${this.page}`);
   }
 
-  // getMovieOnSearchQuery = () => axios.get(`/search/movie?query=${this.searchQuery}`);
+  async getMovieById() {
+    return await axios.get(`movie/${this.id}`);
+  }
 
-  getMovieById = id => axios.get(`movie/${this.id}`);
+  // getMovieById = id => axios.get(`movie/${this.id}`);
 }
 
 const api = new GetMovi();

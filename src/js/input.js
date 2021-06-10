@@ -1,4 +1,3 @@
-// import fetchMovies from './fetchMovies';
 import api from './api/axios';
 import { renderMovisBySearchQuery } from './api/moviedb';
 

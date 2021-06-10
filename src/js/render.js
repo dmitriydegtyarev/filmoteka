@@ -1,32 +1,32 @@
-import { refs } from './refs';
-import moviesTpl from '../templates/film-list.hbs';
+// import { refs } from './refs';
+// import moviesTpl from '../templates/film-list.hbs';
 
-const searchMovies = movies => {
-  const moviesMarkup = moviesTpl(movies);
+// const searchMovies = movies => {
+//   const moviesMarkup = moviesTpl(movies);
 
-  clearInput();
-  refs.filmListGallery.insertAdjacentHTML('beforeend', moviesMarkup);
-};
+//   clearInput();
+//   refs.filmListGallery.insertAdjacentHTML('beforeend', moviesMarkup);
+// };
 
-const clearInput = () => {
-  refs.filmListGallery.innerHTML = '';
-};
+// const clearInput = () => {
+//   refs.filmListGallery.innerHTML = '';
+// };
 
-const errorMessage = () => {
-  if (refs.errorMessageEl.textContent === '') {
-    refs.errorMessageEl.insertAdjacentHTML(
-      'beforeend',
-      'Search result not successful. Enter the correct movie name and try again...',
-    );
-  }
-};
+// const errorMessage = () => {
+//   if (refs.errorMessageEl.textContent === '') {
+//     refs.errorMessageEl.insertAdjacentHTML(
+//       'beforeend',
+//       'Search result not successful. Enter the correct movie name and try again...',
+//     );
+//   }
+// };
 
-const clearErrorMessage = () => {
-  refs.errorMessageEl.innerHTML = '';
-};
+// const clearErrorMessage = () => {
+//   refs.errorMessageEl.innerHTML = '';
+// };
 
-export default {
-  searchMovies,
-  errorMessage,
-  clearErrorMessage,
-};
+// export default {
+//   searchMovies,
+//   errorMessage,
+//   clearErrorMessage,
+// };
