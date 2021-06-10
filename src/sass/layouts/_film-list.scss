@@ -2,6 +2,11 @@
   height: 398px;
 }
 
+.error-img{
+  background-size: contain;
+
+}
+
 .film-list_name {
   text-transform: uppercase;
   @include font(500, 12px, 14px);
@@ -30,6 +35,10 @@
 }
 
 @media screen and (max-width: 767px) {
+  .film-list_gallery{
+    margin-right: auto;
+    margin-left: auto;
+  }
   .film-list_item:not(:last-child){
   margin-bottom: 20px;
   }

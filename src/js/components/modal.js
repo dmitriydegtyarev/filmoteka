@@ -19,7 +19,7 @@ function openModalWindow(e) {
   const filmId = e.target.id;
   console.log('e.target.Id :>> ', filmId);
   
-  fetchFilm(filmId).then(renderFilmMarkup);
+  //fetchFilm(filmId).then(renderFilmMarkup);
   
   
 }
