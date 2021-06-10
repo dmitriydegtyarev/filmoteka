@@ -1,0 +1,28 @@
+.about-us {
+  background-color: $text-card-color;
+  &-content {
+    overflow-y: scroll;
+    height: 100vh;
+    li {
+      img {
+        width: 768px;
+        height: auto;
+      }
+    }
+  }
+  &-close {
+    position: fixed;
+    margin: 10px;
+    top: 0;
+    right: 0;
+    color: $accent-color;
+    height: 24px;
+    width: 24px;
+    &:after {
+      // margin: 10px;
+      content: '\2715';
+      line-height: 1;
+      font-size: 18px;
+    }
+  }
+}

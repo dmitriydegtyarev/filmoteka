@@ -1,11 +1,12 @@
-<section class="about-us"></section>
-<div class="about-us-close">close</div>
-<ul class="about-us-content">
-  {{#each this}}
-    <li>
-      <img src='{{photo}}' alt='{{position}}' />
-      <h2>{{name}}</h2>
-      <p>{{position}}</p>
-    </li>
-  {{/each}}
-</ul>
+<section class='about-us'>
+  <div class='about-us-close'></div>
+  <ul class='about-us-content'>
+    {{#each this}}
+      <li>
+        <img src='{{photo}}' alt='{{position}}' />
+        <h2>{{name}}</h2>
+        <p>{{position}}</p>
+      </li>
+    {{/each}}
+  </ul>
+</section>
