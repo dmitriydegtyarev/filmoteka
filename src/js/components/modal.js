@@ -1,5 +1,5 @@
 import { refs } from '../refs.js';
-import api from '../api/axios';
+import api from '../api/apiService';
 import filmCardTmp from '../../templates/film-card.hbs';
 
 // откритие/закрытие модалки

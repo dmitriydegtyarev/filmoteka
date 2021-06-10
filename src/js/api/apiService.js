@@ -12,7 +12,7 @@ class GetMovi {
     this.page = 1;
     this.ganres = [];
     this.searchQuery = '';
-    this.movieId = Number;
+    this.id = Number;
     this.init();
   }
 
@@ -29,12 +29,12 @@ class GetMovi {
     this.searchQuery = newQuery;
   }
 
-  get id() {
-    return this.movieId;
+  get movieId() {
+    return this.id;
   }
 
-  set id(newId) {
-    this.movieId = newId;
+  set movieId(newId) {
+    this.id = newId;
   }
 
   get curentPage() {
@@ -61,8 +61,6 @@ class GetMovi {
   async getMovieById() {
     return await axios.get(`movie/${this.id}`);
   }
-
-  // getMovieById = id => axios.get(`movie/${this.id}`);
 }
 
 const api = new GetMovi();

@@ -3,7 +3,7 @@ import '@pnotify/core/dist/PNotify.css';
 
 import { error, success } from '@pnotify/core';
 
-import api from './axios';
+import api from './apiService';
 import moviesTemplate from '../../templates/film-list.hbs';
 import movieTemplate from '../../templates/film-card.hbs';
 import { refs } from '../refs';
