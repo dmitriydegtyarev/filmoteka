@@ -16,16 +16,21 @@ function openModalWindow(e) {
   
   if (e.target.nodeName !== 'IMG') return;
   refs.lightbox.classList.add('is-open');
-  const imgId = e.target.id;
-  console.log('e.target.Id :>> ', imgId);
-  //api.id = e.target.movieId;
+  const filmId = e.target.id;
+  console.log('e.target.Id :>> ', filmId);
   
-  //return api.getMovieById(imgId);
-  //fetchFilm();
+  fetchFilm(filmId).then(renderFilmMarkup);
+  
+  
 }
 
-// function fetchFilm(id) {
-//   return api.getMovieById().then(renderFilmMarkup);
+// async function fetchFilm(filmId) {
+//   const response = await fetch(`https://api.themoviedb.org/3/movie/${filmId}?api_key=`);
+//   console.log('response :>> ', response);
+//   const film = response.json();
+//   console.log('film :>> ', film);
+//   return film;
+  
 // }
 
 function renderFilmMarkup(film) {
