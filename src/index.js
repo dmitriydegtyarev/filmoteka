@@ -7,6 +7,7 @@ import './js/api/moviedb';
 import './js/components/navigation';
 import './js/components/modal';
 import './js/components/footer';
+import './js/components/main';
 
 import { refs } from './js/refs';
 import onInputSearch from './js/input';

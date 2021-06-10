@@ -9,7 +9,6 @@ const refs = {
   filmListItem: document.querySelector('.film-list_item'),
   addWatchedBtn: document.querySelector('.add-watched_button'),
   addQueueBtn: document.querySelector('.add-queue_button'),
-  //filmEl: document.querySelector('.film'),
 };
 
 export { refs };
