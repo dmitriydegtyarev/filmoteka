@@ -25,13 +25,13 @@ function onNavLinkLibraryClick() {
   navigationLibraryEl.classList.add('accent-library');
   inputDivEl.classList.add('hidden');
   myLibraryBtnsEl.classList.remove('hidden');
-  // changeLbImg();
+  changeLbImg();
 }
 // Це ще не працює
 
-// function changeLbImg() {
-//   headerEl.style.backgroundImage = "url('/images/mylibraryfoto.jpg')";
-// };
+function changeLbImg() {
+  headerEl.style.backgroundImage = "url('/images/mylibraryfoto.webp')";
+};
 
 // function changeHomeImg() {
 //   headerEl.style.backgroundImage = 'url( "/ images / mylibraryfoto.jpg" )';
