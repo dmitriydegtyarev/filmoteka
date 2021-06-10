@@ -12,6 +12,7 @@ const refs = {
   // filmEl: document.guerySelector('.film'),
   // mainContainer: document.guerySelector('.js-container'),
   // filmList: document.guerySelector('.film-list'),
+  mainSection: document.querySelector('.section-main'),
 };
 
 export { refs };

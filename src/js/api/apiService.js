@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { renderPopularMovie } from './moviedb';
+import { renderPopularMovie } from './renderMarkup';
 
 const AUTH_TOKEN =
   'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmJjZmE2MzcxZjJiNGM1MWE4ZGJiNjc0ZGJhMmJkMyIsInN1YiI6IjYwYmNiYzNmZWE4NGM3MDAyYWU3YTE0YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.anozZCItdqcbHyQtoH8Fm8ne3QlJGCSzSiJGIz6YtsQ';
@@ -54,11 +54,11 @@ class GetMovi {
     return await axios.get(`/trending/all/day?page=${this.page}`);
   }
 
-  async getMovieOnSearchQuery() {
+  async getMovieOnSearchQuery(query) {
     return await axios.get(`/search/movie?query=${this.searchQuery}&page=${this.page}`);
   }
 
-  async getMovieById() {
+  async getMovieById(id) {
     return await axios.get(`movie/${this.id}`);
   }
 }

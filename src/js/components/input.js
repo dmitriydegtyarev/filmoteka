@@ -1,7 +1,7 @@
 import debounce from 'lodash.debounce';
 
 import api from '../api/apiService';
-import { renderMovisBySearchQuery } from '../api/moviedb';
+import { renderMovisBySearchQuery } from '../api/renderMarkup';
 import { refs } from '../refs';
 
 const { inputEl } = refs;

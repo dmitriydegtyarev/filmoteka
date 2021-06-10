@@ -8,7 +8,7 @@ import moviesTemplate from '../../templates/film-list.hbs';
 import movieTemplate from '../../templates/film-card.hbs';
 import { refs } from '../refs';
 
-const { filmListGallery } = refs;
+const { filmListGallery, mainSection } = refs;
 
 export function renderPopularMovie() {
   api
@@ -21,7 +21,7 @@ export function renderPopularMovie() {
 export function renderMovisBySearchQuery(query) {
   if (query !== '') {
     api
-      .getMovieOnSearchQuery()
+      .getMovieOnSearchQuery(query)
       .then(response => {
         if (response.data.results.length === 0) {
           error({
@@ -48,7 +48,17 @@ export function renderMovisBySearchQuery(query) {
   }
 }
 
+export function renderMovieById(id) {
+  api.id = 75146;
+  api
+    .getMovieById()
+    .then(response => console.log(response.data))
+    .catch(error => console.log(error));
+}
+
 const renderMarkup = result => {
   const markup = moviesTemplate(result);
   filmListGallery.insertAdjacentHTML('afterbegin', markup);
 };
+
+mainSection.addEventListener('click', renderMovieById);
