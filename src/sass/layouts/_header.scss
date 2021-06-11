@@ -4,10 +4,21 @@
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0 auto;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    url(/images/headerfoto.jpg);
+  background-image: url(/images/headerfoto.jpg);
   background-color: $primary-text-color;
 }
+
+.header__library {
+  height: 230px;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url(/images/mylibraryfoto.webp);
+  background-color: $primary-text-color;
+}
+
 input::placeholder {
   @include font(100, 12px, 12px);
   color: $secondary-text-color;
@@ -138,13 +149,13 @@ a {
   display: block;
   width: 69px;
 }
-.my-library_btns{
+.my-library_btns {
   display: flex;
   margin: 0 auto;
   justify-content: center;
 }
 
-.my-library_btn{
+.my-library_btn {
   display: block;
   width: 136px;
   height: 44px;
@@ -157,12 +168,11 @@ a {
   color: $secondary-text-color;
   font-family: $font;
   @include font(500, 12px, 1.33px);
-
 }
-.my-library_btn:not(:last-child){
+.my-library_btn:not(:last-child) {
   margin-right: 0;
 }
 
-.hidden{
+.hidden {
   display: none;
-} 
+}
