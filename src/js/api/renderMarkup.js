@@ -31,7 +31,8 @@ export function renderMovisBySearchQuery(query) {
           });
         } else {
           success({
-            text: 'search successful',
+            text: `search successful:
+             ${response.data.total_results} founded`,
             delay: 2000,
           });
         }
