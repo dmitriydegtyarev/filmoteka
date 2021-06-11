@@ -31,7 +31,7 @@
   }
 
   &-photo {
-    width: 100vh;
+    width: 100vw;
     border-radius: 4px 4px 0px 0px;
   }
   &-name {
@@ -56,7 +56,6 @@
       content: '\2715';
       line-height: 0.8;
       font-size: 18px;
-      // text-shadow: 0 0 3px $primary-text-color;
     }
     &:hover,
     &:focus {
@@ -71,3 +70,8 @@
     }
   }
 }
+// @media screen and (min-width: 768px) {
+//         .about-us {
+            
+//         }
+// }
