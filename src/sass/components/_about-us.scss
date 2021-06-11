@@ -70,7 +70,7 @@
     }
   }
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $width-tablet) {
   .about-us {
     &-content {
       display: flex;
@@ -82,6 +82,13 @@
     }
     &-card {
       margin: 30px 35px 30px 35px;
+    }
+  }
+}
+@media screen and (min-width: $width-desktop) {
+  .about-us {
+    &-card {
+      margin: 35px 40px 40px 50px;
     }
   }
 }
