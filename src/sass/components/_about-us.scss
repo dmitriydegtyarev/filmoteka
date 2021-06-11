@@ -21,28 +21,17 @@
     height: 100vh;
     padding: 20px;
   }
-  // @media screen and (min-width: $width-tablet){
-  //     display: flex;
-  // }
-  // li {
-  //   img {
-  //     width: 768px;
-  //     height: auto;
-  //   }
-  // }
 
   &-card {
     border-radius: 6px;
     border: $accent-color 2px solid;
-    margin-top: 15px;
-    margin-right: 30px;
+    margin: 5% auto;
   }
 
   &-photo {
     border-radius: 4px 4px 0px 0px;
   }
   &-name {
-    // margin: 5px;
     font-size: 20px;
     text-align: center;
     color: $text-footer-color;
@@ -53,8 +42,6 @@
   }
   &-close {
     color: $primary-text-color;
-    // border: 1px solid $primary-text-color;
-    // border-radius: 18px;
     margin-right: 5px;
     margin-top: 4px;
     text-align: center;
@@ -66,13 +53,15 @@
       content: '\2715';
       line-height: 0.8;
       font-size: 18px;
-      text-shadow: 0 0 3px $primary-text-color;
+      // text-shadow: 0 0 3px $primary-text-color;
     }
     &:hover,
     &:focus {
       color: $accent-color;
       border-color: $accent-color;
       cursor: pointer;
+      text-shadow: 0 0 3px $primary-text-color;
+    
     }
     &:active {
       color: $accent-color;
