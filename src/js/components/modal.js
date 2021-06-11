@@ -2,40 +2,43 @@ import { refs } from '../refs.js';
 import api from '../api/apiService';
 import filmCardTmp from '../../templates/film-card.hbs';
 
-
-refs.filmListGallery.addEventListener('click', openModalWindow);
-
 //добавить в просмотренные или в список просмотра
 //refs.addWatchedBtn.addEventListener('click', onAddWatchedBtnClick);
 //refs.addQueueBtn.addEventListener('click', onAddQueueBtnClick);
+
+refs.filmListGallery.addEventListener('click', openModalWindow);
 
 function openModalWindow(e) {
   refs.modalCloseBtn.addEventListener('click', onModalWindowCloseBtn);
   refs.lightbox.addEventListener('click', onOverlayClick);
   window.addEventListener('keydown', onEscPress);
+ 
+  refs.lightbox.classList.add('is-open');
   
   if (e.target.nodeName !== 'IMG') return;
-  refs.lightbox.classList.add('is-open');
-  const filmId = e.target.id;
-  console.log('e.target.Id :>> ', filmId);
-  
-  //fetchFilm(filmId).then(renderFilmMarkup);
-  
-  
+  api.id = e.target.id;
+  console.log('api.id :>> ', api.id);
+  api
+    .getMovieById()
+    .then(response => {
+      console.log(response.data);
+      return response.data;
+    }).then(renderFilmMarkup)
 }
 
-// async function fetchFilm(filmId) {
-//   const response = await fetch(`https://api.themoviedb.org/3/movie/${filmId}?api_key=`);
-//   console.log('response :>> ', response);
-//   const film = response.json();
-//   console.log('film :>> ', film);
-//   return film;
+// function searchFilmId(e) {
+//   if (e.target.nodeName !== 'PICTURE') return;
+//   // const filmId = e.target.id;
+//   // console.log('e.target.Id :>> ', filmId);
+//   // return filmId;
   
 // }
 
 function renderFilmMarkup(film) {
-  refs.filmCard.insertAdjancentHTML('beforeend', filmCardTmp(film));
+  console.log('refs.filmCard :>> ', refs.filmCard);
+  refs.filmCard.insertAdjacentHTML('beforeend', filmCardTmp(film));
 }
+
 
 function onAddWatchedBtnClick(id) {
   // дописать логику
@@ -73,4 +76,4 @@ function onEscPress(e) {
   }
 }
 
-// refs.modalCloseBtn.removeEventListener('click', onModalWindowCloseBtn);
+refs.modalCloseBtn.removeEventListener('click', onModalWindowCloseBtn);

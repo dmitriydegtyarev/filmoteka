@@ -53,22 +53,22 @@ export function renderMovieById(id) {
   console.log('renderMovieById');
 }
 
-export function getMovieId(event) {
-  api.id = event.target.id;
-  api
-    .getMovieById()
-    .then(response => {
-      console.log(response.data.id);
-      return response.data.id;
-    })
-    // .then(result => renderFilmMarkup(result))
-    .catch(error => console.log(error));
+// export function getMovieId(event) {
+//   api.id = event.target.id;
+//   api
+//     .getMovieById()
+//     .then(response => {
+//       console.log(response.data.id);
+//       return response.data.id;
+//     })
+//     // .then(result => renderFilmMarkup(result))
+//     .catch(error => console.log(error));
 
-  api
-    .getShortInfoMovieById()
-    .then(response => console.log(response.data.results))
-    .catch(error => console.log(error));
-}
+//   // api
+//   //   .getShortInfoMovieById()
+//   //   .then(response => console.log(response.data.results))
+//   //   .catch(error => console.log(error));
+// }
 
 const renderMarkup = result => {
   const markup = moviesTemplate(result);
@@ -80,4 +80,4 @@ const renderFilmMarkup = result => {
   filmCard.insertAdjancentHTML('beforeend', markup);
 };
 
-mainSection.addEventListener('click', getMovieId);
+//mainSection.addEventListener('click', getMovieId);
