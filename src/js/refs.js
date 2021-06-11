@@ -10,7 +10,6 @@ const refs = {
   mainSection: document.querySelector('.section-main'),
   addWatchedBtn: document.querySelector('.add-watched_button'),
   addQueueBtn: document.querySelector('.add-queue_button'),
-  //filmEl: document.querySelector('.film'),
 };
 
 export { refs };
