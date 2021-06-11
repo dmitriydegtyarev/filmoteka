@@ -87,8 +87,13 @@
 }
 @media screen and (min-width: $width-desktop) {
   .about-us {
+    &-content {
+      padding-top: 40px;
+      padding-left: 10px;
+    }
+     
     &-card {
-      margin: 35px 40px 40px 50px;
+      margin: 0 40px 40px ;
     }
   }
 }
