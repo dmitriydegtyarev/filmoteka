@@ -17,7 +17,7 @@ function onNavLinkHomeClick() {
   navigationLibraryEl.classList.remove('accent-library');
   inputDivEl.classList.remove('hidden');
   myLibraryBtnsEl.classList.add('hidden');
-  // changeHomeImg();
+  changeHomeImg();
 }
 
 function onNavLinkLibraryClick() {
@@ -27,15 +27,14 @@ function onNavLinkLibraryClick() {
   myLibraryBtnsEl.classList.remove('hidden');
   changeLbImg();
 }
-// Це ще не працює
 
 function changeLbImg() {
-  headerEl.style.backgroundImage = "url('/images/mylibraryfoto.webp')";
+  headerEl.classList.remove('header');
+  headerEl.classList.add('header__library');
 };
 
-// function changeHomeImg() {
-//   headerEl.style.backgroundImage = 'url( "/ images / mylibraryfoto.jpg" )';
+function changeHomeImg() {
+  headerEl.classList.remove('header__library');
+  headerEl.classList.add('header');
 
-// };
-
-// console.log(headerEl.style.backgroundImage);
+};
