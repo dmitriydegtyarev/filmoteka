@@ -1,13 +1,12 @@
 {{#each this}}
-  <li class="film-list_item">
-
+  <li class='film-list_item'>
     <picture id={{id}} class='film-list_img'>
-      <source srcset="https://image.tmdb.org/t/p/w500/{{poster_path}}" alt={{original_title}} media="(min-width: 320px)" />
-      <img 
-        class="error-img"
-        src="./images/404.jpg"
-        alt='ERROR 404'
+      <source
+        srcset="https://image.tmdb.org/t/p/w500/{{poster_path}}"
+        alt={{original_title}}
+        media='(min-width: 320px)'
       />
+      <img class='error-img' src='./images/404.jpg' alt='ERROR 404' />
     </picture>
     <h2 class='film-list_name'>
       {{original_title}} {{name}}
@@ -17,16 +16,16 @@
         {{genre_ids}}
       </li>
       <li>
-        <p class="line">
-         | 
+        <p class='line'>
+          |
         </p>
       </li>
       <li>
         {{release_date}}
       </li>
-      <li> 
-        <p class="film-vote">
-        {{vote_average}}
+      <li>
+        <p class='film-vote'>
+          {{vote_average}}
         </p>
       </li>
     </ul>

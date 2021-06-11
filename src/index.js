@@ -1,15 +1,9 @@
-import debounce from 'lodash.debounce';
-
 import './sass/main.scss';
 
-import './js/api/axios';
-import './js/api/moviedb';
+import './js/api/apiService';
+import './js/api/renderMarkup';
 import './js/components/navigation';
 import './js/components/modal';
 import './js/components/footer';
 import './js/components/main';
-
-import { refs } from './js/refs';
-import onInputSearch from './js/input';
-
-refs.inputEl.addEventListener('input', debounce(onInputSearch, 500));
+import './js/components/input';
