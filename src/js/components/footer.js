@@ -11,6 +11,10 @@ function onClickAboutUs(e) {
     onShow: instance => {
       instance.element().querySelector('.about-us-close').onclick = instance.close;
     },
+    onClose: () => {
+      refs.mainSection.style.display = 'initial';
+    }
   });
   instance.show();
+  refs.mainSection.style.display = 'none';
 }
