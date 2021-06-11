@@ -7,14 +7,21 @@ import api from './apiService';
 import moviesTemplate from '../../templates/film-list.hbs';
 import movieTemplate from '../../templates/film-card.hbs';
 import { refs } from '../refs';
+import img from '../components/input';
 
 const { filmListGallery, mainSection, filmCard } = refs;
+const posterUrl = 'https://image.tmdb.org/t/p/w500/';
 
 export function renderPopularMovie() {
   api
     .getPopularMovies()
     .then(response => response.data.results)
-    .then(result => renderMarkup(result))
+    .then(result => {
+      result.forEach(element => {
+        element.poster_path = `${posterUrl}${element.poster_path}`;
+      });
+      renderMarkup(result);
+    })
     .catch(error => console.log(error));
 }
 
@@ -39,6 +46,13 @@ export function renderMovisBySearchQuery(query) {
         return response.data.results;
       })
       .then(result => {
+        result.forEach(element => {
+          if (element.poster_path === null) {
+            element.poster_path = img.NOPOSTER;
+          } else {
+            element.poster_path = `${posterUrl}${element.poster_path}`;
+          }
+        });
         filmListGallery.innerHTML = '';
         renderMarkup(result);
       })

@@ -12,3 +12,10 @@ function onInputSearch(e) {
 }
 
 inputEl.addEventListener('input', debounce(onInputSearch, 500));
+
+import imgNoPoster from '../../images/no-poster/noposter.jpg';
+console.log(imgNoPoster);
+
+export default {
+  NOPOSTER: imgNoPoster,
+};
