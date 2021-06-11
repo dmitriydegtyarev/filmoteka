@@ -74,22 +74,23 @@
   .about-us {
     overflow-y: hidden;
     padding-top: 0;
+    height: min-content;
     &-title {
       position: static;
     }
     &-content {
       display: flex;
       flex-wrap: wrap;
-      flex-direction: row;
-      justify-content: space-evenly;
-      align-content: space-around;
+      // flex-direction: column;
+      // justify-content: space-evenly;
+      // align-content: space-around;
       // height: 100%;
       padding-top: 3%;
       padding-left: 8%;
     }
     &-card {
-      width: 36%;
-      margin: 0 8% 3% 0;
+      width: 150px;
+      margin: 20px 20px 20px 40px;
     }
   }
 }
