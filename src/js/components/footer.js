@@ -5,8 +5,16 @@ import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 
 refs.aboutUs.addEventListener('click', onClickAboutUs);
-function onClickAboutUs(e){
-    e.preventDefault();
-    const instance = basicLightbox.create(tmplAboutUs(dataAboutUs));
-    instance.show();
+function onClickAboutUs(e) {
+  e.preventDefault();
+  const instance = basicLightbox.create(tmplAboutUs(dataAboutUs), {
+    onShow: instance => {
+      instance.element().querySelector('.about-us-close').onclick = instance.close;
+    },
+    onClose: () => {
+      refs.mainSection.style.display = 'initial';
+    }
+  });
+  instance.show();
+  refs.mainSection.style.display = 'none';
 }
