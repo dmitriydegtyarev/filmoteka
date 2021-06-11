@@ -10,6 +10,9 @@ const refs = {
   mainSection: document.querySelector('.section-main'),
   addWatchedBtn: document.querySelector('.add-watched_button'),
   addQueueBtn: document.querySelector('.add-queue_button'),
+  modal: document.querySelector('.modal'),
+  bodyEl: document.querySelector('body'),
+  switchInputEl: document.querySelector('.theme-switch__toggle'),
 };
 
 export { refs };
