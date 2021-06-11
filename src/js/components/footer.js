@@ -12,9 +12,9 @@ function onClickAboutUs(e) {
       instance.element().querySelector('.about-us-close').onclick = instance.close;
     },
     onClose: () => {
-      refs.mainSection.style.display = 'initial';
+      document.body.style.overflow = 'visible';
     }
   });
   instance.show();
-  refs.mainSection.style.display = 'none';
+  document.body.style.overflow = 'hidden';
 }
