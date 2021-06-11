@@ -188,3 +188,13 @@
     width: 136px;
   }
 }
+
+.modal.light-theme {
+  background-color: $main-background-color;
+  color: $primary-text-color;
+}
+
+.modal.dark-theme {
+  background-color: $dark-theme-background-color;
+  color: $secondary-text-color;
+}
