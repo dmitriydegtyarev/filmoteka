@@ -3,11 +3,13 @@ const navigationLibraryEl = document.querySelector('.navigation_library');
 const myLibraryBtnsEl = document.querySelector('.my-library_btns');
 const inputDivEl = document.querySelector('.input-div');
 const headerEl = document.querySelector('.header');
-const libraryWatchedEl = document.querySelector('.my-library_btn-watched')
-const libraryQueueEl = document.querySelector('.my-library_btn-queue')
+const libraryWatchedEl = document.querySelector('.my-library_btn-watched');
+const libraryQueueEl = document.querySelector('.my-library_btn-queue');
+const logoFilmEl = document.querySelector('.logo-search_film');
 
 navigationHomeEl.addEventListener('click', onNavLinkHomeClick);
 navigationLibraryEl.addEventListener('click', onNavLinkLibraryClick);
+logoFilmEl.addEventListener('click', onNavLinkHomeClick);
 
 libraryWatchedEl.addEventListener('click', currentLinkWatched);
 libraryQueueEl.addEventListener('click', currentLinkQueue);
