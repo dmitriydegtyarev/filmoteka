@@ -1,17 +1,16 @@
 <div class="film">
     <img class="film-img" src='https://image.tmdb.org/t/p/w500/{{poster_path}}' alt={{original_title}}{{name}}>
-    <a class="link" href={{homepage}}>Watch the trailer</a>
     <div class="film-info">
         <h2 class="film-name">{{original_title}}{{name}}</h2>
         <div class="film-properties">
             <ul class="properties">
-                <li><p class="film-vote">Vote</p> / Votes</li>
+                <li>Vote / Votes</li>
                 <li>Popularity</li>
                 <li>Original Title</li>
                 <li>Genre</li>
             </ul>
             <ul class="property-value">
-                <li>{{vote_average}} / {{vote_count}}</li>
+                <li><p class="film-vote">{{vote_average}}</p> / {{vote_count}}</li>
                 <li>{{popularity}}</li>
                 <li class="film-origin-title">{{original_title}}{{name}}</li>
                 <li>{{genres}}</li>
@@ -19,6 +18,7 @@
         </div>
         <p class="film-about">About</p>
         <span class="film-description">{{overview}}</span>
+        <a class="link" href={{homepage}}>Watch the trailer</a>
 
         <div class="buttons">
             <button class="add-watched_button" type="submit">Add to Watched</button>

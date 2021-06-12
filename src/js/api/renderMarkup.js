@@ -67,15 +67,15 @@ export function renderMovieById(id) {
   console.log('renderMovieById');
 }
 
-// export function getMovieId(event) {
-//   api.id = event.target.id;
+// export function getFilmInModal(e) {
+//   api.id = e.target.id;
 //   api
 //     .getMovieById()
 //     .then(response => {
-//       console.log(response.data.id);
-//       return response.data.id;
+//       console.log(response.data);
+//       return response.data;
 //     })
-//     // .then(result => renderFilmMarkup(result))
+//     .then(renderFilmMarkup)
 //     .catch(error => console.log(error));
 
 //   // api
@@ -89,9 +89,9 @@ const renderMarkup = result => {
   filmListGallery.insertAdjacentHTML('afterbegin', markup);
 };
 
-const renderFilmMarkup = result => {
-  const markup = movieTemplate(result);
-  filmCard.insertAdjancentHTML('beforeend', markup);
-};
+// const renderFilmMarkup = film => {
+//   const markup = movieTemplate(film);
+//   filmCard.insertAdjancentHTML('beforeend', markup);
+// };
 
 //mainSection.addEventListener('click', getMovieId);

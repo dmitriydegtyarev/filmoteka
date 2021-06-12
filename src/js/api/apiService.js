@@ -12,7 +12,7 @@ class GetMovi {
     this.page = 1;
     this.ganres = [];
     this.searchQuery = '';
-    this.id = Number;
+    this.id = '';
     this.init();
   }
 

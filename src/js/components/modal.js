@@ -1,10 +1,7 @@
 import { refs } from '../refs.js';
 import api from '../api/apiService';
 import filmCardTmp from '../../templates/film-card.hbs';
-
-//добавить в просмотренные или в список просмотра
-//refs.addWatchedBtn.addEventListener('click', onAddWatchedBtnClick);
-//refs.addQueueBtn.addEventListener('click', onAddQueueBtnClick);
+//import  getFilmInModal from '../api/renderMarkup';
 
 refs.filmListGallery.addEventListener('click', openModalWindow);
 
@@ -12,10 +9,14 @@ function openModalWindow(e) {
   refs.modalCloseBtn.addEventListener('click', onModalWindowCloseBtn);
   refs.lightbox.addEventListener('click', onOverlayClick);
   window.addEventListener('keydown', onEscPress);
+  //добавить в просмотренные или в список просмотра
+  // refs.addWatchedBtn.addEventListener('click', onAddWatchedBtnClick);
+  // refs.addQueueBtn.addEventListener('click', onAddQueueBtnClick); 
  
   refs.lightbox.classList.add('is-open');
   
   if (e.target.nodeName !== 'IMG') return;
+  //getFilmInModal(e);
   api.id = e.target.id;
   console.log('api.id :>> ', api.id);
   api
@@ -23,16 +24,14 @@ function openModalWindow(e) {
     .then(response => {
       console.log(response.data);
       return response.data;
-    }).then(renderFilmMarkup)
+    }).then(({id,poster_path, original_title, name,vote_average,vote_count,popularity, overview, genres, homepage }) => {
+    const allGenres=genres.map(genre=>genre.name).join();
+    console.log (api.ganres);
+       //console.log('object :>> ', genres.map(genre=>genre.name).join());
+       return ({id,poster_path,original_title, name,vote_average,vote_count,popularity, overview, allGenres, homepage});
+    })
+    .then(renderFilmMarkup);
 }
-
-// function searchFilmId(e) {
-//   if (e.target.nodeName !== 'PICTURE') return;
-//   // const filmId = e.target.id;
-//   // console.log('e.target.Id :>> ', filmId);
-//   // return filmId;
-  
-// }
 
 function renderFilmMarkup(film) {
   console.log('refs.filmCard :>> ', refs.filmCard);
