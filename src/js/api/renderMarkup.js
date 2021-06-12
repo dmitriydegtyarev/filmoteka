@@ -7,7 +7,7 @@ import api from './apiService';
 import moviesTemplate from '../../templates/film-list.hbs';
 import movieTemplate from '../../templates/film-card.hbs';
 import { refs } from '../refs';
-import img from '../components/input';
+import defaultImage from '../data/noPoster';
 
 const { filmListGallery, mainSection, filmCard } = refs;
 const posterUrl = 'https://image.tmdb.org/t/p/w500/';
@@ -48,7 +48,7 @@ export function renderMovisBySearchQuery(query) {
       .then(result => {
         result.forEach(element => {
           if (element.poster_path === null) {
-            element.poster_path = img.NOPOSTER;
+            element.poster_path = defaultImage.NOPOSTER;
           } else {
             element.poster_path = `${posterUrl}${element.poster_path}`;
           }
