@@ -58,15 +58,11 @@
 
 .film-img {
   height: 356px;
-  margin-bottom: 15px;
-  margin-top: 16px;
 }
 
 .film-name {
   @include font(500, 20px, 23px);
   text-transform: uppercase;
-  margin-bottom: 20px;
-  margin-top: 30px;
 }
 
 .film-properties {
@@ -81,7 +77,10 @@
   border-radius: 5px;
   color: $secondary-text-color;
   padding: 1px 10px;
-  margin-left: 10px;
+   margin-left: 10px;
+  display:inline-block;
+  line-height: 11px;
+  
 }
 
 .properties {
@@ -109,8 +108,17 @@
   margin-bottom: 21px;
 }
 
+a.link {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    text-transform: uppercase;
+    color: inherit;
+    text-align: center;
+}
+
 .buttons {
   display: flex;
+  justify-content: center;
 }
 
 .buttons button {
@@ -140,6 +148,18 @@
   background-color: $text-card-color;
 }
 
+@media screen and (max-width: 767px) {
+  .film-name {
+  margin-bottom: 20px;
+  margin-top: 30px;
+  }
+
+  .film-img {
+    margin-bottom: 15px;
+  margin-top: 16px;
+}
+}
+
 @media screen and (min-width: 768px) {
   .modal {
     width: 618px;
@@ -151,16 +171,18 @@
     display: flex;
   }
 
-  .left-side {
-    margin-right: 32px;
-  }
+  // .left-side {
+  //   margin-right: 32px;
+  // }
 
   .film-img {
     height: 374px;
+    margin-right: 32px;
   }
 
   .buttons button {
     width: 125px;
+    
   }
 }
 
