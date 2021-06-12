@@ -13,6 +13,7 @@ const refs = {
   modal: document.querySelector('.modal'),
   bodyEl: document.querySelector('body'),
   switchInputEl: document.querySelector('.theme-switch__toggle'),
+  paginationList: document.querySelector('.pagination-list'),
 };
 
 export { refs };
