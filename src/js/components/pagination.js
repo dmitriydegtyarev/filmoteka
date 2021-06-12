@@ -4,7 +4,7 @@ import { refs } from '../refs';
 
 const { paginationList } = refs;
 
-function renderPagination() {
+export function renderPagination() {
   api
     .getPopularMovies()
     .then(response => response.data)
@@ -16,5 +16,3 @@ const renderMarkupPagination = result => {
   const markup = paginationListTpl(result);
   paginationList.insertAdjacentHTML('afterbegin', markup);
 };
-
-renderPagination();

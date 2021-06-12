@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { renderPopularMovie } from './renderMarkup';
+import { renderPagination } from '../components/pagination';
 
 const AUTH_TOKEN =
   'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmJjZmE2MzcxZjJiNGM1MWE4ZGJiNjc0ZGJhMmJkMyIsInN1YiI6IjYwYmNiYzNmZWE4NGM3MDAyYWU3YTE0YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.anozZCItdqcbHyQtoH8Fm8ne3QlJGCSzSiJGIz6YtsQ';
@@ -12,13 +13,14 @@ class GetMovi {
     this.page = 1;
     this.ganres = [];
     this.searchQuery = '';
-    this.id = Number;
+    this.id = '';
     this.init();
   }
 
   async init() {
     await this.getGanres();
     renderPopularMovie();
+    renderPagination();
   }
 
   get query() {
