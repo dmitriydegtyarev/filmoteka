@@ -66,8 +66,12 @@
   cursor: pointer;
 }
 
-.pagination-item-span {
-  margin-top: -4px;
+.pagination-first-item-span,
+.pagination-last-item-span {
+  margin-top: -7px;
+}
+
+.margin-left {
   margin-left: 16px;
 }
 
