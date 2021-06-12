@@ -14,7 +14,6 @@ function renderPagination() {
 
 const renderMarkupPagination = result => {
   const markup = paginationListTpl(result);
-  console.log(markup);
   paginationList.insertAdjacentHTML('afterbegin', markup);
 };
 
