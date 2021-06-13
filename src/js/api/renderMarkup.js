@@ -36,14 +36,14 @@ export function renderMovisBySearchQuery(query) {
       })
       .catch(error => console.log(error));
   } else {
-    filmListGallery.innerHTML = '';
+    // filmListGallery.innerHTML = '';
     renderPopularMovie();
   }
 }
 
-export function renderMovieById(id) {
-  console.log('renderMovieById');
-}
+// export function renderMovieById(id) {
+//   console.log('renderMovieById');
+// }
 
 // export function getFilmInModal(e) {
 //   api.id = e.target.id;
