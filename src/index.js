@@ -9,3 +9,4 @@ import './js/components/btn-up.js';
 import './js/components/main';
 import './js/components/input';
 import './js/components/pagination';
+import './js/libs/toastify'

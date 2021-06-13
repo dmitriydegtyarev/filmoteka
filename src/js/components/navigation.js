@@ -1,3 +1,5 @@
+import api from '../api/apiService';
+
 const navigationHomeEl = document.querySelector('.navigation_home');
 const navigationLibraryEl = document.querySelector('.navigation_library');
 const myLibraryBtnsEl = document.querySelector('.my-library_btns');
@@ -14,7 +16,6 @@ logoFilmEl.addEventListener('click', onNavLinkHomeClick);
 libraryWatchedEl.addEventListener('click', currentLinkWatched);
 libraryQueueEl.addEventListener('click', currentLinkQueue);
 
-
 window.onload = function () {
   navigationHomeEl.classList.add('accent-home');
 };
@@ -25,6 +26,7 @@ function onNavLinkHomeClick() {
   inputDivEl.classList.remove('hidden');
   myLibraryBtnsEl.classList.add('hidden');
   changeHomeImg();
+  // api.init();
 }
 
 function onNavLinkLibraryClick() {
@@ -38,25 +40,19 @@ function onNavLinkLibraryClick() {
 function changeLbImg() {
   headerEl.classList.remove('header');
   headerEl.classList.add('header__library');
-};
+}
 
 function changeHomeImg() {
   headerEl.classList.remove('header__library');
   headerEl.classList.add('header');
-
-};
-
+}
 
 function currentLinkWatched() {
-
   libraryWatchedEl.classList.add('current-link');
   libraryQueueEl.classList.remove('current-link');
-
 }
 
 function currentLinkQueue() {
-
   libraryWatchedEl.classList.remove('current-link');
   libraryQueueEl.classList.add('current-link');
-
 }
