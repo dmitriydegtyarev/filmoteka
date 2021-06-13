@@ -1,4 +1,8 @@
 import api from './apiService';
+import { Spinner } from 'spin.js';
+import { modalSpinner, previewSpinner } from '../libs/spinner';
+
+// import { previewSpinner, modalSpinner } from '../libs/spinner';
 
 import moviesTemplate from '../../templates/film-list.hbs';
 import movieTemplate from '../../templates/film-card.hbs';
@@ -14,6 +18,16 @@ import getFilmGanres from '../components/getFilmGanres';
 
 const { filmListGallery, filmCard } = refs;
 
+// function showModalSpeaner() {
+//   const spinner = new Spinner(modalSpinner);
+//   spinner.spin(filmCard);
+// }
+
+// export function showModalSpeaner() {
+//   const spinner = new Spinner(modalSpinner);
+//   spinner.spin(filmCard);
+// }
+
 export function renderPopularMovie() {
   api
     .getPopularMovies()
@@ -24,6 +38,7 @@ export function renderPopularMovie() {
       renderMarkup(result);
     })
     .catch(error => console.log(error));
+  // .finally(() => spinner.stop());
 }
 
 export function renderMovisBySearchQuery(query) {
@@ -46,13 +61,17 @@ export function renderMovisBySearchQuery(query) {
 }
 
 export function getFilmInModal(e) {
+  const spinner = new Spinner(modalSpinner);
+  spinner.spin(filmCard);
+
   api.id = e.target.id;
   api
     .getMovieById()
     .then(response => response.data)
     .then(getFilmGanres)
     .then(renderFilmMarkup)
-    .catch(error => console.log(error));
+    .catch(error => console.log(error))
+    .finally(() => spinner.stop(filmCard));
 }
 
 const renderMarkup = result => {
