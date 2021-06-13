@@ -6,7 +6,6 @@
 @media screen and (min-width: 768px) {
   .section-main {
     padding-bottom: 60px;
-    //padding-top: 60px;
   }
 }
 
@@ -112,3 +111,5 @@ body.dark-theme {
 .theme-switch__toggle:active + .theme-switch__track {
   box-shadow: 0 0 0 3px $accent-color;
 }
+
+

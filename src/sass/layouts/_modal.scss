@@ -109,12 +109,25 @@
   margin-bottom: 21px;
 }
 
-a.link {
-    margin-bottom: 15px;
-    margin-top: 15px;
-    text-transform: uppercase;
-    color: inherit;
-    text-align: center;
+// a.link {
+//     margin-bottom: 15px;
+//     margin-top: 15px;
+//     text-transform: uppercase;
+//     color: inherit;
+//     text-align: center;
+// }
+
+.film-trailer {
+  margin-bottom: 20px;
+  margin-top: 15px;
+  text-transform: uppercase;
+  color: inherit;
+  text-align: center;
+
+  &:hover,
+  &:focus {
+    color:  $accent-color;
+  }
 }
 
 .buttons {

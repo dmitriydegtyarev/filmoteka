@@ -47,6 +47,7 @@
   border-bottom: 2px solid $accent-color;
   border-radius: 5px;
   margin-top: 10px;
+  background-color:initial ;
 }
 
 .rf-buttons {
@@ -69,4 +70,14 @@
   padding-bottom: 12px;
   padding-left: 7px;
   padding-right: 7px;
+}
+
+.registration-modal.light-theme {
+  background-color: $main-background-color;
+  color: $primary-text-color;
+}
+
+.registration-modal.dark-theme {
+  background-color: $dark-theme-background-color;
+  color: $secondary-text-color;
 }

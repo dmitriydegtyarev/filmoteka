@@ -17,6 +17,7 @@ const refs = {
   registrationBtn: document.querySelector('.registration-btn'),
   regLightbox: document.querySelector('.js-rf-lightbox'),
   regModalCloseBtn: document.querySelector('.rf-modal-close-button'),
+  regModal:document.querySelector('.registration-modal'),
 };
 
 export { refs };
