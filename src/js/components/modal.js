@@ -44,9 +44,9 @@ export default function getGenres(data) {
   return ({ id, poster_path, original_title, name, first_air_date, release_date, vote_average, vote_count, popularity, overview, allGenres, homepage });
 }
 
-function getFullYearFilm(year) {
-  const date = new Date(year);
-  const fullYear = date.getFullYear(date);
+function getFullYearFilm(date) {
+  const newDate = new Date(date);
+  const fullYear = newDate.getFullYear();
   console.log('fullYear :>> ', fullYear);
   return fullYear;
 }
