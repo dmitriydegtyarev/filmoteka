@@ -6,6 +6,7 @@ const refs = {
   lightbox: document.querySelector('.js-lightbox'),
   modalCloseBtn: document.querySelector('.modal-close-button'),
   aboutUs: document.querySelector('#about-us'),
+  btnUp: document.querySelector('#btn-up'),
   filmListItem: document.querySelector('.film-list_item'),
   mainSection: document.querySelector('.section-main'),
   addWatchedBtn: document.querySelector('.add-watched_button'),
