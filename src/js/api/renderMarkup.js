@@ -7,7 +7,7 @@ import { refs } from '../refs';
 
 import changePath from '../components/changePathForPoster';
 
-import showMassage from '../components/showMessage';
+import showMessage from '../components/showMessage';
 
 const { filmListGallery, mainSection, filmCard } = refs;
 
