@@ -33,25 +33,6 @@ function openModalWindow(e) {
 // refs.addWatchedBtn.addEventListener('click', onAddWatchedBtnClick);// Я закоментіл, бо заважала. Влад.
 // refs.addQueueBtn.addEventListener('click', onAddQueueBtnClick); Я закоментіл, бо заважала. Влад.
 
-// function renderFilmMarkup(film) {
-//   refs.filmCard.insertAdjacentHTML('beforeend', filmCardTmp(film));
-// }
-
-// export default function getFilmGenres(data) {
-//   const { id, poster_path, original_title, name, first_air_date, release_date, vote_average, vote_count, popularity, overview, genres, homepage } = data;
-//   const allGenres = genres.map(genre => genre.name).join();
-//   //console.log('object :>> ', genres.map(genre => genre.name).join());
-//   //console.log({ id, poster_path, original_title, name, vote_average, vote_count, popularity, overview, allGenres, homepage });
-//   return ({ id, poster_path, original_title, name, first_air_date, release_date, vote_average, vote_count, popularity, overview, allGenres, homepage });
-// }
-
-// function getFullYearFilm(date) {
-//   const newDate = new Date(date);
-//   const fullYear = newDate.getFullYear();
-//   console.log('fullYear :>> ', fullYear);
-//   return fullYear;
-// }
-
 function onAddWatchedBtnClick(id) {
   // дописать логику
 
@@ -74,15 +55,15 @@ function onModalWindowCloseBtn() {
   refs.modalCloseBtn.removeEventListener('click', onModalWindowCloseBtn);
 }
 
-function onOverlayClick(e) {
-  console.log('e.target :>> ', e.target);
-  console.log('e.currentTarget :>> ', e.currentTarget);
+export function onOverlayClick(e) {
+  // console.log('e.target :>> ', e.target);
+  // console.log('e.currentTarget :>> ', e.currentTarget);
   if (e.target === e.currentTarget) {
     onModalWindowCloseBtn();
   }
 }
 
-function onEscPress(e) {
+export function onEscPress(e) {
   if (e.code === 'Escape') {
     onModalWindowCloseBtn();
   }
