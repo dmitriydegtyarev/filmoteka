@@ -36,7 +36,7 @@ export function renderMovisBySearchQuery(query) {
       })
       .then(result => {
         changePath(result);
-        filmListGallery.innerHTML = '';
+        clearMarkup();
         renderMarkup(result);
       })
       .catch(error => console.log(error));
@@ -49,60 +49,11 @@ export function getFilmInModal(e) {
   api.id = e.target.id;
   api
     .getMovieById()
-    .then(response => {
-      //console.log(response.data);
-      return response.data;
-    })
+    .then(response => response.data)
     .then(getFilmGanres)
     .then(renderFilmMarkup)
     .catch(error => console.log(error));
-
-  // api
-  //   .getShortInfoMovieById()
-  //   .then(response => console.log(response.data.results))
-  //   .catch(error => console.log(error));
 }
-
-// function getFilmGenres(data) {
-//   const {
-//     id,
-//     poster_path,
-//     original_title,
-//     name,
-//     first_air_date,
-//     release_date,
-//     vote_average,
-//     vote_count,
-//     popularity,
-//     overview,
-//     genres,
-//     homepage,
-//   } = data;
-//   const allGenres = genres.map(genre => genre.name).join();
-//   //console.log('object :>> ', genres.map(genre => genre.name).join());
-//   //console.log({ id, poster_path, original_title, name, vote_average, vote_count, popularity, overview, allGenres, homepage });
-//   return {
-//     id,
-//     poster_path,
-//     original_title,
-//     name,
-//     first_air_date,
-//     release_date,
-//     vote_average,
-//     vote_count,
-//     popularity,
-//     overview,
-//     allGenres,
-//     homepage,
-//   };
-// }
-
-// function getFullYearFilm(date) {
-//   const newDate = new Date(date);
-//   const fullYear = newDate.getFullYear();
-//   console.log('fullYear :>> ', fullYear);
-//   return fullYear;
-// }
 
 const renderMarkup = result => {
   const markup = moviesTemplate(result);
@@ -117,3 +68,15 @@ const renderFilmMarkup = film => {
 export function clearMarkup() {
   filmListGallery.innerHTML = '';
 }
+
+// api
+//   .getShortInfoMovieById()
+//   .then(response => console.log(response.data.results))
+//   .catch(error => console.log(error));
+
+// function getFullYearFilm(date) {
+//   const newDate = new Date(date);
+//   const fullYear = newDate.getFullYear();
+//   console.log('fullYear :>> ', fullYear);
+//   return fullYear;
+// }
