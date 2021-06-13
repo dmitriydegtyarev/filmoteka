@@ -2,11 +2,12 @@ import paginationListTpl from '../../templates/pagination.hbs';
 import defaultImage from '../data/noPoster';
 import moviesTemplate from '../../templates/film-list.hbs';
 import { renderMarkup } from '../api/renderMarkup';
-import { renderPopularMovie } from '../api/renderMarkup';
+import { renderPopularMovie, renderMovisBySearchQuery, clearMarkup } from '../api/renderMarkup';
 import api from '../api/apiService';
 import { refs } from '../refs';
+import { setTimeout } from 'core-js';
 
-const { paginationList, filmListGallery } = refs;
+const { paginationList, filmListGallery, inputEl } = refs;
 
 const paginationRefs = {
   firstItem: document.querySelector('.first-item'),
@@ -35,6 +36,21 @@ const renderMarkupPagination = result => {
   paginationList.insertAdjacentHTML('beforeend', markup);
 };
 
+function checkApiPage() {
+  console.log(api.page);
+}
+
+function checkInputValue(value) {
+  if (inputEl.value !== '') {
+    clearMarkup();
+    renderMovisBySearchQuery();
+  } else {
+    console.log(api.page);
+    clearMarkup();
+    renderPopularMovie();
+  }
+}
+
 function onClickItem(child, allPages) {
   child.addEventListener('click', function () {
     removeClass();
@@ -43,7 +59,16 @@ function onClickItem(child, allPages) {
     const currentItemNum = +currentItem.textContent;
     api.page = currentItemNum;
 
-    renderPopularMovie();
+    console.log(inputEl.value);
+    // clearPage();
+    // renderPopularMovie();
+    // console.log(api.page);
+    checkInputValue();
+    console.log(api.page);
+
+    setTimeout(() => {
+      checkApiPage();
+    }, 2000);
 
     if (currentItemNum > 4 && currentItemNum < allPages - 4) {
       removeClass();

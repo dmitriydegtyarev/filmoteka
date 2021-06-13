@@ -1,28 +1,21 @@
-import '@pnotify/core/dist/BrightTheme.css';
-import '@pnotify/core/dist/PNotify.css';
-
-import { error, success } from '@pnotify/core';
-
 import api from './apiService';
 
 import moviesTemplate from '../../templates/film-list.hbs';
-import movieTemplate from '../../templates/film-card.hbs';
+// import movieTemplate from '../../templates/film-card.hbs';
 
 import { refs } from '../refs';
 
-import defaultImage from '../data/noPoster';
+import changePath from '../components/changePathForPoster';
+import showMessage from '../libs/pnotify';
 
 const { filmListGallery, mainSection, filmCard } = refs;
-const posterUrl = 'https://image.tmdb.org/t/p/w500/';
 
 export function renderPopularMovie() {
   api
     .getPopularMovies()
     .then(response => response.data.results)
     .then(result => {
-      result.forEach(element => {
-        element.poster_path = `${posterUrl}${element.poster_path}`;
-      });
+      changePath(result);
       renderMarkup(result);
     })
     .catch(error => console.log(error));
@@ -33,29 +26,11 @@ export function renderMovisBySearchQuery(query) {
     api
       .getMovieOnSearchQuery(query)
       .then(response => {
-        if (response.data.results.length === 0) {
-          error({
-            text: 'Search result not successful. Enter the correct movie name and try again...',
-            type: 'error',
-            delay: 2000,
-          });
-        } else {
-          success({
-            text: `search successful:
-             ${response.data.total_results} founded`,
-            delay: 2000,
-          });
-        }
+        showMessage(response);
         return response.data.results;
       })
       .then(result => {
-        result.forEach(element => {
-          if (element.poster_path === null) {
-            element.poster_path = defaultImage.NOPOSTER;
-          } else {
-            element.poster_path = `${posterUrl}${element.poster_path}`;
-          }
-        });
+        changePath(result);
         filmListGallery.innerHTML = '';
         renderMarkup(result);
       })
@@ -98,3 +73,7 @@ const renderMarkup = result => {
 // };
 
 //mainSection.addEventListener('click', getMovieId);
+
+export function clearMarkup() {
+  filmListGallery.innerHTML = '';
+}
