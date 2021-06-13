@@ -63,6 +63,7 @@
 .film-name {
   @include font(500, 20px, 23px);
   text-transform: uppercase;
+  margin-bottom: 15px;
 }
 
 .film-properties {
@@ -150,7 +151,6 @@ a.link {
 
 @media screen and (max-width: 767px) {
   .film-name {
-  margin-bottom: 20px;
   margin-top: 30px;
   }
 
