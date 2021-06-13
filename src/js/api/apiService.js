@@ -14,6 +14,7 @@ class GetMovi {
     this.ganres = [];
     this.searchQuery = '';
     this.id = '';
+    this.basePosterPath = 'https://image.tmdb.org/t/p/w500/';
     this.init();
   }
 
@@ -53,7 +54,7 @@ class GetMovi {
   }
 
   async getPopularMovies() {
-    return await axios.get(`/trending/all/day?page=${this.page}`);
+    return await axios.get(`/trending/movie/day?page=${this.page}`);
   }
 
   async getMovieOnSearchQuery(query) {

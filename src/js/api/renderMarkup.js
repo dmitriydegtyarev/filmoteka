@@ -1,68 +1,50 @@
-import '@pnotify/core/dist/BrightTheme.css';
-import '@pnotify/core/dist/PNotify.css';
-
-import { error, success } from '@pnotify/core';
-
 import api from './apiService';
 
 import moviesTemplate from '../../templates/film-list.hbs';
-import movieTemplate from '../../templates/film-card.hbs';
+// import movieTemplate from '../../templates/film-card.hbs';
 
 import { refs } from '../refs';
 
-import defaultImage from '../data/noPoster';
+import changePath from '../components/changePathForPoster';
+import showMessage from '../libs/pnotify';
 
 import showMassage from '../components/showMessage';
 
 const { filmListGallery, mainSection, filmCard } = refs;
-const posterUrl = 'https://image.tmdb.org/t/p/w500/';
 
 export function renderPopularMovie() {
   api
     .getPopularMovies()
     .then(response => response.data.results)
     .then(result => {
-      result.forEach(element => {
-        element.poster_path = `${ posterUrl }${ element.poster_path }`;
-      });
+      changePath(result);
       renderMarkup(result);
     })
     .catch(error => console.log(error));
 }
 
 export function renderMovisBySearchQuery(query) {
-  if (query !== '')
-  {
+  if (query !== '') {
     api
       .getMovieOnSearchQuery(query)
       .then(response => {
-        showMassage(response);
+        showMessage(response);
         return response.data.results;
       })
       .then(result => {
-        result.forEach(element => {
-          if (element.poster_path === null)
-          {
-            element.poster_path = defaultImage.NOPOSTER;
-          } else
-          {
-            element.poster_path = `${ posterUrl }${ element.poster_path }`;
-          }
-        });
+        changePath(result);
         filmListGallery.innerHTML = '';
         renderMarkup(result);
       })
       .catch(error => console.log(error));
-  } else
-  {
-    filmListGallery.innerHTML = '';
+  } else {
     renderPopularMovie();
   }
 }
 
-export function renderMovieById(id) {
-  console.log('renderMovieById');
-}
+// export function renderMovieById(id) {
+//   console.log('renderMovieById');
+// }
 
 // export function getFilmInModal(e) {
 //   api.id = e.target.id;
@@ -92,3 +74,7 @@ const renderMarkup = result => {
 // };
 
 //mainSection.addEventListener('click', getMovieId);
+
+export function clearMarkup() {
+  filmListGallery.innerHTML = '';
+}
