@@ -8,3 +8,4 @@ import './js/components/footer';
 import './js/components/main';
 import './js/components/input';
 import './js/components/pagination';
+import './js/libs/toastify'

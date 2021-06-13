@@ -8,6 +8,8 @@ import { refs } from '../refs';
 import changePath from '../components/changePathForPoster';
 import showMessage from '../libs/pnotify';
 
+import showMassage from '../components/showMessage';
+
 const { filmListGallery, mainSection, filmCard } = refs;
 
 export function renderPopularMovie() {
@@ -36,7 +38,6 @@ export function renderMovisBySearchQuery(query) {
       })
       .catch(error => console.log(error));
   } else {
-    // filmListGallery.innerHTML = '';
     renderPopularMovie();
   }
 }
