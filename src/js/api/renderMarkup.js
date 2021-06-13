@@ -45,32 +45,32 @@ export function renderMovisBySearchQuery(query) {
 //   console.log('renderMovieById');
 // }
 
-// export function getFilmInModal(e) {
-//   api.id = e.target.id;
-//   api
-//     .getMovieById()
-//     .then(response => {
-//       console.log(response.data);
-//       return response.data;
-//     })
-//     .then(renderFilmMarkup)
-//     .catch(error => console.log(error));
+export function getFilmInModal(e) {
+  api.id = e.target.id;
+  api
+    .getMovieById()
+    .then(response => {
+      //console.log(response.data);
+      return response.data;
+    }).then(getGenres)
+    .then(renderFilmMarkup)
+    .catch(error => console.log(error));
 
-//   // api
-//   //   .getShortInfoMovieById()
-//   //   .then(response => console.log(response.data.results))
-//   //   .catch(error => console.log(error));
-// }
+  // api
+  //   .getShortInfoMovieById()
+  //   .then(response => console.log(response.data.results))
+  //   .catch(error => console.log(error));
+}
 
 const renderMarkup = result => {
   const markup = moviesTemplate(result);
   filmListGallery.insertAdjacentHTML('afterbegin', markup);
 };
 
-// const renderFilmMarkup = film => {
-//   const markup = movieTemplate(film);
-//   filmCard.insertAdjancentHTML('beforeend', markup);
-// };
+const renderFilmMarkup = film => {
+  const markup = movieTemplate(film);
+  filmCard.insertAdjancentHTML('beforeend', markup);
+};
 
 //mainSection.addEventListener('click', getMovieId);
 
