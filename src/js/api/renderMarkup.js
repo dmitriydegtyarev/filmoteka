@@ -12,6 +12,8 @@ import { refs } from '../refs';
 
 import defaultImage from '../data/noPoster';
 
+import showMassage from '../components/showMessage';
+
 const { filmListGallery, mainSection, filmCard } = refs;
 const posterUrl = 'https://image.tmdb.org/t/p/w500/';
 
@@ -21,7 +23,7 @@ export function renderPopularMovie() {
     .then(response => response.data.results)
     .then(result => {
       result.forEach(element => {
-        element.poster_path = `${posterUrl}${element.poster_path}`;
+        element.poster_path = `${ posterUrl }${ element.poster_path }`;
       });
       renderMarkup(result);
     })
@@ -29,38 +31,30 @@ export function renderPopularMovie() {
 }
 
 export function renderMovisBySearchQuery(query) {
-  if (query !== '') {
+  if (query !== '')
+  {
     api
       .getMovieOnSearchQuery(query)
       .then(response => {
-        if (response.data.results.length === 0) {
-          error({
-            text: 'Search result not successful. Enter the correct movie name and try again...',
-            type: 'error',
-            delay: 2000,
-          });
-        } else {
-          success({
-            text: `search successful:
-             ${response.data.total_results} founded`,
-            delay: 2000,
-          });
-        }
+        showMassage(response);
         return response.data.results;
       })
       .then(result => {
         result.forEach(element => {
-          if (element.poster_path === null) {
+          if (element.poster_path === null)
+          {
             element.poster_path = defaultImage.NOPOSTER;
-          } else {
-            element.poster_path = `${posterUrl}${element.poster_path}`;
+          } else
+          {
+            element.poster_path = `${ posterUrl }${ element.poster_path }`;
           }
         });
         filmListGallery.innerHTML = '';
         renderMarkup(result);
       })
       .catch(error => console.log(error));
-  } else {
+  } else
+  {
     filmListGallery.innerHTML = '';
     renderPopularMovie();
   }

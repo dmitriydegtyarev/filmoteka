@@ -1,3 +1,5 @@
+import api from '../api/apiService';
+
 const navigationHomeEl = document.querySelector('.navigation_home');
 const navigationLibraryEl = document.querySelector('.navigation_library');
 const myLibraryBtnsEl = document.querySelector('.my-library_btns');
@@ -25,6 +27,7 @@ function onNavLinkHomeClick() {
   inputDivEl.classList.remove('hidden');
   myLibraryBtnsEl.classList.add('hidden');
   changeHomeImg();
+  api.init();
 }
 
 function onNavLinkLibraryClick() {
@@ -60,3 +63,4 @@ function currentLinkQueue() {
   libraryQueueEl.classList.add('current-link');
 
 }
+
