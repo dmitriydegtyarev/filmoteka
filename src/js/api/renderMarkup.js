@@ -8,7 +8,6 @@ import { refs } from '../refs';
 import changePath from '../components/changePathForPoster';
 
 import showMessage from '../components/showMessage';
-console.log(showMessage);
 import getFilmGanres from '../components/getFilmGanres';
 // import getFilmYear from '../components/getFullYear';
 
@@ -26,8 +25,7 @@ export function renderPopularMovie() {
 }
 
 export function renderMovisBySearchQuery(query) {
-  if (query !== '')
-  {
+  if (query !== '') {
     api
       .getMovieOnSearchQuery(query)
       .then(response => {
@@ -40,8 +38,7 @@ export function renderMovisBySearchQuery(query) {
         renderMarkup(result);
       })
       .catch(error => console.log(error));
-  } else
-  {
+  } else {
     renderPopularMovie();
   }
 }
