@@ -1,6 +1,5 @@
 import 'spin.js/spin.css';
 
-
 export const modalSpinner = {
   lines: 10, // The number of lines to draw
   length: 0, // The length of each line

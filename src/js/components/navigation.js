@@ -1,3 +1,4 @@
+import api from '../api/apiService';
 import { renderPopularMovie } from '../api/renderMarkup';
 import { clearInput } from '../components/input';
 
@@ -27,6 +28,7 @@ function onNavLinkHomeClick() {
   inputDivEl.classList.remove('hidden');
   myLibraryBtnsEl.classList.add('hidden');
   changeHomeImg();
+  api.page = 1;
   clearInput();
   renderPopularMovie();
 }

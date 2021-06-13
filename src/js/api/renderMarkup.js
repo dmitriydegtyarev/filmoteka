@@ -8,10 +8,11 @@ import { refs } from '../refs';
 import changePath from '../components/changePathForPoster';
 
 import showMessage from '../components/showMessage';
+
 import getFilmGanres from '../components/getFilmGanres';
 // import getFilmYear from '../components/getFullYear';
 
-const { filmListGallery, mainSection, filmCard } = refs;
+const { filmListGallery, filmCard } = refs;
 
 export function renderPopularMovie() {
   api
@@ -19,6 +20,7 @@ export function renderPopularMovie() {
     .then(response => response.data.results)
     .then(result => {
       changePath(result);
+      clearMarkup();
       renderMarkup(result);
     })
     .catch(error => console.log(error));
