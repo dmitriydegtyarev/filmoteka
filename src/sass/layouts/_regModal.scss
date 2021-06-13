@@ -9,6 +9,18 @@
   padding: 20px 20px 40px 20px;
 }
 
+.rf-modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  background-color: #fff;
+  box-sizing: border-box;
+  border: none ;
+  cursor: pointer;
+}
+
+
 .rf-form{
    margin-top: 60px;
    margin-bottom: 20px;
@@ -17,20 +29,22 @@
 .rf-title{
     text-align: center;
     @include font(500, 20px, 23px);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .form-field{
     display: flex;
     flex-direction: column;
+    color: $accent-color;
      
     &:not(:last-child){
         margin-bottom: 16px;
     }
 }
 
-.form-field-input{
-  border-bottom: 1px solid #000000;
+.form-field-input {
+  border: none;
+  border-bottom: 2px solid $accent-color;
   border-radius: 5px;
   margin-top: 10px;
 }
