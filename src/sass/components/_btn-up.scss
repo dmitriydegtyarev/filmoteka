@@ -1,0 +1,12 @@
+.up-icon {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    color: $secondary-text-color;
+    background-color: $accent-color;
+    border: $accent-color 2px solid;
+    border-radius: 10px;
+    padding: 5px 5px 5px 5px;
+}
