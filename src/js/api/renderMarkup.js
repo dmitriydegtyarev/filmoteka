@@ -6,7 +6,6 @@ import moviesTemplate from '../../templates/film-list.hbs';
 import { refs } from '../refs';
 
 import changePath from '../components/changePathForPoster';
-import showMessage from '../libs/pnotify';
 
 import showMassage from '../components/showMessage';
 
