@@ -1,5 +1,6 @@
 import toastify from 'toastify-js';
-import 'toastify-js/src/toastify.css';
+// import 'toastify-js/src/toastify.css';
+
 
 export default function showMessage(response) {
     if (response.data.results.length === 0)

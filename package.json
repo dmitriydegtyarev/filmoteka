@@ -34,6 +34,7 @@
     "pnotify": "^5.2.0",
     "show": "0.0.1",
     "spin.js": "^4.1.0",
+    "src": "^1.1.2",
     "toastify-js": "^1.11.0"
   },
   "staticFiles": {
