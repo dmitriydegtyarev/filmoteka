@@ -1,7 +1,6 @@
-import { refs } from '../refs.js';
+// import { refs } from '../refs.js';
 
-refs.btnUp.addEventListener('click', goUp);
-
+// refs.btnUp.addEventListener('click', goUp);
 
 // // Обработчик события прокрутки страницы
 // // window.onscroll = function () {
@@ -23,19 +22,19 @@ refs.btnUp.addEventListener('click', goUp);
 //     document.documentElement.scrollTop = 0;
 // }
 
-window.onscroll = function () {
-  let scrollElement = document.getElementById('btn-up');
-  if (document.body.scrollTop > document.documentElement.clientHeight) {
-    scrollElement.style.opacity = '1';
-  } else {
-    scrollElement.style.opacity = '0';
-  }
-};
-let timeOut;
-function goUp(){
-    const top = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
-    if(top>0) {
-        window.scrollBy(0,-100);
-        timeout = setTimeout('goUp()',20);
-    } else clearTimeout(timeOut);
-}
+// window.onscroll = function () {
+//   let scrollElement = document.getElementById('btn-up');
+//   if (document.body.scrollTop > document.documentElement.clientHeight) {
+//     scrollElement.style.opacity = '1';
+//   } else {
+//     scrollElement.style.opacity = '0';
+//   }
+// };
+// let timeOut;
+// function goUp() {
+//   const top = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+//   if (top > 0) {
+//     window.scrollBy(0, -100);
+//     timeout = setTimeout('goUp()', 20);
+//   } else clearTimeout(timeOut);
+// }

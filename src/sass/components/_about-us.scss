@@ -1,5 +1,7 @@
 .about-us {
   height: 100vh;
+  // width: calc(100% / 2-15px);
+  width: 150px;
   overflow-y: scroll;
   background-color: $main-background-color;
   padding-top: 30px;
@@ -10,7 +12,7 @@
     top: 0px;
     left: 0;
     background-color: lightgray;
-    width: 100%;
+    // width: 100%;
     display: flex;
     flex-direction: row;
     &-team-name {
@@ -21,9 +23,12 @@
 
   &-content {
     padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   &-card {
+    width: 80px;
     border-radius: 6px;
     border: $accent-color 2px solid;
     margin: 0 20px 20px;
@@ -31,12 +36,12 @@
   }
 
   &-photo {
-    width: 100vw;
+    // width: 100vw;
     border-radius: 4px 4px 0px 0px;
   }
   &-name {
     padding-top: 3px;
-    font-size: 20px;
+    font-size: 10px;
     text-align: center;
     color: $text-footer-color;
   }
@@ -90,23 +95,28 @@
     }
     &-card {
       width: 150px;
+      // height: 150px;
       margin: 20px 20px 20px 40px;
     }
   }
 }
 @media screen and (min-width: $width-desktop) {
+  $card-width: 200px;
+  $card-margin: 20px;
+  $cards-per-row: 3;
+
   .about-us {
     margin: auto;
-    width: 250px*3+20px*4;
+    width: $card-width * $cards-per-row + $card-margin * ($cards-per-row + 1);
     height: min-content;
     &-content {
-      padding-top: 20px;
-      padding-left: 20px;
+      padding-top: $card-margin;
+      padding-left: $card-margin;
     }
-     
+
     &-card {
-      width: 250px;
-      margin: 0 20px 20px 0;
+      width: calc(100% / #{$cards-per-row} - #{$card-margin});
+      margin: 0 $card-margin $card-margin 0;
     }
   }
 }
