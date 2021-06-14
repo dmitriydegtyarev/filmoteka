@@ -115,7 +115,7 @@
     }
 
     &-card {
-      width: calc(100% / #{$cards-per-row} - #{$card-margin});
+      width: $card-width;
       margin: 0 $card-margin $card-margin 0;
     }
   }
