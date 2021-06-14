@@ -216,7 +216,6 @@ a.navigation_library-link {
 }
 
 .registration-btn {
-  margin-top: 50px;
   // width: 136px;
   height: 44px;
   margin-right: 0;
@@ -228,9 +227,7 @@ a.navigation_library-link {
   color: $secondary-text-color;
   font-family: $font;
   @include font(500, 12px, 1.33px);
-  @media screen and (min-width: 768px) {
-    margin-top: 45px;
-  }
+  
 }
 .registration-btn:focus {
   background-color: $accent-color;
@@ -242,8 +239,16 @@ a.navigation_library-link {
 }
 
 .registration-btn-div {
+  margin-left: 0;
+  margin-right: auto;
+  margin-top: 40px;
+  // width: 280px;
   display: flex;
   height: auto;
-  justify-content: flex-end;
+  justify-content: center;
   align-content: flex-end;
+  @media screen and (min-width: 768px) {
+      justify-content: flex-end;
+      margin-top: 35px;
+  }
 }
