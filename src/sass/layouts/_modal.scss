@@ -14,7 +14,7 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity $animation-duration $time-function;
-  max-height: calc(100vh - 10px);
+  max-height: 100vh;
 overflow-y: scroll;
 }
 
@@ -27,13 +27,12 @@ overflow-y: scroll;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -15%);
+  transform: translate(-50%, -50%);
   width: 280px;
 height: 600px;
   // min-height: 958px;
   background-color:$main-background-color;
   padding: 20px 20px 40px 20px;
-  
 }
 
 .modal-close-button {
