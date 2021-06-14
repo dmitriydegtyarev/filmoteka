@@ -73,6 +73,39 @@ export function getFilmInModal(e) {
     .finally(() => spinner.stop(filmCard));
 }
 
+// console.log('object :>> ', api.getGanres());
+
+// function recognizesDateAndGanre(results) {
+//   results.map(result => {
+//     const { id, poster_path, original_title, name, genre_ids, first_air_date, release_date, vote_average } = result;
+//     const newDate1 = new Date(first_air_date);
+//     const fullYear1 = newDate1.getFullYear();
+//     const newDate2 = new Date(release_date);
+//     const fullYear2 = newDate2.getFullYear();
+
+//     const ganres = genre_ids.map(genre_id => {
+//      const g= api.getGanres()
+//         .then(arr => arr.find(el => {
+//           console.log('el :>> ', el);
+//           el.id === genre_id;
+//           console.log('el.name :>> ', el.name);
+//            return el.name;
+//         }))
+//        .then(el => {
+//          if (el.name) {
+//            console.log('object :>> ', el.name);
+//            return el.name;
+//          }
+//        })
+//       console.log('g :>> ', g);
+//     }).join();
+//     console.log('ganres :>> ', ganres);
+
+//     return { id, poster_path, original_title, name, ganres, fullYear1, fullYear2, release_date, vote_average };
+//   })
+
+// }
+
 const renderMarkup = result => {
   const markup = moviesTemplate(result);
   filmListGallery.insertAdjacentHTML('afterbegin', markup);

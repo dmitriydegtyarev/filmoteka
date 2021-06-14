@@ -1,5 +1,5 @@
 import { refs } from '../refs.js';
-import api from '../api/apiService';
+//import api from '../api/apiService';
 import { getFilmInModal } from '../api/renderMarkup';
 
 refs.filmListGallery.addEventListener('click', openModalWindow);
@@ -16,17 +16,6 @@ function openModalWindow(e) {
   resetModal();
 
   getFilmInModal(e);
-
-  // api.id = e.target.id;
-  // //console.log('api.id :>> ', api.id);
-  // api
-  //   .getMovieById()
-  //   .then(response => {
-  //     //console.log(response.data);
-  //     return response.data;
-  //   }).then(getFilmGenres)
-  //   .then(renderFilmMarkup)
-  //   .catch(error => console.log(error));
 }
 
 //добавить в просмотренные или в список просмотра
@@ -74,9 +63,7 @@ function onModalWindowCloseBtn() {
   refs.modalCloseBtn.removeEventListener('click', onModalWindowCloseBtn);
 }
 
-function onOverlayClick(e) {
-  console.log('e.target :>> ', e.target);
-  console.log('e.currentTarget :>> ', e.currentTarget);
+export function onOverlayClick(e) {
   if (e.target === e.currentTarget) {
     onModalWindowCloseBtn();
   }
