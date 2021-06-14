@@ -9,7 +9,7 @@
     flex-wrap: wrap;
     margin: 0 auto;
     justify-content: center;
-    font-family: Roboto; //????
+    font-family: $font;
     @include font(400, 14px, 16.41px);
     color: $text-footer-color;
     width: 236px;
@@ -27,6 +27,16 @@
       vertical-align: baseline;
       margin: 0 10px;
       padding: 0;
+      cursor: pointer;
+
+      animation: heartBeat;
+      animation-duration: $animation-duration;
+      animation-iteration-count: infinite;
+      animation-timing-function: $time-function;
+      &:hover,
+      &:focus {
+        animation-play-state: paused;
+      }
     }
     li:first-child {
       margin-bottom: 12px;
