@@ -16,7 +16,7 @@ import showMessage from '../components/showMessage';
 import getFilmGanres from '../components/getFilmGanres';
 // import getFilmYear from '../components/getFullYear';
 
-const { filmListGallery, filmCard } = refs;
+const { filmListGallery, filmCard, filmListItem } = refs;
 
 // function showModalSpeaner() {
 //   const spinner = new Spinner(modalSpinner);
@@ -38,7 +38,6 @@ export function renderPopularMovie() {
       renderMarkup(result);
     })
     .catch(error => console.log(error));
-  // .finally(() => spinner.stop());
 }
 
 export function renderMovisBySearchQuery(query) {
