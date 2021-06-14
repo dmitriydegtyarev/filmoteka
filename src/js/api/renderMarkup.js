@@ -1,4 +1,8 @@
 import api from './apiService';
+import { Spinner } from 'spin.js';
+import { modalSpinner, previewSpinner } from '../libs/spinner';
+
+// import { previewSpinner, modalSpinner } from '../libs/spinner';
 
 import moviesTemplate from '../../templates/film-list.hbs';
 import movieTemplate from '../../templates/film-card.hbs';
@@ -8,11 +12,21 @@ import { refs } from '../refs';
 import changePath from '../components/changePathForPoster';
 
 import showMessage from '../components/showMessage';
-console.log(showMessage);
+
 import getFilmGanres from '../components/getFilmGanres';
 // import getFilmYear from '../components/getFullYear';
 
-const { filmListGallery, mainSection, filmCard } = refs;
+const { filmListGallery, filmCard, filmListItem } = refs;
+
+// function showModalSpeaner() {
+//   const spinner = new Spinner(modalSpinner);
+//   spinner.spin(filmCard);
+// }
+
+// export function showModalSpeaner() {
+//   const spinner = new Spinner(modalSpinner);
+//   spinner.spin(filmCard);
+// }
 
 export function renderPopularMovie() {
   api
@@ -20,6 +34,7 @@ export function renderPopularMovie() {
     .then(response => response.data.results)
     .then(result => {
       changePath(result);
+      clearMarkup();
       renderMarkup(result);
     })
     .catch(error => console.log(error));
@@ -35,7 +50,7 @@ export function renderMovisBySearchQuery(query) {
       })
       .then(result => {
         changePath(result);
-        filmListGallery.innerHTML = '';
+        clearMarkup();
         renderMarkup(result);
       })
       .catch(error => console.log(error));
@@ -45,63 +60,18 @@ export function renderMovisBySearchQuery(query) {
 }
 
 export function getFilmInModal(e) {
+  const spinner = new Spinner(modalSpinner);
+  spinner.spin(filmCard);
+
   api.id = e.target.id;
   api
     .getMovieById()
-    .then(response => {
-      //console.log(response.data);
-      return response.data;
-    })
+    .then(response => response.data)
     .then(getFilmGanres)
     .then(renderFilmMarkup)
-    .catch(error => console.log(error));
-
-  // api
-  //   .getShortInfoMovieById()
-  //   .then(response => console.log(response.data.results))
-  //   .catch(error => console.log(error));
+    .catch(error => console.log(error))
+    .finally(() => spinner.stop(filmCard));
 }
-
-// function getFilmGenres(data) {
-//   const {
-//     id,
-//     poster_path,
-//     original_title,
-//     name,
-//     first_air_date,
-//     release_date,
-//     vote_average,
-//     vote_count,
-//     popularity,
-//     overview,
-//     genres,
-//     homepage,
-//   } = data;
-//   const allGenres = genres.map(genre => genre.name).join();
-//   //console.log('object :>> ', genres.map(genre => genre.name).join());
-//   //console.log({ id, poster_path, original_title, name, vote_average, vote_count, popularity, overview, allGenres, homepage });
-//   return {
-//     id,
-//     poster_path,
-//     original_title,
-//     name,
-//     first_air_date,
-//     release_date,
-//     vote_average,
-//     vote_count,
-//     popularity,
-//     overview,
-//     allGenres,
-//     homepage,
-//   };
-// }
-
-// function getFullYearFilm(date) {
-//   const newDate = new Date(date);
-//   const fullYear = newDate.getFullYear();
-//   console.log('fullYear :>> ', fullYear);
-//   return fullYear;
-// }
 
 const renderMarkup = result => {
   const markup = moviesTemplate(result);
@@ -116,3 +86,15 @@ const renderFilmMarkup = film => {
 export function clearMarkup() {
   filmListGallery.innerHTML = '';
 }
+
+// api
+//   .getShortInfoMovieById()
+//   .then(response => console.log(response.data.results))
+//   .catch(error => console.log(error));
+
+// function getFullYearFilm(date) {
+//   const newDate = new Date(date);
+//   const fullYear = newDate.getFullYear();
+//   console.log('fullYear :>> ', fullYear);
+//   return fullYear;
+// }

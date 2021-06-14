@@ -1,4 +1,6 @@
 import api from '../api/apiService';
+import { renderPopularMovie } from '../api/renderMarkup';
+import { clearInput } from '../components/input';
 
 const navigationHomeEl = document.querySelector('.navigation_home');
 const navigationLibraryEl = document.querySelector('.navigation_library');
@@ -28,7 +30,9 @@ function onNavLinkHomeClick() {
   myLibraryBtnsEl.classList.add('hidden');
   registrationBtnEl.classList.remove('hidden');
   changeHomeImg();
-  // api.init();
+  api.page = 1;
+  clearInput();
+  renderPopularMovie();
 }
 
 function onNavLinkLibraryClick() {

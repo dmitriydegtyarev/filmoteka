@@ -11,4 +11,8 @@ function onInputSearch(e) {
   renderMovisBySearchQuery(api.query);
 }
 
-inputEl.addEventListener('input', debounce(onInputSearch, 500));
+export function clearInput() {
+  inputEl.value = '';
+}
+
+inputEl.addEventListener('input', debounce(onInputSearch, 1000));
