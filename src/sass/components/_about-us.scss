@@ -1,5 +1,6 @@
 .about-us {
   height: 100vh;
+  width: 150px;
   overflow-y: scroll;
   background-color: $main-background-color;
   padding-top: 30px;
@@ -10,7 +11,7 @@
     top: 0px;
     left: 0;
     background-color: lightgray;
-    width: 100%;
+    // width: 100%;
     display: flex;
     flex-direction: row;
     &-team-name {
@@ -21,22 +22,25 @@
 
   &-content {
     padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   &-card {
+    width: 80px;
     border-radius: 6px;
-    border: $accent-color 2px solid;
+    border: 2px solid $text-footer-color;
     margin: 0 20px 20px;
     box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.5);
   }
 
   &-photo {
-    width: 100vw;
+    width: 100%;
     border-radius: 4px 4px 0px 0px;
   }
   &-name {
     padding-top: 3px;
-    font-size: 20px;
+    font-size: 10px;
     text-align: center;
     color: $text-footer-color;
   }
@@ -81,32 +85,40 @@
     &-content {
       display: flex;
       flex-wrap: wrap;
-      // flex-direction: column;
-      // justify-content: space-evenly;
-      // align-content: space-around;
-      // height: 100%;
       padding-top: 3%;
       padding-left: 8%;
     }
     &-card {
       width: 150px;
+      // height: 150px;
       margin: 20px 20px 20px 40px;
     }
   }
 }
 @media screen and (min-width: $width-desktop) {
+  $cards-per-row: 3;
+  $card-margin: 2vw;
+  $modal-width: 50vw;
+
   .about-us {
     margin: auto;
-    width: 250px*3+20px*4;
+    width: $modal-width;
     height: min-content;
     &-content {
-      padding-top: 20px;
-      padding-left: 20px;
+      padding-top: $card-margin;
+      padding-left: $card-margin;
     }
-     
+
     &-card {
-      width: 250px;
-      margin: 0 20px 20px 0;
+      width: calc((100% - #{$card-margin} * #{$cards-per-row}) / #{$cards-per-row});
+      margin: 0 $card-margin $card-margin 0;
+    }
+    &-name {
+      font-size: 10px;
+    }
+    &-position {
+      font-size: 8px;
+      color: $accent-color;
     }
   }
 }
