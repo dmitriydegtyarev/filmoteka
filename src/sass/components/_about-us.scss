@@ -1,6 +1,5 @@
 .about-us {
   height: 100vh;
-  // width: calc(100% / 2-15px);
   width: 150px;
   overflow-y: scroll;
   background-color: $main-background-color;
@@ -30,13 +29,13 @@
   &-card {
     width: 80px;
     border-radius: 6px;
-    border: $accent-color 2px solid;
+    border: 2px solid $text-footer-color;
     margin: 0 20px 20px;
     box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.5);
   }
 
   &-photo {
-    // width: 100vw;
+    width: 100%;
     border-radius: 4px 4px 0px 0px;
   }
   &-name {
@@ -86,10 +85,6 @@
     &-content {
       display: flex;
       flex-wrap: wrap;
-      // flex-direction: column;
-      // justify-content: space-evenly;
-      // align-content: space-around;
-      // height: 100%;
       padding-top: 3%;
       padding-left: 8%;
     }
@@ -101,13 +96,13 @@
   }
 }
 @media screen and (min-width: $width-desktop) {
-  $card-width: 200px;
-  $card-margin: 20px;
   $cards-per-row: 3;
+  $card-margin: 2vw;
+  $modal-width: 50vw;
 
   .about-us {
     margin: auto;
-    width: $card-width * $cards-per-row + $card-margin * ($cards-per-row + 1);
+    width: $modal-width;
     height: min-content;
     &-content {
       padding-top: $card-margin;
@@ -115,8 +110,15 @@
     }
 
     &-card {
-      width: $card-width;
+      width: calc((100% - #{$card-margin} * #{$cards-per-row}) / #{$cards-per-row});
       margin: 0 $card-margin $card-margin 0;
+    }
+    &-name {
+      font-size: 10px;
+    }
+    &-position {
+      font-size: 8px;
+      color: $accent-color;
     }
   }
 }
