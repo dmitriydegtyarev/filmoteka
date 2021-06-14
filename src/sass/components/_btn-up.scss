@@ -1,19 +1,24 @@
-.up-icon {
+.btn-up {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 50px;
-  height: 50px;
+  bottom: 8px;
+  right: 8px;
+  padding: 0;
+  display: none;
+  width: 28px;
+  // height: 30px;
   font-weight: bold;
   cursor: pointer;
   color: $secondary-text-color;
   background-color: $accent-color;
   border: $accent-color 2px solid;
-  border-radius: 10px;
-  padding: 7px 5px 5px 5px;
-  // opacity: 0;
+  border-radius: 5px;
 }
 
-#btn-up{
-  display: none;
+@media screen and (min-width: $width-tablet) {
+  .btn-up {
+    width: 40px;
+    height: 40px;
+    bottom: 20px;
+    right: 20px;
+  }
 }
