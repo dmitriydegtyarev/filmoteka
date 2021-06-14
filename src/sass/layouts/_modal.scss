@@ -14,6 +14,8 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity $animation-duration $time-function;
+  max-height: calc(100vh-10px);
+  overflow-y: scroll;
 }
 
 .lightbox.is-open {
@@ -25,10 +27,9 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -15%);
   width: 280px;
-height: 600px;
-  // min-height: 958px;
+  min-height: 850px;
   background-color:$main-background-color;
   padding: 20px 20px 40px 20px;
 }
@@ -59,6 +60,14 @@ height: 600px;
 
 .film-img {
   height: 356px;
+  width: 240px;
+  border-radius: 5px;
+}
+
+.film-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .film-name {
@@ -81,14 +90,23 @@ height: 600px;
   padding: 1px 10px;
    margin-left: 10px;
   display:inline-block;
-  line-height: 11px;
-  
+  line-height: 11px; 
+}
+
+.film-vote_modal{
+  margin-left: 0px;
 }
 
 .properties {
   color: $text-card-color;
   margin-right: 41px;
+  width: 76px;
 }
+
+.property-value li {
+  width: 120px;
+}
+
 
 .properties li:not(:last-child),
 .property-value li:not(:last-child) {
@@ -110,14 +128,6 @@ height: 600px;
   margin-bottom: 21px;
 }
 
-// a.link {
-//     margin-bottom: 15px;
-//     margin-top: 15px;
-//     text-transform: uppercase;
-//     color: inherit;
-//     text-align: center;
-// }
-
 .film-trailer {
   margin-bottom: 20px;
   margin-top: 15px;
@@ -128,6 +138,8 @@ height: 600px;
   &:hover,
   &:focus {
     color:  $accent-color;
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+    
   }
 }
 
@@ -143,10 +155,7 @@ height: 600px;
   text-transform: uppercase;
   @include font(500, 12px, 16px);
   width: 112px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 7px;
-  padding-right: 7px;
+  padding:12px 7px;
 }
 
 .add-watched_button {
@@ -179,18 +188,16 @@ height: 600px;
     width: 618px;
     min-height: 562px;
     padding: 42px 30px 40px 28px;
+    transform: translate(-50%, -50%);
   }
-
+ 
   .film {
     display: flex;
   }
 
-  // .left-side {
-  //   margin-right: 32px;
-  // }
-
-  .film-img {
+   .film-img {
     height: 374px;
+    width: 264px;
     margin-right: 32px;
   }
 
@@ -207,12 +214,10 @@ height: 600px;
     padding: 50px 30px 40px 30px;
   }
 
-  .left-side {
-    margin-right: 30px;
-  }
 
   .film-img {
     height: 478px;
+    width: 396px;
   }
 
   .film-name {
