@@ -6,3 +6,14 @@ function onBtnUpClick() {
     block: 'start',
   });
 }
+
+document.addEventListener('scroll', () =>{
+  if(document.body.scrollTop > window.innerHeight/2 ||document.documentElement.scrollTop > window.innerHeight/2)
+  {
+    // alert(window.innerHeight);
+    refs.btnUp.style.display = 'block';
+  }
+  else{
+    refs.btnUp.style.display = 'none';
+  }
+})
