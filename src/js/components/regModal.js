@@ -3,10 +3,10 @@ import { refs } from '../refs.js';
 refs.registrationBtn.addEventListener('click', openRegModalWindow);
 
 function openRegModalWindow(e) {
-    refs.regLightbox.classList.add('is-open');
-    refs.regModalCloseBtn.addEventListener('click', onRegModalWindowCloseBtn);
-    refs.regLightbox.addEventListener('click', onOverlayClick);
-    window.addEventListener('keydown', onEscPress);
+  refs.regLightbox.classList.add('is-open');
+  refs.regModalCloseBtn.addEventListener('click', onRegModalWindowCloseBtn);
+  refs.regLightbox.addEventListener('click', onOverlayClick);
+  window.addEventListener('keydown', onEscPress);
 }
 
 function onRegModalWindowCloseBtn(e) {
@@ -20,7 +20,7 @@ function onOverlayClick(e) {
   // console.log('e.target :>> ', e.target);
   // console.log('e.currentTarget :>> ', e.currentTarget);
   if (e.target === e.currentTarget) {
-   onRegModalWindowCloseBtn();
+    onRegModalWindowCloseBtn();
   }
 }
 
@@ -30,3 +30,7 @@ function onEscPress(e) {
   }
 }
 
+export default {
+  openRegModalWindow,
+  onRegModalWindowCloseBtn,
+};

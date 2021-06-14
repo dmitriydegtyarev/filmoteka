@@ -26,8 +26,7 @@ export function renderPopularMovie() {
 }
 
 export function renderMovisBySearchQuery(query) {
-  if (query !== '')
-  {
+  if (query !== '') {
     api
       .getMovieOnSearchQuery(query)
       .then(response => {
@@ -40,8 +39,7 @@ export function renderMovisBySearchQuery(query) {
         renderMarkup(result);
       })
       .catch(error => console.log(error));
-  } else
-  {
+  } else {
     renderPopularMovie();
   }
 }
