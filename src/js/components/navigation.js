@@ -10,6 +10,7 @@ const headerEl = document.querySelector('.header');
 const libraryWatchedEl = document.querySelector('.my-library_btn-watched');
 const libraryQueueEl = document.querySelector('.my-library_btn-queue');
 const logoFilmEl = document.querySelector('.logo-search_film');
+const registrationBtnEl = document.querySelector('.registration-btn');
 
 navigationHomeEl.addEventListener('click', onNavLinkHomeClick);
 navigationLibraryEl.addEventListener('click', onNavLinkLibraryClick);
@@ -27,6 +28,7 @@ function onNavLinkHomeClick() {
   navigationLibraryEl.classList.remove('accent-library');
   inputDivEl.classList.remove('hidden');
   myLibraryBtnsEl.classList.add('hidden');
+  registrationBtnEl.classList.remove('hidden');
   changeHomeImg();
   api.page = 1;
   clearInput();
@@ -38,6 +40,7 @@ function onNavLinkLibraryClick() {
   navigationLibraryEl.classList.add('accent-library');
   inputDivEl.classList.add('hidden');
   myLibraryBtnsEl.classList.remove('hidden');
+  registrationBtnEl.classList.add('hidden');
   changeLbImg();
 }
 

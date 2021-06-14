@@ -1,70 +1,91 @@
 import { refs } from '../refs.js';
 import api from '../api/apiService';
-import { getFilmInModal } from '../api/renderMarkup';
+import filmCardTmp from '../../templates/film-card.hbs';
+//import  getFilmInModal from '../api/renderMarkup';
+import firebaseApi from '../components/firebase';
 
 refs.filmListGallery.addEventListener('click', openModalWindow);
 
 function openModalWindow(e) {
-  if (e.target.nodeName !== 'IMG') return;
-
   refs.modalCloseBtn.addEventListener('click', onModalWindowCloseBtn);
   refs.lightbox.addEventListener('click', onOverlayClick);
   window.addEventListener('keydown', onEscPress);
+  //добавить в просмотренные или в список просмотра
+
+  // refs.addQueueBtn.addEventListener('click', onAddQueueBtnClick);
 
   refs.lightbox.classList.add('is-open');
 
-  resetModal();
+  if (e.target.nodeName !== 'IMG') return;
+  //getFilmInModal(e);
+  api.id = e.target.id;
+  console.log('api.id :>> ', api.id);
+  api
+    .getMovieById()
+    .then(response => {
+      console.log(response.data);
+      return response.data;
+    })
+    .then(
+      ({
+        id,
+        poster_path,
+        original_title,
+        name,
+        vote_average,
+        vote_count,
+        popularity,
+        overview,
+        genres,
+        homepage,
+      }) => {
+        const allGenres = genres.map(genre => genre.name).join();
+        console.log(api.ganres);
+        //console.log('object :>> ', genres.map(genre=>genre.name).join());
+        return {
+          id,
+          poster_path,
+          original_title,
+          name,
+          vote_average,
+          vote_count,
+          popularity,
+          overview,
+          allGenres,
+          homepage,
+        };
+      },
+    )
+    .then(renderFilmMarkup)
+    .then(() => {
+      const addWatchedBtnEl = document.querySelector('.add-watched_button');
+      addWatchedBtnEl.addEventListener('click', onAddWatchedBtnClick);
+      function onAddWatchedBtnClick(id) {
+        api.getMovieById(id).then(({ data }) => {
+          firebaseApi.postWatchedData({ data });
+        });
 
-  getFilmInModal(e);
+        addWatchedBtnEl.classList.add('press-btn');
+        addWatchedBtnEl.textContent = 'Added to Watched';
+        addWatchedBtnEl.disabled = true;
+      }
+      const addQueueBtnEl = document.querySelector('.add-queue_button');
+      addQueueBtnEl.addEventListener('click', onAddQueueBtnClick);
+      function onAddQueueBtnClick(id) {
+        api.getMovieById(id).then(({ data }) => {
+          firebaseApi.postQueueData({ data });
+        });
 
-  // api.id = e.target.id;
-  // //console.log('api.id :>> ', api.id);
-  // api
-  //   .getMovieById()
-  //   .then(response => {
-  //     //console.log(response.data);
-  //     return response.data;
-  //   }).then(getFilmGenres)
-  //   .then(renderFilmMarkup)
-  //   .catch(error => console.log(error));
+        addWatchedBtnEl.classList.add('press-btn');
+        addWatchedBtnEl.textContent = 'Added to Queue';
+        addWatchedBtnEl.disabled = true;
+      }
+    });
 }
 
-//добавить в просмотренные или в список просмотра
-// refs.addWatchedBtn.addEventListener('click', onAddWatchedBtnClick);// Я закоментіл, бо заважала. Влад.
-// refs.addQueueBtn.addEventListener('click', onAddQueueBtnClick); Я закоментіл, бо заважала. Влад.
-
-// function renderFilmMarkup(film) {
-//   refs.filmCard.insertAdjacentHTML('beforeend', filmCardTmp(film));
-// }
-
-// export default function getFilmGenres(data) {
-//   const { id, poster_path, original_title, name, first_air_date, release_date, vote_average, vote_count, popularity, overview, genres, homepage } = data;
-//   const allGenres = genres.map(genre => genre.name).join();
-//   //console.log('object :>> ', genres.map(genre => genre.name).join());
-//   //console.log({ id, poster_path, original_title, name, vote_average, vote_count, popularity, overview, allGenres, homepage });
-//   return ({ id, poster_path, original_title, name, first_air_date, release_date, vote_average, vote_count, popularity, overview, allGenres, homepage });
-// }
-
-// function getFullYearFilm(date) {
-//   const newDate = new Date(date);
-//   const fullYear = newDate.getFullYear();
-//   console.log('fullYear :>> ', fullYear);
-//   return fullYear;
-// }
-
-function onAddWatchedBtnClick(id) {
-  // дописать логику
-
-  refs.addWatchedBtn.classList.add('press-btn');
-  refs.addWatchedBtn.textContent = 'Added to Watched';
-  refs.addWatchedBtn.disabled = true;
-}
-
-function onAddQueueBtnClick(id) {
-  // дописать логику
-  refs.addQueueBtn.classList.add('press-btn');
-  refs.addQueueBtn.textContent = 'Added to Queue';
-  refs.addQueueBtn.disabled = true;
+function renderFilmMarkup(film) {
+  console.log('refs.filmCard :>> ', refs.filmCard);
+  refs.filmCard.insertAdjacentHTML('beforeend', filmCardTmp(film));
 }
 
 function onModalWindowCloseBtn() {
@@ -86,10 +107,6 @@ function onEscPress(e) {
   if (e.code === 'Escape') {
     onModalWindowCloseBtn();
   }
-}
-
-function resetModal() {
-  refs.filmCard.innerHTML = '';
 }
 
 refs.modalCloseBtn.removeEventListener('click', onModalWindowCloseBtn);

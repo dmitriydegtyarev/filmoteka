@@ -1,25 +1,32 @@
-<div class="lightbox js-lightbox">
-    <div class="registration-modal">
-        <button type="button" class="modal-close-button" data-modal-close>
-            <svg class="modal-icon">
-                <use href='./images/lightbox-close-btn.svg#icon-close'></use>
-            </svg>
-        </button>
+<div class="lightbox js-rf-lightbox">
+  <div class="registration-modal">
+    <button type="button" class="rf-modal-close-button" data-modal-close>
+      <svg class="modal-icon">
+        <use href="./images/lightbox-close-btn.svg#icon-close"></use>
+      </svg>
+    </button>
 
-        <form class="rf-form">
-            <p class="rf-title">Sing in or Register</p>
-            <div class="form-field">
-                <label for="email">Email</label>
-                <input class="form-field-input" type="email" name="email" id="mail">
-            </div>
-            <div class="form-field">
-                <label for="password">Password (min 6 characrers)</label>
-                <input class="form-field-input" type="pasword" minlength="6" maxlength="12" name="password" id="password">
-            </div>
-            <div class="rf-buttons">
-                <button class="rf-button" type="submit">Sing In</button>
-                <button class="rf-button" type="submit">Register</button>
-            </div>
-        </form>
-    </div>
+    <form class="rf-form">
+      <p class="rf-title">Sing in or Register</p>
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input class="form-field-input" type="email" name="email" id="mail" />
+      </div>
+      <div class="form-field">
+        <label for="password">Password (min 6 characrers)</label>
+        <input
+          class="form-field-input"
+          type="pasword"
+          minlength="6"
+          maxlength="12"
+          name="password"
+          id="password"
+        />
+      </div>
+      <div class="rf-buttons">
+        <button class="rf-button" id="signIn" type="submit">Sing In</button>
+        <button class="rf-button" id="signUp" type="submit">Register</button>
+      </div>
+    </form>
+  </div>
 </div>
