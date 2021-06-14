@@ -3,12 +3,6 @@
   //padding-top: 20px;
 }
 
-@media screen and (min-width: 768px) {
-  .section-main {
-    padding-bottom: 60px;
-  }
-}
-
 // .button-prev.light-theme, 
 // .button-next.light-theme{
 //   background-color: $main-background-color;
@@ -27,6 +21,7 @@ body.light-theme {
 body.dark-theme {
   background-color: $dark-theme-background-color;
   color: $secondary-text-color;
+  
 }
 
 .toolbar {
@@ -43,8 +38,8 @@ body.dark-theme {
 
 .theme-switch__icon {
   color: currentColor;
-  height: 24px;
-  width: 24px;
+  height: 18px;
+  width: 18px;
   margin-right: 8px;
   margin-left: 8px;
 }
@@ -54,8 +49,8 @@ body.dark-theme {
   align-items: center;
   flex-shrink: 0;
   position: relative;
-  width: 64px;
-  height: 32px;
+  width: 44px;
+  height: 22px;
   border-radius: 50em;
   padding: 3px 0;
 }
@@ -89,13 +84,13 @@ body.dark-theme {
 .theme-switch__marker {
   position: relative;
   background-color: #fff;
-  width: 26px;
-  height: 26px;
+  width: 20px;//
+  height: 20px;//
   border-radius: 50%;
   z-index: 2;
   pointer-events: none;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
-  transform: translateX(3px);
+  transform: translateX(1px);//
   transition: transform 250ms var(--timing-function);
 }
 
@@ -104,12 +99,59 @@ body.dark-theme {
 }
 
 .theme-switch__toggle:checked ~ .theme-switch__marker {
-  transform: translateX(35px);
+  transform: translateX(23px);
 }
 
 .theme-switch__toggle:focus + .theme-switch__track,
 .theme-switch__toggle:active + .theme-switch__track {
   box-shadow: 0 0 0 3px $accent-color;
+}
+
+@media screen and (min-width: 768px) {
+  .section-main {
+    padding-bottom: 60px;
+  }
+
+  .theme-switch__icon {
+  height: 20px;
+  width: 20px;
+  }
+
+  .theme-switch__control {
+  width: 50px;
+  height: 22px;
+  }
+
+  .theme-switch__marker {
+  width: 20px;
+  height: 20px;
+  }
+
+  .theme-switch__toggle:checked ~ .theme-switch__marker {
+  transform: translateX(34px);
+}
+}
+
+@media screen and (min-width: 768px) {
+    .theme-switch__icon {
+  height: 22px;
+  width: 22px;
+  }
+
+  .theme-switch__control {
+  width: 60px;
+  height: 28px;
+  }
+
+ .theme-switch__marker {
+  width: 24px;
+  height: 24px;
+  }
+
+  .theme-switch__toggle:checked ~ .theme-switch__marker {
+  transform: translateX(34px);
+}
+
 }
 
 
