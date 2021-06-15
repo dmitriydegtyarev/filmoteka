@@ -72,12 +72,13 @@
   padding-right: 7px;
 }
 
+.registration-modal.dark-theme {
+  background-color: $dark-theme-background-color;
+  color: $secondary-text-color;
+}
+
 .registration-modal.light-theme {
   background-color: $main-background-color;
   color: $primary-text-color;
 }
 
-.registration-modal.dark-theme {
-  background-color: $dark-theme-background-color;
-  color: $secondary-text-color;
-}
