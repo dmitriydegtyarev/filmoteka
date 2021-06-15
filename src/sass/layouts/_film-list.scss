@@ -1,3 +1,7 @@
+.film-list_item {
+  min-height: 460px;
+}
+
 .film-list_img {
   height: 398px;
   width: 280px;
@@ -39,9 +43,8 @@
     align-items: center;
   }
 
-  .film-list_img {
-    width: 293px;
-  }
+ 
+
 
   .film-list_item:not(:last-child){
   margin-bottom: 20px;
@@ -54,11 +57,20 @@
     grid-template-columns: 293px 293px;
     grid-gap: 30px;
   }
+
+  .film-list_img {
+    width: 294px;
+  }
+
 }
 
 @media screen and (min-width: 1024px) {
   .film-list_gallery {
     grid-template-columns: 274px 274px 274px;
+  }
+
+  .film-list_img {
+    width: 274px;
   }
 
   .film-list_info,

@@ -5,7 +5,7 @@ export const modalSpinner = {
   lines: 10, // The number of lines to draw
   length: 0, // The length of each line
   width: 10, // The line thickness
-  radius: 60, // The radius of the inner circle
+  radius: 30, // The radius of the inner circle
   scale: 2, // Scales overall size of the spinner
   corners: 1, // Corner roundness (0..1)
   speed: 1.2, // Rounds per second
