@@ -1,14 +1,17 @@
-
   $cards-per-row: 2;
-  $card-margin: 4vw;
+  $card-margin: 3vw;
   $modal-width: 100vw;
 
 .about-us {
+  position: absolute;
   height: 100vh;
-  width: $modal-width;
+  width: 320px;
   background-color: $main-background-color;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   &-title {
-    box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.5);
+    box-shadow: 0em 0.4em 5px rgba(122, 122, 122, 0.5);
     padding-bottom: 2px;
     background-color: lightgray;
     display: flex;
@@ -27,10 +30,10 @@
 
   &-card {
     width: calc((100% - #{$card-margin} * #{$cards-per-row}) / #{$cards-per-row});
-    border-radius: 5px;
-    border: 2px solid $text-card-color;
+    border-radius: 4px;
     margin: 0 $card-margin $card-margin/2 0;
-    box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.5);
+    box-shadow: 5px 6px 9px rgba(0, 0, 0, 0.12), 0px 1px 5px rgba(0, 0, 0, 0.14),
+      0px 4px 3px rgba(0, 0, 0, 0.2);
   }
 
   &-photo {
@@ -38,15 +41,15 @@
     border-radius: 4px 4px 0px 0px;
   }
   &-name {
-    padding-top: 3px;
-    font-size: 10px;
+    padding: 5px 3px;
+    font-size: 11px;
     text-align: center;
     color: $text-footer-color;
   }
   &-position {
     text-align: center;
-    padding-bottom: 5px;
-    font-size: 10px;
+    padding-bottom: 8px;
+    font-size: 11px;
     color: $accent-color;
 
   }
@@ -74,35 +77,15 @@
     }
   }
 }
+
+
+
 @media screen and (min-width: $width-tablet) {
-  .about-us {
-    overflow-y: hidden;
-    padding-top: 0;
-    height: min-content;
-    &-title {
-      position: static;
-    }
-    &-content {
-      display: flex;
-      flex-wrap: wrap;
-      padding-top: 3%;
-      padding-left: 8%;
-    }
-    &-card {
-      width: 150px;
-      // height: 150px;
-      margin: 20px 20px 20px 40px;
-    }
-  }
-}
-@media screen and (min-width: $width-desktop) {
   $cards-per-row: 3;
   $card-margin: 2vw;
-  $modal-width: 50vw;
-
   .about-us {
     margin: auto;
-    width: $modal-width;
+    width: 650px;
     height: min-content;
     &-content {
       padding-top: $card-margin;
@@ -114,11 +97,25 @@
       margin: 0 $card-margin $card-margin 0;
     }
     &-name {
-      font-size: 15px;
+      font-size: 14px;
+      padding: 6px 3px;
     }
     &-position {
-      font-size: 12px;
+      font-size: 14px;
       color: $accent-color;
+    }
+  }
+}
+
+@media screen and (min-width: $width-desktop) {
+  .about-us {
+    width: 700px;
+    &-name {
+      font-size: 17px;
+     }
+    &-position {
+      font-size: 17px;
+      padding-bottom: 8px;
     }
   }
 }

@@ -83,34 +83,47 @@
   // line-height: 16px; /*перемерять для Vote и Popularity */
 }
 
-.film-vote {
-  background-color: $accent-color;
-  border-radius: 5px;
-  color: $secondary-text-color;
-  padding: 1px 10px;
-  margin-left: 10px;
-  display: inline-block;
-  line-height: 11px;
-}
 
-.film-vote_modal {
-  margin-left: 0px;
-}
 
 .properties {
   color: $text-card-color;
-  margin-right: 41px;
-  width: 76px;
 }
 
-.property-value li {
-  width: 120px;
+.properties_item {
+  display: flex;
+  &:not(:last-child){
+    margin-bottom: 10px;
+  }
 }
 
-.properties li:not(:last-child),
-.property-value li:not(:last-child) {
-  margin-bottom: 10px;
+.properties_item_title {
+  width: 70px;
+  margin-right: 40px;
+  white-space: nowrap;
 }
+
+.properties_item_text {
+  color: $primary-text-color;
+}
+
+.film-vote {
+  border-radius: 5px;
+  padding: 1px 10px;
+  margin-left: 10px;
+  display: inline-block;
+  margin-left: 0px;
+}
+
+.film-vote-orange {
+  background-color: $accent-color;
+  color: $secondary-text-color;
+}
+
+.film-vote-grey {
+  background-color: $secondary-background-color;
+  color: $primary-text-color;
+}
+
 
 .film-origin-title {
   text-transform: uppercase;
@@ -189,7 +202,9 @@
     width: 618px;
     min-height: 562px;
     padding: 42px 30px 40px 28px;
-    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
   }
 
   .film {
