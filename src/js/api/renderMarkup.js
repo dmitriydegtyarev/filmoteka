@@ -14,7 +14,7 @@ import changePath from '../components/changePathForPoster';
 import showMessage from '../components/showMessage';
 
 import getFilmGanres from '../components/getFilmGanres';
-// import getFilmYear from '../components/getFullYear';
+import getFullYear from '../components/getFullYear';
 
 const { filmListGallery, filmCard, filmListItem } = refs;
 
@@ -32,6 +32,8 @@ export function renderPopularMovie() {
   api
     .getPopularMovies()
     .then(response => response.data.results)
+    .then(getFullYear)
+    //.then(getAllFilmsGanres)
     .then(result => {
       changePath(result);
       clearMarkup();
@@ -41,22 +43,21 @@ export function renderPopularMovie() {
 }
 
 export function renderMovisBySearchQuery(query) {
-  if (query !== '')
-  {
+  if (query !== '') {
     api
       .getMovieOnSearchQuery(query)
       .then(response => {
         showMessage(response);
         return response.data.results;
       })
+      .then(getFullYear)
       .then(result => {
         changePath(result);
         clearMarkup();
         renderMarkup(result);
       })
       .catch(error => console.log(error));
-  } else
-  {
+  } else {
     renderPopularMovie();
   }
 }
@@ -74,38 +75,27 @@ export function getFilmInModal(e) {
     .catch(error => console.log(error))
     .finally(() => spinner.stop(filmCard));
 }
+ 
 
-// console.log('object :>> ', api.getGanres());
-
-// function recognizesDateAndGanre(results) {
-//   results.map(result => {
-//     const { id, poster_path, original_title, name, genre_ids, first_air_date, release_date, vote_average } = result;
-//     const newDate1 = new Date(first_air_date);
-//     const fullYear1 = newDate1.getFullYear();
-//     const newDate2 = new Date(release_date);
-//     const fullYear2 = newDate2.getFullYear();
-
-//     const ganres = genre_ids.map(genre_id => {
-//      const g= api.getGanres()
-//         .then(arr => arr.find(el => {
-//           console.log('el :>> ', el);
-//           el.id === genre_id;
+// function getAllFilmsGanres(results) {
+//   const res=results.map(result => {
+//     const { id, poster_path, original_title, name, genre_ids, fullYear1, fullYear2, vote_average } = result;
+//     const genres = api.getGanres()
+//       .then(arr => arr.filter(el => {
+//         const elId = el.id;
+//         //console.log('el.id :>> ', elId);
+//         if (genre_ids.includes(elId)) {
 //           console.log('el.name :>> ', el.name);
-//            return el.name;
-//         }))
-//        .then(el => {
-//          if (el.name) {
-//            console.log('object :>> ', el.name);
-//            return el.name;
-//          }
-//        })
-//       console.log('g :>> ', g);
-//     }).join();
-//     console.log('ganres :>> ', ganres);
-
-//     return { id, poster_path, original_title, name, ganres, fullYear1, fullYear2, release_date, vote_average };
-//   })
-
+//           return el.name;
+//         }
+//       }))
+//       //.then(console.log);
+//     console.log('genres :>> ', genres);
+//     return { id, poster_path, original_title, name, genres, fullYear1, fullYear2, vote_average };
+//   });
+  
+//   console.log('newResultswithGanres :>> ', res);
+  
 // }
 
 const renderMarkup = result => {
@@ -122,14 +112,8 @@ export function clearMarkup() {
   filmListGallery.innerHTML = '';
 }
 
+
 // api
 //   .getShortInfoMovieById()
 //   .then(response => console.log(response.data.results))
 //   .catch(error => console.log(error));
-
-// function getFullYearFilm(date) {
-//   const newDate = new Date(date);
-//   const fullYear = newDate.getFullYear();
-//   console.log('fullYear :>> ', fullYear);
-//   return fullYear;
-// }
