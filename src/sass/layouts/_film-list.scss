@@ -27,6 +27,7 @@
 
 .film-list_info {
   display: flex;
+  width: 280px;
   color: $accent-color;
   @include font(500, 12px, 14px);
 }
