@@ -1,19 +1,17 @@
+
+  $cards-per-row: 2;
+  $card-margin: 4vw;
+  $modal-width: 100vw;
+
 .about-us {
   height: 100vh;
-  width: 150px;
-  overflow-y: scroll;
+  width: $modal-width;
   background-color: $main-background-color;
-  padding-top: 30px;
   &-title {
     box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.5);
     padding-bottom: 2px;
-    position: fixed;
-    top: 0px;
-    left: 0;
     background-color: lightgray;
-    // width: 100%;
     display: flex;
-    flex-direction: row;
     &-team-name {
       margin: 0 auto;
       color: $text-footer-color;
@@ -21,16 +19,17 @@
   }
 
   &-content {
-    padding-top: 20px;
+    padding-top: $card-margin;
+    padding-left: $card-margin;
     display: flex;
     flex-wrap: wrap;
   }
 
   &-card {
-    width: 80px;
-    border-radius: 6px;
-    border: 2px solid $text-footer-color;
-    margin: 0 20px 20px;
+    width: calc((100% - #{$card-margin} * #{$cards-per-row}) / #{$cards-per-row});
+    border-radius: 5px;
+    border: 2px solid $text-card-color;
+    margin: 0 $card-margin $card-margin/2 0;
     box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.5);
   }
 
@@ -47,12 +46,13 @@
   &-position {
     text-align: center;
     padding-bottom: 5px;
+    font-size: 10px;
+    color: $accent-color;
+
   }
   &-close {
     color: $primary-text-color;
     margin: auto 5px auto 0;
-    text-align: center;
-    height: 18px;
     width: 18px;
     line-height: 0;
     box-shadow: 0 0 3px $primary-text-color;
@@ -114,10 +114,10 @@
       margin: 0 $card-margin $card-margin 0;
     }
     &-name {
-      font-size: 10px;
+      font-size: 15px;
     }
     &-position {
-      font-size: 8px;
+      font-size: 12px;
       color: $accent-color;
     }
   }
