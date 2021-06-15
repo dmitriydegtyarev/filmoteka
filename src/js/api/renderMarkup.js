@@ -78,10 +78,10 @@ export function getFilmInModal(e) {
  
 
 // function getFilmsWithGanres(results) {
-//   const res = results.map(async(result) => {
+//   const res = results.map(result => {
 //     const { id, poster_path, original_title, name, genre_ids, fullYear1, fullYear2, vote_average} = result;
 //     const arrGanres = [];
-//     return await api.getGanres()
+//     return api.getGanres()
 //       .then(arr => {
 //         arr.filter(el => {
 //           const elId = el.id;
