@@ -14,7 +14,7 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity $animation-duration $time-function;
-  max-height: calc(100vh-10px);
+  max-height: 100vh;
   overflow-y: scroll;
 }
 
@@ -25,7 +25,7 @@
 
 .modal {
   position: absolute;
-  top: 50%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -15%);
   width: 280px;
@@ -36,8 +36,8 @@
 
 .modal-close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
   display: flex;
   background-color: #fff;
   box-sizing: border-box;
@@ -48,8 +48,8 @@
 .modal-icon {
   display: inline-block;
   stroke: #000000;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   transition: stroke $animation-duration $time-function;
 
   &:focus,
@@ -130,9 +130,12 @@
 .film-trailer {
   margin-bottom: 20px;
   margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
   text-transform: uppercase;
   color: inherit;
   text-align: center;
+  width: 155px;
 
   &:hover,
   &:focus {
