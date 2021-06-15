@@ -11,7 +11,7 @@ axios.defaults.headers.common.Authorization = AUTH_TOKEN;
 class GetMovi {
   constructor() {
     this.page = 1;
-    this.ganres = [];
+    //this.ganres = [];
     this.searchQuery = '';
     this.id = '';
     this.basePosterPath = 'https://image.tmdb.org/t/p/w500/';
@@ -49,8 +49,19 @@ class GetMovi {
   }
 
   async getGanres() {
-    const response = await axios.get('/genre/movie/list');
-    return (this.ganres = response.data.genres);
+    if (this.ganres) {
+      return this.ganres;
+    } else {
+      const response = await axios.get('/genre/movie/list');
+      //return (this.ganres = response.data.genres);
+      this.ganres = {};
+      response.data.genres.forEach(({ id, name }) => {
+        this.ganres[id] = name;
+      });
+      return this.ganres;
+    }
+    
+    
   }
 
   async getPopularMovies() {
