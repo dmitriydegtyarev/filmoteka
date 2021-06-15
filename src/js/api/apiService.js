@@ -53,15 +53,12 @@ class GetMovi {
       return this.ganres;
     } else {
       const response = await axios.get('/genre/movie/list');
-      //return (this.ganres = response.data.genres);
       this.ganres = {};
       response.data.genres.forEach(({ id, name }) => {
         this.ganres[id] = name;
       });
       return this.ganres;
     }
-    
-    
   }
 
   async getPopularMovies() {
