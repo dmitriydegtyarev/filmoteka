@@ -33,6 +33,7 @@ export function renderPopularMovie() {
     .getPopularMovies()
     .then(response => response.data.results)
     .then(getFullYear)
+    //.then(getAllFilmsGanres)
     .then(result => {
       changePath(result);
       clearMarkup();
@@ -74,30 +75,28 @@ export function getFilmInModal(e) {
     .catch(error => console.log(error))
     .finally(() => spinner.stop(filmCard));
 }
+ 
 
-
-
-
-
-// const ganres = genre_ids.map(genre_id => {
-    //  const g= api.getGanres()
-    //     .then(arr => arr.find(el => {
-    //       console.log('el :>> ', el);
-    //       el.id === genre_id;
-    //       console.log('el.name :>> ', el.name);
-    //        return el.name;
-    //     }))
-    //    .then(el => {
-    //      if (el.name) {
-    //        console.log('object :>> ', el.name);
-    //        return el.name;
-    //      }
-    //    })
-    //   console.log('g :>> ', g);
-    // }).join();
-    // console.log('ganres :>> ', ganres);
-
-    // return { id, poster_path, original_title, name, ganres, fullYear1, fullYear2, release_date, vote_average };
+// function getAllFilmsGanres(results) {
+//   const res=results.map(result => {
+//     const { id, poster_path, original_title, name, genre_ids, fullYear1, fullYear2, vote_average } = result;
+//     const genres = api.getGanres()
+//       .then(arr => arr.filter(el => {
+//         const elId = el.id;
+//         //console.log('el.id :>> ', elId);
+//         if (genre_ids.includes(elId)) {
+//           console.log('el.name :>> ', el.name);
+//           return el.name;
+//         }
+//       }))
+//       //.then(console.log);
+//     console.log('genres :>> ', genres);
+//     return { id, poster_path, original_title, name, genres, fullYear1, fullYear2, vote_average };
+//   });
+  
+//   console.log('newResultswithGanres :>> ', res);
+  
+// }
 
 const renderMarkup = result => {
   const markup = moviesTemplate(result);
@@ -112,6 +111,7 @@ const renderFilmMarkup = film => {
 export function clearMarkup() {
   filmListGallery.innerHTML = '';
 }
+
 
 // api
 //   .getShortInfoMovieById()
