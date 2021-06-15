@@ -33,7 +33,7 @@ export function renderPopularMovie() {
     .getPopularMovies()
     .then(response => response.data.results)
     .then(getFullYear)
-    //.then(getFilmsWithGanres)
+    .then(getFilmsWithGanres)
     .then(result => {
       changePath(result);
       clearMarkup();
@@ -76,36 +76,11 @@ export function getFilmInModal(e) {
     .finally(() => spinner.stop(filmCard));
 }
  
-
-// function getFilmsWithGanres(results) {
-//   const res = results.map(result => {
-//     const { id, poster_path, original_title, name, genre_ids, fullYear1, fullYear2, vote_average} = result;
-//     const arrGanres = [];
-//     return api.getGanres()
-//       .then(arr => {
-//         arr.filter(el => {
-//           const elId = el.id;
-//           if (genre_ids.includes(elId)) {
-//             // console.log('el.name :>> ', el.name);
-//             arrGanres.push(el.name);
-//             //console.log('arrGanres :>> ', arrGanres);
-//             return arrGanres;
-//           }
-//         });
-
-//         const genrs = arrGanres.join(', ');
-//         //console.log('genrs :>> ', genrs);
-//         return genrs;
-//       })
-//       .then(genrs => {
-//         console.log('film :>> ', { id, poster_path, original_title, name, genrs, fullYear1, fullYear2, vote_average });
-//         return { id, poster_path, original_title, name, genrs, fullYear1, fullYear2, vote_average };//обьект фильма
-//       });
-//     //возвращает промис с обьектом фильмом
-//   });
-//     console.log('res :>> ', res);
-//   return res;
-// }
+async function getFilmsWithGanres(results) {
+  const allGanres = await api.getGanres();
+  console.log('allGanres :>> ', allGanres);
+  return results.map(({ genre_ids, ...rest }) => ({ ganres: genre_ids.map(id => allGanres[id]).join(', '), ...rest}));
+}
 
 const renderMarkup = result => {
   const markup = moviesTemplate(result);

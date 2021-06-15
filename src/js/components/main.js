@@ -11,12 +11,12 @@ refs.switchInputEl.addEventListener('change', onSelectTheme);
 
 function onSelectTheme(evt) {
   evt.preventDefault();
-  refs.bodyEl.classList.add(Theme.LIGHT);
-  refs.bodyEl.classList.toggle(Theme.DARK);
-  refs.modal.classList.add(Theme.LIGHT);
-  refs.modal.classList.toggle(Theme.DARK);
-  refs.regModal.classList.add(Theme.LIGHT);
-  refs.regModal.classList.toggle(Theme.DARK);
+  refs.bodyEl.classList.add(Theme.DARK);
+  refs.bodyEl.classList.toggle(Theme.LIGHT);
+  refs.modal.classList.add(Theme.DARK);
+  refs.modal.classList.toggle(Theme.LIGHT);
+  refs.regModal.classList.add(Theme.DARK);
+  refs.regModal.classList.toggle(Theme.LIGHT);
 
   
   if (refs.bodyEl.classList.value === 'light-theme') {
