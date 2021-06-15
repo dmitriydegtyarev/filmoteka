@@ -13,15 +13,17 @@
 //   background-color: $dark-theme-background-color;
 // }
 
-body.light-theme {
-  background-color: $main-background-color;
-  color: $primary-text-color;
-}
+
 
 body.dark-theme {
   background-color: $dark-theme-background-color;
   color: $secondary-text-color;
   
+}
+
+body.light-theme {
+  background-color: $main-background-color;
+  color: $primary-text-color;
 }
 
 .toolbar {
@@ -90,7 +92,7 @@ body.dark-theme {
   z-index: 2;
   pointer-events: none;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
-  transform: translateX(1px);//
+  transform: translateX(23px);//
   transition: transform 250ms var(--timing-function);
 }
 
@@ -99,7 +101,7 @@ body.dark-theme {
 }
 
 .theme-switch__toggle:checked ~ .theme-switch__marker {
-  transform: translateX(23px);
+  transform: translateX(1px);
 }
 
 .theme-switch__toggle:focus + .theme-switch__track,
@@ -125,10 +127,11 @@ body.dark-theme {
   .theme-switch__marker {
   width: 20px;
   height: 20px;
-  }
-
-  .theme-switch__toggle:checked ~ .theme-switch__marker {
   transform: translateX(34px);
+  }
+  
+  .theme-switch__toggle:checked ~ .theme-switch__marker {
+  transform: translateX(1px);
 }
 }
 
@@ -146,10 +149,11 @@ body.dark-theme {
  .theme-switch__marker {
   width: 24px;
   height: 24px;
+  transform: translateX(34px);
   }
 
   .theme-switch__toggle:checked ~ .theme-switch__marker {
-  transform: translateX(34px);
+  transform: translateX(1px);
 }
 
 }

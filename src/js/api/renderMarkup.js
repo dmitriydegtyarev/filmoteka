@@ -78,7 +78,7 @@ export function getFilmInModal(e) {
  
 async function getFilmsWithGanres(results) {
   const allGanres = await api.getGanres();
-  console.log('allGanres :>> ', allGanres);
+  //console.log('allGanres :>> ', allGanres);
   return results.map(({ genre_ids, ...rest }) => ({ ganres: genre_ids.map(id => allGanres[id]).join(', '), ...rest}));
 }
 
