@@ -17,23 +17,19 @@ refs.myQueueBtn.addEventListener('click', onMyQueueBtn);
 function onMyWatchedBtn() {
   firebaseApi
     .getWatchedData()
-    .then(result => {
-      result.forEach(getFilmGenres);
-      return result;
-    })
     // .then(getFullYear)
     .then(result => {
-      changePath(result);
       clearMarkup();
       renderMarkup(result);
     });
 }
 
 function onMyQueueBtn() {
-  firebaseApi.getQueueData().then(result => {
-    result.forEach(getFilmGenres);
-    changePath(result);
-    clearMarkup();
-    renderMarkup(result);
-  });
+  firebaseApi
+    .getQueueData()
+    // .then(getFullYear)
+    .then(result => {
+      clearMarkup();
+      renderMarkup(result);
+    });
 }

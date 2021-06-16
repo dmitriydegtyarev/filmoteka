@@ -1,6 +1,7 @@
 import api from './apiService';
 import { Spinner } from 'spin.js';
 import { modalSpinner, previewSpinner } from '../libs/spinner';
+import firebaseApi from '../components/firebase';
 
 // import { previewSpinner, modalSpinner } from '../libs/spinner';
 
@@ -42,7 +43,7 @@ export function renderPopularMovie() {
     .catch(error => console.log(error));
 }
 
-export function renderMovisBySearchQuery(query) {
+export function renderMoviesBySearchQuery(query) {
   if (query !== '') {
     api
       .getMovieOnSearchQuery(query)
@@ -73,9 +74,25 @@ export function getFilmInModal(e) {
     .then(response => response.data)
     .then(getFilmGenres)
     .then(result => {
-      // console.log(result);
       changeFilmPath(result);
       renderFilmMarkup(result);
+      // console.log(firebaseApi.findWatchedMovie(result.id));
+      const addWatchedBtnEl = document.querySelector('.add-watched_button');
+      addWatchedBtnEl.addEventListener('click', onAddWatchedBtnClick);
+      function onAddWatchedBtnClick() {
+        firebaseApi.postWatchedData(result);
+        addWatchedBtnEl.classList.add('press-btn');
+        addWatchedBtnEl.textContent = 'Added to Watched';
+        addWatchedBtnEl.disabled = true;
+      }
+      const addQueueBtnEl = document.querySelector('.add-queue_button');
+      addQueueBtnEl.addEventListener('click', onAddQueueBtnClick);
+      function onAddQueueBtnClick() {
+        firebaseApi.postQueueData(result);
+        addWatchedBtnEl.classList.add('press-btn');
+        addWatchedBtnEl.textContent = 'Added to Queue';
+        addWatchedBtnEl.disabled = true;
+      }
     })
     .catch(error => console.log(error))
     .finally(() => spinner.stop(filmCard));
