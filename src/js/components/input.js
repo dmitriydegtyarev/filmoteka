@@ -1,14 +1,14 @@
 import debounce from 'lodash.debounce';
 
 import api from '../api/apiService';
-import { renderMovisBySearchQuery } from '../api/renderMarkup';
+import { renderMoviesBySearchQuery } from '../api/renderMarkup';
 import { refs } from '../refs';
 
 const { inputEl } = refs;
 
 function onInputSearch(e) {
   api.query = e.target.value;
-  renderMovisBySearchQuery(api.query);
+  renderMoviesBySearchQuery(api.query);
 }
 
 export function clearInput() {

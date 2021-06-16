@@ -14,7 +14,7 @@ class GetMovi {
     //this.ganres = [];
     this.searchQuery = '';
     this.id = '';
-    this.basePosterPath = 'https://image.tmdb.org/t/p/w500/';
+    this.basePosterPath = 'https://image.tmdb.org/t/p/w500';
     this.init();
   }
 
