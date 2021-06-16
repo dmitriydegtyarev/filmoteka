@@ -1,4 +1,5 @@
 import api from '../api/apiService';
+import { renderPagination } from '../components/pagination';
 import { renderPopularMovie } from '../api/renderMarkup';
 import { clearInput } from '../components/input';
 
@@ -33,6 +34,7 @@ function onNavLinkHomeClick() {
   api.page = 1;
   clearInput();
   renderPopularMovie();
+  // renderPagination();
 }
 
 function onNavLinkLibraryClick() {
