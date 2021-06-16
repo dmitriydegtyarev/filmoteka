@@ -32,6 +32,13 @@
   @include font(500, 12px, 14px);
 }
 
+//Если надо в 2 строки - закомментировать
+.film-list_info_ganres {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .line{
   margin-right: 5px;
   margin-left: 5px;
