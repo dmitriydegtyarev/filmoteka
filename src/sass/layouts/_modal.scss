@@ -239,6 +239,10 @@
   .buttons button {
     width: 125px;
   }
+
+  .properties_item_text {
+  width: 160px;
+}
 }
 
 @media screen and (min-width: 1024px) {
@@ -261,4 +265,8 @@
   .buttons button {
     width: 136px;
   }
+
+  .properties_item_text {
+  width: 260px;
+}
 }
