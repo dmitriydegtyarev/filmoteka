@@ -1,6 +1,15 @@
 export default function getFullYear(results) {
   const newResults = results.map(result => {
-    const { id, poster_path, original_title, name, genre_ids, first_air_date, release_date, vote_average } = result;
+    const {
+      id,
+      poster_path,
+      original_title,
+      name,
+      genre_ids,
+      first_air_date,
+      release_date,
+      vote_average,
+    } = result;
     if (first_air_date) {
       const newDate1 = new Date(first_air_date);
       const fullYear1 = newDate1.getFullYear();
@@ -14,6 +23,6 @@ export default function getFullYear(results) {
       return;
     }
   });
-  console.log('newResults :>> ', newResults);
+  // console.log('newResults :>> ', newResults);
   return newResults;
 }
