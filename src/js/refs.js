@@ -14,6 +14,7 @@ const refs = {
   bodyEl: document.querySelector('body'),
   switchInputEl: document.querySelector('.theme-switch__toggle'),
   paginationList: document.querySelector('.pagination-list'),
+  paginationListMobile: document.querySelector('.pagination-list-mobile'),
   registrationBtn: document.querySelector('.registration-btn'),
   regLightbox: document.querySelector('.js-rf-lightbox'),
   regModalCloseBtn: document.querySelector('.rf-modal-close-button'),

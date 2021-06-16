@@ -1,15 +1,19 @@
-.pagination {
+.pagination,
+.pagination-mobile {
   display: flex;
   justify-content: center;
   padding-top: 50px;
 }
 
-.button-prev {
+.button-prev,
+.button-mobile-prev {
   margin-right: 16px;
 }
 
 .button-prev,
-.button-next {
+.button-next,
+.button-mobile-prev,
+.button-mobile-next {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,22 +33,27 @@
 }
 
 .button-prev::before,
-.button-next::before {
+.button-next::before,
+.button-mobile-prev::before,
+.button-mobile-next::before {
   content: '';
   width: 20px;
   height: 20px;
   background-size: contain;
 }
 
-.button-prev::before {
+.button-prev::before,
+.button-mobile-prev::before {
   background-image: url('../images/pagination/prev.png');
 }
 
-.button-next::before {
+.button-next::before,
+.button-mobile-next::before {
   background-image: url('../images/pagination/next.png');
 }
 
-.pagination-list {
+.pagination-list,
+.pagination-list-mobile {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,7 +63,8 @@
 }
 
 .pagination-item,
-.pagination-item-span {
+.pagination-item-span,
+.pagination-mobile-item {
   display: flex;
   margin-right: 16px;
   font-family: $font;

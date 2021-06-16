@@ -3,8 +3,6 @@ import { Spinner } from 'spin.js';
 import { modalSpinner, previewSpinner } from '../libs/spinner';
 import firebaseApi from '../components/firebase';
 
-// import { previewSpinner, modalSpinner } from '../libs/spinner';
-
 import moviesTemplate from '../../templates/film-list.hbs';
 import movieTemplate from '../../templates/film-card.hbs';
 
@@ -17,17 +15,7 @@ import showMessage from '../components/showMessage';
 import getFilmGenres from '../components/getFilmGenres';
 import getFullYear from '../components/getFullYear';
 
-const { filmListGallery, filmCard, filmListItem } = refs;
-
-// function showModalSpeaner() {
-//   const spinner = new Spinner(modalSpinner);
-//   spinner.spin(filmCard);
-// }
-
-// export function showModalSpeaner() {
-//   const spinner = new Spinner(modalSpinner);
-//   spinner.spin(filmCard);
-// }
+const { filmListGallery, filmCard, paginationList } = refs;
 
 export function renderPopularMovie() {
   api
@@ -119,6 +107,10 @@ const renderFilmMarkup = film => {
 
 export function clearMarkup() {
   filmListGallery.innerHTML = '';
+}
+
+export function clearMarkupPagination() {
+  paginationList.innerHTML = '';
 }
 
 // api
