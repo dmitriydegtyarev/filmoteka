@@ -1,5 +1,5 @@
 <div class="film">
-    <img class="film-img" src='https://image.tmdb.org/t/p/w500/{{poster_path}}' alt={{original_title}}{{name}}>
+    <img class="film-img" src='{{poster_path}}' alt={{original_title}}{{name}}>
     <div class="film-info">
         <div>
             <h2 class="film-name">{{original_title}}{{name}}</h2>
@@ -22,7 +22,7 @@
                     </li>
                     <li class="properties_item">
                         <p class="properties_item_title">Genre</p>
-                        <p class="properties_item_text">{{allGenres}}</p>
+                        <p class="properties_item_text">{{genres}}</p>
                     </li>
                 </ul>
                 {{!-- <ul class="property-value"> --}}

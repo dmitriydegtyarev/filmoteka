@@ -9,11 +9,11 @@ import movieTemplate from '../../templates/film-card.hbs';
 
 import { refs } from '../refs';
 
-import changePath from '../components/changePathForPoster';
+import { changePath, changeFilmPath } from '../components/changePathForPoster';
 
 import showMessage from '../components/showMessage';
 
-import getFilmGanres from '../components/getFilmGanres';
+import getFilmGenres from '../components/getFilmGenres';
 import getFullYear from '../components/getFullYear';
 
 const { filmListGallery, filmCard, filmListItem } = refs;
@@ -51,6 +51,7 @@ export function renderMovisBySearchQuery(query) {
         return response.data.results;
       })
       .then(getFullYear)
+      .then(getFilmsWithGanres)
       .then(result => {
         changePath(result);
         clearMarkup();
@@ -70,16 +71,23 @@ export function getFilmInModal(e) {
   api
     .getMovieById()
     .then(response => response.data)
-    .then(getFilmGanres)
-    .then(renderFilmMarkup)
+    .then(getFilmGenres)
+    .then(result => {
+      // console.log(result);
+      changeFilmPath(result);
+      renderFilmMarkup(result);
+    })
     .catch(error => console.log(error))
     .finally(() => spinner.stop(filmCard));
 }
- 
+
 async function getFilmsWithGanres(results) {
   const allGanres = await api.getGanres();
   //console.log('allGanres :>> ', allGanres);
-  return results.map(({ genre_ids, ...rest }) => ({ ganres: genre_ids.map(id => allGanres[id]).join(', '), ...rest}));
+  return results.map(({ genre_ids, ...rest }) => ({
+    genres: genre_ids.map(id => allGanres[id]).join(', '),
+    ...rest,
+  }));
 }
 
 const renderMarkup = result => {
@@ -95,7 +103,6 @@ const renderFilmMarkup = film => {
 export function clearMarkup() {
   filmListGallery.innerHTML = '';
 }
-
 
 // api
 //   .getShortInfoMovieById()
