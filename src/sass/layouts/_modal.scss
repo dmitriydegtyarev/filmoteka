@@ -96,10 +96,6 @@
 
 
 
-.properties {
-  color: $text-card-color;
-}
-
 .properties_item {
   display: flex;
   &:not(:last-child){
@@ -108,13 +104,20 @@
 }
 
 .properties_item_title {
+  color: $text-card-color;  
   width: 70px;
   margin-right: 40px;
   white-space: nowrap;
 }
 
 .properties_item_text {
-  color: $primary-text-color;
+  width: 130px;
+  text-align: left;
+}
+
+.film-list_info {
+  display: flex;
+  align-items: center;
 }
 
 .film-vote {
@@ -133,6 +136,10 @@
 .film-vote-grey {
   background-color: $secondary-background-color;
   color: $primary-text-color;
+}
+
+.film-vote-main {
+  margin-left: 10px;
 }
 
 
