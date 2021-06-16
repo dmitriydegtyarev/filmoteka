@@ -1,5 +1,6 @@
 .film-list_item {
   min-height: 460px;
+  width: 280px;
 }
 
 .film-list_img {
@@ -23,11 +24,12 @@
   @include font(500, 12px, 14px);
   margin-bottom: 6px;
   margin-top: 10px;
+  // width: 280px;
 }
 
 .film-list_info {
   display: flex;
-  width: 280px;
+  // width: 280px;
   color: $accent-color;
   @include font(500, 12px, 14px);
 }
@@ -44,9 +46,7 @@
     align-items: center;
   }
 
- 
-
-
+  
   .film-list_item:not(:last-child){
   margin-bottom: 20px;
   }
@@ -59,8 +59,21 @@
     grid-gap: 30px;
   }
 
-  .film-list_img {
+
+  .film-list_item {
     width: 294px;
+  }
+  
+  // .film-list_img {
+  //   width: 294px;
+  // }
+
+  // .film-list_name {
+  //   width: 294px;
+  // }
+
+  .film-list_info {
+    width: 293px;
   }
 
 }
@@ -70,9 +83,19 @@
     grid-template-columns: 274px 274px 274px;
   }
 
+  .film-list_item {
+    width: 294px;
+  }
   .film-list_img {
     width: 274px;
   }
+
+  // .film-list_name {
+  //   width: 294px;
+  // }
+  // .film-list_info {
+  //   width: 274px;
+  // }
 
   .film-list_info,
   .film-list_name {
