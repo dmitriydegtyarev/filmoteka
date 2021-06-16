@@ -1,7 +1,7 @@
 import { refs } from '../refs';
 import moviesTemplate from '../../templates/film-list.hbs';
 import firebaseApi from './firebase';
-import changePath from './changePathForPoster';
+import { changePath, changeFilmPath } from './changePathForPoster';
 import { clearMarkup, getFilmsWithGanres } from '../api/renderMarkup';
 import getFilmGenres from '../components/getFilmGenres';
 import getFullYear from '../components/getFullYear';
