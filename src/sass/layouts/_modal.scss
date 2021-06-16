@@ -14,6 +14,8 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity $animation-duration $time-function;
+  max-height: 100vh;
+  overflow-y: scroll;
 }
 
 .lightbox.is-open {
@@ -23,42 +25,60 @@
 
 .modal {
   position: absolute;
-  top: 50%;
+  top: 35%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -15%);
   width: 280px;
-height: 600px;
-  // min-height: 958px;
-  background-color:$main-background-color;
+  min-height: 850px;
+  //background-color: $main-background-color;
   padding: 20px 20px 40px 20px;
+}
+
+.modal.dark-theme {
+  background-color: $dark-theme-background-color;
+  color: $secondary-text-color;
+  
+}
+
+.modal.light-theme {
+  background-color: $main-background-color;
+  color: $primary-text-color;
 }
 
 .modal-close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
   display: flex;
   background-color: #fff;
   box-sizing: border-box;
-  border: none ;
+  border: none;
   cursor: pointer;
 }
 
 .modal-icon {
   display: inline-block;
-  stroke:#000000;
-  width: 30px;
-  height: 30px;
+  stroke: #000000;
+  width: 25px;
+  height: 25px;
   transition: stroke $animation-duration $time-function;
-  
+
   &:focus,
   &:hover {
-      stroke: $accent-color;
+    stroke: $accent-color;
   }
 }
 
 .film-img {
   height: 356px;
+  width: 240px;
+  border-radius: 5px;
+}
+
+.film-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .film-name {
@@ -71,29 +91,57 @@ height: 600px;
   display: flex;
   @include font(500, 12px, 16px);
   margin-bottom: 20px;
-    // line-height: 16px; /*перемерять для Vote и Popularity */
+  // line-height: 16px; /*перемерять для Vote и Popularity */
+}
+
+
+
+.properties_item {
+  display: flex;
+  &:not(:last-child){
+    margin-bottom: 10px;
+  }
+}
+
+.properties_item_title {
+  color: $text-card-color;  
+  width: 70px;
+  margin-right: 40px;
+  white-space: nowrap;
+}
+
+.properties_item_text {
+  width: 130px;
+  text-align: left;
+}
+
+.film-list_info {
+  display: flex;
+  align-items: center;
 }
 
 .film-vote {
-  background-color: $accent-color;
   border-radius: 5px;
-  color: $secondary-text-color;
   padding: 1px 10px;
-   margin-left: 10px;
-  display:inline-block;
-  line-height: 11px;
-  
+  margin-left: 10px;
+  display: inline-block;
+  margin-left: 0px;
 }
 
-.properties {
-  color: $text-card-color;
-  margin-right: 41px;
+.film-vote-orange {
+  background-color: $accent-color;
+  color: $secondary-text-color;
 }
 
-.properties li:not(:last-child),
-.property-value li:not(:last-child) {
-  margin-bottom: 10px;
+.film-vote-grey {
+  background-color: $secondary-background-color;
+  color: $primary-text-color;
 }
+
+.film-vote-main {
+  margin-left: 10px;
+}
+
 
 .film-origin-title {
   text-transform: uppercase;
@@ -110,24 +158,21 @@ height: 600px;
   margin-bottom: 21px;
 }
 
-// a.link {
-//     margin-bottom: 15px;
-//     margin-top: 15px;
-//     text-transform: uppercase;
-//     color: inherit;
-//     text-align: center;
-// }
-
 .film-trailer {
   margin-bottom: 20px;
   margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
   text-transform: uppercase;
   color: inherit;
   text-align: center;
+  width: 155px;
+  text-decoration: underline;
 
   &:hover,
   &:focus {
-    color:  $accent-color;
+    color: $accent-color;
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
   }
 }
 
@@ -143,10 +188,7 @@ height: 600px;
   text-transform: uppercase;
   @include font(500, 12px, 16px);
   width: 112px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 7px;
-  padding-right: 7px;
+  padding: 12px 7px;
 }
 
 .add-watched_button {
@@ -165,13 +207,13 @@ height: 600px;
 
 @media screen and (max-width: 767px) {
   .film-name {
-  margin-top: 30px;
+    margin-top: 30px;
   }
 
   .film-img {
     margin-bottom: 15px;
-  margin-top: 16px;
-}
+    margin-top: 16px;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -179,24 +221,23 @@ height: 600px;
     width: 618px;
     min-height: 562px;
     padding: 42px 30px 40px 28px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
   }
 
   .film {
     display: flex;
   }
 
-  // .left-side {
-  //   margin-right: 32px;
-  // }
-
   .film-img {
     height: 374px;
+    width: 264px;
     margin-right: 32px;
   }
 
   .buttons button {
     width: 125px;
-    
   }
 }
 
@@ -207,12 +248,9 @@ height: 600px;
     padding: 50px 30px 40px 30px;
   }
 
-  .left-side {
-    margin-right: 30px;
-  }
-
   .film-img {
     height: 478px;
+    width: 396px;
   }
 
   .film-name {
@@ -223,14 +261,4 @@ height: 600px;
   .buttons button {
     width: 136px;
   }
-}
-
-.modal.light-theme {
-  background-color: $main-background-color;
-  color: $primary-text-color;
-}
-
-.modal.dark-theme {
-  background-color: $dark-theme-background-color;
-  color: $secondary-text-color;
 }

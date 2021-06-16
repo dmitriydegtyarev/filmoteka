@@ -1,30 +1,48 @@
 <div class="film">
-    <img class="film-img" src='https://image.tmdb.org/t/p/w500/{{poster_path}}' alt={{original_title}}{{name}}>
+    <img class="film-img" src='{{poster_path}}' alt={{original_title}}{{name}}>
     <div class="film-info">
-        <h2 class="film-name">{{original_title}}{{name}}</h2>
-        <div class="film-properties">
-            <ul class="properties">
-                <li>Vote / Votes</li>
-                <li>Popularity</li>
-                <li>Original Title</li>
-                <li>Genre</li>
-            </ul>
-            <ul class="property-value">
-                <li>
-                    <p class="film-vote">{{vote_average}}</p> / {{vote_count}}
-                </li>
-                <li>{{popularity}}</li>
-                <li class="film-origin-title">{{original_title}}{{name}}</li>
-                <li>{{allGenres}}</li>
-            </ul>
-        </div>
-        <p class="film-about">About</p>
-        <span class="film-description">{{overview}}</span>
-        <a class="link film-trailer" href={{homepage}}>Watch the trailer</a>
+        <div>
+            <h2 class="film-name">{{original_title}}{{name}}</h2>
+            <div class="film-properties">
+                <ul class="properties">
+                    <li class="properties_item">
+                        <p class="properties_item_title"> Vote / Votes</p>
+                        <span class="properties_item_text">
+                            <p class=" film-vote film-vote-orange">{{vote_average}} </p>&nbsp;/&nbsp; 
+                            <p class="film-vote film-vote-grey">{{vote_count}} </p>
+                        </span>
+                    </li>
+                    <li class="properties_item">
+                        <p class="properties_item_title">Popularity</p>
+                        <p class="properties_item_text">{{popularity}}</p>
+                    </li>
+                    <li class="properties_item">
+                        <p class="properties_item_title">Original Title</p>
+                        <p class="properties_item_text film-origin-title">{{original_title}}{{name}}</p>
+                    </li>
+                    <li class="properties_item">
+                        <p class="properties_item_title">Genre</p>
+                        <p class="properties_item_text">{{genres}}</p>
+                    </li>
+                </ul>
+                {{!-- <ul class="property-value"> --}}
+                {{!-- <li class="film-origin-title"></li> --}}
 
-        <div class="buttons">
-            <button class="add-watched_button" type="submit">Add to Watched</button>
-            <button class="add-queue_button" type="submit">Add to queue</button>
+
+            </div>
+            <p class="film-about">About</p>
+            <span class="film-description">{{overview}}</span>
+
         </div>
+        
+        <div>
+            <a class="link film-trailer" href={{homepage}} target="_blank">Watch the trailer</a>
+            <div class="buttons">
+                <button class="add-watched_button" type="submit">Add to Watched</button>
+                <button class="add-queue_button" type="submit">Add to queue</button>
+            </div>
+
+        </div>
+        
     </div>
 </div>

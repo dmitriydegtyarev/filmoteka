@@ -16,6 +16,8 @@ function openModalWindow(e) {
   resetModal();
 
   getFilmInModal(e);
+  document.documentElement.style.overflow = 'hidden';
+  document.body.scroll = "no";
 }
 
 //добавить в просмотренные или в список просмотра
@@ -61,6 +63,8 @@ function onModalWindowCloseBtn() {
   refs.lightbox.removeEventListener('click', onOverlayClick);
   window.removeEventListener('keydown', onEscPress);
   refs.modalCloseBtn.removeEventListener('click', onModalWindowCloseBtn);
+  document.documentElement.style.overflow = 'scroll';
+  document.body.scroll = "yes";
 }
 
 export function onOverlayClick(e) {

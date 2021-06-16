@@ -1,5 +1,17 @@
+.film-list_item {
+  min-height: 460px;
+  width: 280px;
+}
+
 .film-list_img {
   height: 398px;
+  width: 280px;
+  border-radius: 5px ;
+
+  &:hover,
+  &:focus{
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);;
+  }
 }
 
 .error-img{
@@ -20,6 +32,13 @@
   @include font(500, 12px, 14px);
 }
 
+//Если надо в 2 строки - закомментировать
+.film-list_info_ganres {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .line{
   margin-right: 5px;
   margin-left: 5px;
@@ -32,6 +51,7 @@
     align-items: center;
   }
 
+  
   .film-list_item:not(:last-child){
   margin-bottom: 20px;
   }
@@ -43,6 +63,12 @@
     grid-template-columns: 293px 293px;
     grid-gap: 30px;
   }
+
+
+  .film-list_item {
+    width: 274px;
+  }
+  
 }
 
 @media screen and (min-width: 1024px) {
@@ -50,6 +76,10 @@
     grid-template-columns: 274px 274px 274px;
   }
 
+  .film-list_item {
+    width: 274px;
+  }
+  
   .film-list_info,
   .film-list_name {
     @include font(500, 12px, 16px);

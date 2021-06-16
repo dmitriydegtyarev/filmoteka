@@ -1,10 +1,16 @@
-import { refs } from '../refs.js';
-import api from '../api/apiService';
+export default async function changeHomePage(result) {
+  const baseYourtubeLinks = 'https://www.youtube.com/embed/';
 
+  let homepage = null;
 
-refs.linkTrailer.addEventListener('click', onLinkClick);
-
-function onLinkClick(e) {
-/* <a class="link film-trailer" href={{homepage}}>Watch the trailer</a> */
-    showTrailer(e.target.href);
+  if (result[0] === undefined) {
+    console.log('Нет трейлера');
+    return homepage;
+  } else {
+    console.log('Есть ключ для трейлера');
+    const yourtubeId = result[0].key;
+    console.log(yourtubeId);
+    homepage = `${baseYourtubeLinks}${yourtubeId}`;
+  }
+  return homepage;
 }

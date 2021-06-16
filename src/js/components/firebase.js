@@ -8,13 +8,6 @@ const instance = axios.create({
 });
 instance.defaults.headers.common['Authorization'] = 'AIzaSyAh4y3XVG_lP - Xp7JCesja84DGK8K - GOc0';
 
-// fetch('https://filmoteka-zero-team-default-rtdb.firebaseio.com/users.json')
-//   .then(response => {
-//     return response.json();
-//   })
-//   .then(data => Object.entries(data).map(([key, value]) => ({ id: key, ...value })))
-//   .then(console.log);
-
 class FirebaseApi {
   #apiSets = {
     signUp: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp',
@@ -22,44 +15,23 @@ class FirebaseApi {
     dbBaseUrl: 'https://filmoteka-zero-team-default-rtdb.firebaseio.com',
     DB_KEY: 'AIzaSyAh4y3XVG_lP-Xp7JCesja84DGK8K-GOc0',
   };
+  email = '';
   #userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
   setBaseUrlSignUp() {
-    // this.#baseURL = this.#apiSets.signUp;
     instance.defaults.baseURL = this.#apiSets.signUp;
     instance.defaults.params = { key: this.#apiSets.DB_KEY };
   }
 
   setBaseUrlSignIn() {
-    // this.#baseURL = this.#apiSets.signIn;
     instance.defaults.baseURL = this.#apiSets.signIn;
     instance.defaults.params = { key: this.#apiSets.DB_KEY };
   }
 
   setBaseUrlDB(token) {
-    // this.#baseURL = this.#apiSets.dbBaseUrl;
     instance.defaults.baseURL = this.#apiSets.dbBaseUrl;
     instance.defaults.params = { auth: token };
   }
-
-  // signUp({ email, password }) {
-  //   this.setBaseUrlSignUp();
-  //   const newUser = {
-  //     email: email,
-  //     password: password,
-  //     returnSecureToken: true,
-  //   };
-  //   const options = {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(newUser),
-  //   };
-  //   return fetch(`${this.#baseURL}?key=${this.#apiSets.DB_KEY}`, options)
-  //     .then(res => res.json())
-  //     .then(console.log);
-  // }
 
   signUp({ email, password }) {
     this.setBaseUrlSignUp();
@@ -72,23 +44,6 @@ class FirebaseApi {
       });
   }
 
-  // signIn({ email, password }) {
-  //   this.setBaseUrlSignIn();
-  //   const user = {
-  //     email: email,
-  //     password: password,
-  //     returnSecureToken: true,
-  //   };
-  //   const options = {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(user),
-  //   };
-  //   return fetch(`${this.#baseURL}?key=${this.#apiSets.DB_KEY}`, options).then(res => res.json());
-  // }
-
   signIn({ email, password }) {
     this.setBaseUrlSignIn();
 
@@ -96,28 +51,14 @@ class FirebaseApi {
       .post('', { email, password, returnSecureToken: true })
       .then(({ data }) => data)
       .then(({ localId, idToken }) => {
-        localStorage.setItem('userInfo', JSON.stringify({ localId, idToken }));
+        localStorage.setItem('userInfo', JSON.stringify({ localId, idToken, email }));
       })
       .catch(function (error) {
         console.log(error);
       });
   }
 
-  // postWatchedMovies({ data, userId, token }) {
-  //   this.setBaseUrlDB();
-  //   const options = {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(data),
-  //   };
-  //   return fetch(`${this.#baseURL}/users/${userId}/watched.json?auth=${token}`, options).then(res =>
-  //     res.json(),
-  //   );
-  // }
-
-  postWatchedData({ data }) {
+  postWatchedData(data) {
     this.setBaseUrlDB(this.#userInfo.idToken);
     return instance
       .post(/users/ + this.#userInfo.localId + '/' + 'watchedMovies' + '.json', data)
@@ -128,21 +69,7 @@ class FirebaseApi {
       .then(console.log);
   }
 
-  // postQuequedMovies({ data, userId, token }) {
-  //   this.setBaseUrlDB();
-  //   const options = {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(data),
-  //   };
-  //   return fetch(`${this.#baseURL}/users/${userId}/queque.json?auth=${token}`, options).then(res =>
-  //     res.json(),
-  //   );
-  // }
-
-  postQueueData({ data }) {
+  postQueueData(data) {
     this.setBaseUrlDB(this.#userInfo.idToken);
     return instance
       .post(/users/ + this.#userInfo.localId + '/' + 'queueMovies' + '.json', data)
@@ -152,13 +79,6 @@ class FirebaseApi {
       })
       .then(console.log);
   }
-
-  // getWatchedMovies({ userId, token }) {
-  //   this.setBaseUrlDB();
-  //   return fetch(`${this.#baseURL}/users/${userId}/watched.json?auth=${token}`).then(res =>
-  //     res.json(),
-  //   );
-  // }
 
   getWatchedData() {
     this.setBaseUrlDB(this.#userInfo.idToken);
@@ -181,17 +101,14 @@ class FirebaseApi {
       })
       .then(transformToArr);
   }
+
+  findWatchedMovie(movieId) {
+    return Object.entries().find(([id, obj]) => obj.id === movieId)[0];
+  }
 }
 
 const firebaseApi = new FirebaseApi();
-export default firebaseApi; // firebaseApi.signIn({ email: 'user6@mail.com', password: '666666' });
-
-// firebaseApi.postWatchedData({
-//   data: { film: 'Dog', genre: 'drama' },
-// });
-
-// firebaseApi.getWatchedData();
-// firebaseApi.getQueueData();
+export default firebaseApi;
 
 function transformToArr(obj) {
   return Object.entries(obj).map(([id, data]) => ({ id, ...data }));
