@@ -1,6 +1,8 @@
 import { refs } from '../refs.js';
 //import api from '../api/apiService';
 import { getFilmInModal } from '../api/renderMarkup';
+//import regModal from '../components/regModal';
+//import firebaseApi from '../components/firebase';
 
 refs.filmListGallery.addEventListener('click', openModalWindow);
 
@@ -18,45 +20,46 @@ function openModalWindow(e) {
   getFilmInModal(e);
   document.documentElement.style.overflow = 'hidden';
   document.body.scroll = "no";
+
+   
+  
+
+
+  //добавить в просмотренные или в список просмотра
+  // refs.addWatchedBtn.addEventListener('click', onAddWatchedBtnClick);// Я закоментіл, бо заважала. Влад.
+  // refs.addQueueBtn.addEventListener('click', onAddQueueBtnClick); 
 }
 
-//добавить в просмотренные или в список просмотра
-// refs.addWatchedBtn.addEventListener('click', onAddWatchedBtnClick);// Я закоментіл, бо заважала. Влад.
-// refs.addQueueBtn.addEventListener('click', onAddQueueBtnClick); Я закоментіл, бо заважала. Влад.
 
-// function renderFilmMarkup(film) {
-//   refs.filmCard.insertAdjacentHTML('beforeend', filmCardTmp(film));
+// function onAddWatchedBtnClick(id) {
+//   //id = api.movieId();
+//   const userPresent = localStorage.getItem('userInfo');
+//   console.log('userPresent :>> ', userPresent);
+//   if (!userPresent) {
+//     regModal.openRegModalWindow();
+//   }
+ 
+//   firebaseApi.postWatchedData(id);
+
+//   refs.addWatchedBtn.classList.add('press-btn');
+//   refs.addWatchedBtn.textContent = 'Added to Watched';
+//   refs.addWatchedBtn.disabled = true;
 // }
 
-// export default function getFilmGenres(data) {
-//   const { id, poster_path, original_title, name, first_air_date, release_date, vote_average, vote_count, popularity, overview, genres, homepage } = data;
-//   const allGenres = genres.map(genre => genre.name).join();
-//   //console.log('object :>> ', genres.map(genre => genre.name).join());
-//   //console.log({ id, poster_path, original_title, name, vote_average, vote_count, popularity, overview, allGenres, homepage });
-//   return ({ id, poster_path, original_title, name, first_air_date, release_date, vote_average, vote_count, popularity, overview, allGenres, homepage });
+// function onAddQueueBtnClick(id) {
+//   // дописать логику
+//   const userPresent = localStorage.getItem('userInfo');
+//   console.log('userPresent :>> ', userPresent);
+//   if (!userPresent) {
+//     regModal.openRegModalWindow();
+//   }
+  
+//   firebaseApi.postQueueData();
+
+//   refs.addQueueBtn.classList.add('press-btn');
+//   refs.addQueueBtn.textContent = 'Added to Queue';
+//   refs.addQueueBtn.disabled = true;
 // }
-
-// function getFullYearFilm(date) {
-//   const newDate = new Date(date);
-//   const fullYear = newDate.getFullYear();
-//   console.log('fullYear :>> ', fullYear);
-//   return fullYear;
-// }
-
-function onAddWatchedBtnClick(id) {
-  // дописать логику
-
-  refs.addWatchedBtn.classList.add('press-btn');
-  refs.addWatchedBtn.textContent = 'Added to Watched';
-  refs.addWatchedBtn.disabled = true;
-}
-
-function onAddQueueBtnClick(id) {
-  // дописать логику
-  refs.addQueueBtn.classList.add('press-btn');
-  refs.addQueueBtn.textContent = 'Added to Queue';
-  refs.addQueueBtn.disabled = true;
-}
 
 function onModalWindowCloseBtn() {
   refs.lightbox.classList.remove('is-open');
