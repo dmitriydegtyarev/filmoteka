@@ -32,6 +32,7 @@ function onNavLinkHomeClick() {
   registrationBtnEl.classList.remove('hidden');
   changeHomeImg();
 
+  api.resetPage();
   clearInput();
   clearMarkup();
   // clearMarkupPagination();
