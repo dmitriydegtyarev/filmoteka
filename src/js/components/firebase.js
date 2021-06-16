@@ -2,6 +2,7 @@ import axios from 'axios';
 import { refs } from '../refs';
 import api from '../api/apiService';
 import regModal from '../components/regModal';
+import { showMyLibrary } from '../components/exit-btn';
 
 const instance = axios.create({
   baseURL: 'https://filmoteka-zero-team-default-rtdb.firebaseio.com/',
@@ -126,6 +127,7 @@ function onSignUp(e) {
   console.log({ email, password });
 
   firebaseApi.signUp({ email, password });
+  showMyLibrary();
 }
 
 function onSignIn(e) {
@@ -139,7 +141,8 @@ function onSignIn(e) {
   firebaseApi.signIn({ email, password }).then(() => {
     regModal.onRegModalWindowCloseBtn();
     const regBtnText = document.querySelector('.registration-btn_text');
-    regBtnText.textContent = `${email} logged in`;
+    regBtnText.textContent = `${ email } logged in`;
     console.log('Successfully logged in');
   });
+  showMyLibrary();
 }
