@@ -1,6 +1,6 @@
 import api from '../api/apiService';
-import { renderPagination } from '../components/pagination';
-import { renderPopularMovie } from '../api/renderMarkup';
+import { paginationChange } from '../components/pagination';
+import { renderPopularMovie, clearMarkup, clearMarkupPagination } from '../api/renderMarkup';
 import { clearInput } from '../components/input';
 
 const navigationHomeEl = document.querySelector('.navigation_home');
@@ -31,9 +31,12 @@ function onNavLinkHomeClick() {
   myLibraryBtnsEl.classList.add('hidden');
   registrationBtnEl.classList.remove('hidden');
   changeHomeImg();
-  api.page = 1;
+
   clearInput();
+  clearMarkup();
+  // clearMarkupPagination();
   renderPopularMovie();
+  paginationChange(api.page);
   // renderPagination();
 }
 

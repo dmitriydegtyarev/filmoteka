@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { renderPopularMovie } from './renderMarkup';
+import { renderPopularMovie, clearMarkup, clearMarkupPagination } from './renderMarkup';
 import { renderPagination } from '../components/pagination';
 
 const AUTH_TOKEN =
@@ -11,7 +11,6 @@ axios.defaults.headers.common.Authorization = AUTH_TOKEN;
 class GetMovi {
   constructor() {
     this.page = 1;
-    //this.ganres = [];
     this.searchQuery = '';
     this.id = '';
     this.basePosterPath = 'https://image.tmdb.org/t/p/w500/';
@@ -19,6 +18,8 @@ class GetMovi {
   }
 
   async init() {
+    clearMarkup();
+    // clearMarkupPagination();
     await this.getGanres();
     renderPopularMovie();
     renderPagination();
@@ -59,6 +60,10 @@ class GetMovi {
       });
       return this.ganres;
     }
+  }
+
+  resetPage() {
+    this.page = 1;
   }
 
   async getPopularMovies() {

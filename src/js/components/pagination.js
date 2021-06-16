@@ -19,6 +19,7 @@ const paginationRefs = {
   buttonPrev: document.querySelector('.button-prev'),
   buttonMobilePrev: document.querySelector('.button-mobile-prev'),
   buttonNext: document.querySelector('.button-next'),
+  buttonMobileNext: document.querySelector('.button-mobile-next'),
 };
 
 export function renderPagination() {
@@ -28,16 +29,23 @@ export function renderPagination() {
     .then(result => {
       renderMarkupPagination(result);
 
+      paginationRefs.pagination.classList.remove('visually-hidden');
+      paginationRefs.paginationMobile.classList.add('visually-hidden');
+      paginationChange(result.page);
+      for (let child of paginationList.children) {
+        onClickItem(child, result.total_pages);
+      }
+      onClickPrev(result.total_pages);
+      onClickNext(result.total_pages);
+
       window.addEventListener(
         'resize',
         debounce(function () {
-          console.log(this.document.documentElement.clientWidth);
           const wiewportWigth = Math.max(
             this.document.documentElement.clientWidth,
             this.innerWidth || 0,
           );
           if (wiewportWigth < 767) {
-            console.log('qqqq');
             paginationRefs.pagination.classList.add('visually-hidden');
             paginationRefs.paginationMobile.classList.remove('visually-hidden');
             renderPaginationMobile(result.page, result.total_pages);
@@ -45,15 +53,10 @@ export function renderPagination() {
               onClickItemMobile(child, result.total_pages);
             }
             onClickPrevMobile(result.total_pages);
-          } else if (wiewportWigth >= 767) {
+            onClickNextMobile(result.total_pages);
+          } else {
             paginationRefs.pagination.classList.remove('visually-hidden');
             paginationRefs.paginationMobile.classList.add('visually-hidden');
-            paginationChange(result.page, result.total_pages);
-            for (let child of paginationList.children) {
-              onClickItem(child, result.total_pages);
-            }
-            onClickPrev(result.total_pages);
-            onClickNext(result.total_pages);
           }
         }, 500),
       );
@@ -68,7 +71,7 @@ const renderMarkupPagination = result => {
 };
 
 function renderPaginationMobile(pageNum, allPages) {
-  api.page = pageNum;
+  // api.page = pageNum;
   removeClassMobile();
   renderPopularMovie();
   paginationRefs.paginationMobileItem.classList.add('visually-hidden');
@@ -127,11 +130,13 @@ function onClickPrevMobile(allPages) {
 
 function onClickItemMobile(child, allPages) {
   child.addEventListener('click', function () {
+    console.log(api.page);
     removeClassMobile();
     child.classList.add('current-item');
-    const currentItem = document.querySelector('.current-item');
-    const currentItemNum = +currentItem.textContent;
+    console.log(child.textContent);
+    const currentItemNum = +child.textContent;
     api.page = currentItemNum;
+    console.log(currentItemNum);
     renderPopularMovie();
     paginationRefs.buttonMobilePrev.classList.remove('visually-hidden');
     if (currentItemNum < 4) {
@@ -159,6 +164,48 @@ function onClickItemMobile(child, allPages) {
       paginationListMobile.children[4].textContent = currentItemNum;
       paginationListMobile.children[5].textContent = currentItemNum + 1;
       paginationListMobile.children[6].textContent = currentItemNum + 2;
+    }
+  });
+}
+
+function onClickNextMobile(allPages) {
+  paginationRefs.buttonMobileNext.addEventListener('click', function () {
+    api.page += 1;
+    renderPopularMovie();
+    for (let child of paginationListMobile.children) {
+      if (child.classList.contains('current-item')) {
+        removeClassMobile();
+        if (api.page === 1) {
+          paginationRefs.buttonMobilePrev.classList.add('visually-hidden');
+          paginationListMobile.children[2].classList.add('current-item');
+        }
+        if (api.page >= 2 && api.page <= 3) {
+          paginationRefs.buttonMobilePrev.classList.remove('visually-hidden');
+          child.previousElementSibling.classList.add('current-item');
+          paginationListMobile.children[2].textContent = 1;
+          paginationListMobile.children[3].textContent = 2;
+          paginationListMobile.children[4].textContent = 3;
+          paginationListMobile.children[5].textContent = 4;
+          paginationListMobile.children[6].textContent = 5;
+          if (api.page === 3) {
+            removeClassMobile();
+            paginationListMobile.children[4].classList.add('current-item');
+          }
+          if (api.page === 2) {
+            removeClassMobile();
+            paginationListMobile.children[3].classList.add('current-item');
+          }
+        }
+      }
+      if (api.page >= 4 && api.page <= allPages) {
+        removeClassMobile();
+        paginationListMobile.children[4].classList.add('current-item');
+        paginationListMobile.children[2].textContent = api.page - 2;
+        paginationListMobile.children[3].textContent = api.page - 1;
+        paginationListMobile.children[4].textContent = api.page;
+        paginationListMobile.children[5].textContent = api.page + 1;
+        paginationListMobile.children[6].textContent = api.page + 2;
+      }
     }
   });
 }
@@ -344,13 +391,15 @@ function onClickNext(allPages) {
   });
 }
 
-function paginationChange(pageNum, allPages) {
+export function paginationChange(pageNum) {
+  removeClass();
   paginationList.children[1].classList.add('visually-hidden');
   paginationList.children[2].textContent = pageNum + 1;
   paginationList.children[3].textContent = pageNum + 2;
   paginationList.children[4].textContent = pageNum + 3;
   paginationList.children[5].textContent = pageNum + 4;
   paginationList.children[6].textContent = pageNum + 5;
+  paginationRefs.firstItem.classList.add('current-item');
 }
 
 function removeClass() {
