@@ -2,6 +2,8 @@ import axios from 'axios';
 import { refs } from '../refs';
 import api from '../api/apiService';
 import regModal from '../components/regModal';
+import { showMyLibrary } from '../components/exit-btn';
+import erroMessageRegister from '../components/errorMassageRegister';
 
 const instance = axios.create({
   baseURL: 'https://filmoteka-zero-team-default-rtdb.firebaseio.com/',
@@ -29,8 +31,10 @@ class FirebaseApi {
   }
 
   setBaseUrlDB(token) {
-    instance.defaults.baseURL = this.#apiSets.dbBaseUrl;
-    instance.defaults.params = { auth: token };
+    if (token !== null) {
+      instance.defaults.baseURL = this.#apiSets.dbBaseUrl;
+      instance.defaults.params = { auth: token };
+    }
   }
 
   signUp({ email, password }) {
@@ -39,9 +43,10 @@ class FirebaseApi {
     return instance
       .post('', { email, password, returnSecureToken: true })
       .then(({ data }) => data)
-      .catch(function (error) {
-        alert(error);
-      });
+      .catch(
+        erroMessageRegister(),
+        // console.log(erroMessageRegister)
+      );
   }
 
   signIn({ email, password }) {
@@ -169,6 +174,7 @@ function onSignUp(e) {
   console.log({ email, password });
 
   firebaseApi.signUp({ email, password });
+  showMyLibrary();
 }
 
 function onSignIn(e) {
@@ -185,4 +191,5 @@ function onSignIn(e) {
     regBtnText.textContent = `${email} logged in`;
     console.log('Successfully logged in');
   });
+  showMyLibrary();
 }
