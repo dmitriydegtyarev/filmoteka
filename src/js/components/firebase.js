@@ -3,6 +3,7 @@ import { refs } from '../refs';
 import api from '../api/apiService';
 import regModal from '../components/regModal';
 import { showMyLibrary } from '../components/exit-btn';
+import erroMessageRegister from '../components/errorMassageRegister';
 
 const instance = axios.create({
   baseURL: 'https://filmoteka-zero-team-default-rtdb.firebaseio.com/',
@@ -40,9 +41,10 @@ class FirebaseApi {
     return instance
       .post('', { email, password, returnSecureToken: true })
       .then(({ data }) => data)
-      .catch(function (error) {
-        alert(error);
-      });
+      .catch(
+        erroMessageRegister()
+        // console.log(erroMessageRegister)
+       );
   }
 
   signIn({ email, password }) {

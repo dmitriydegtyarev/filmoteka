@@ -130,6 +130,7 @@ a.navigation_library-link {
 }
 .navigation {
   display: flex;
+  justify-content: space-between;
   padding-top: 48px;
   margin-bottom: 41px;
   @media screen and (min-width: 321px) {
@@ -138,7 +139,6 @@ a.navigation_library-link {
   @media screen and (min-width: 321px) {
     justify-content: center;
   }
-  
 }
 .logo-film {
   width: 24px;
