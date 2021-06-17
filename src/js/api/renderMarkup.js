@@ -14,6 +14,7 @@ import showMessage from '../components/showMessage';
 
 import getFilmGenres from '../components/getFilmGenres';
 import getFullYear from '../components/getFullYear';
+import { renderPaginationOnSearchQuery } from '../components/paginationOnSearchQuery';
 
 const { filmListGallery, filmCard, paginationList } = refs;
 
@@ -45,6 +46,7 @@ export function renderMoviesBySearchQuery(query) {
         changePath(result);
         clearMarkup();
         renderMarkup(result);
+        renderPaginationOnSearchQuery();
       })
       .catch(error => console.log(error));
   } else {
