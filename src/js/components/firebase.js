@@ -31,8 +31,10 @@ class FirebaseApi {
   }
 
   setBaseUrlDB(token) {
-    instance.defaults.baseURL = this.#apiSets.dbBaseUrl;
-    instance.defaults.params = { auth: token };
+    if (token !== null) {
+      instance.defaults.baseURL = this.#apiSets.dbBaseUrl;
+      instance.defaults.params = { auth: token };
+    }
   }
 
   signUp({ email, password }) {
@@ -42,9 +44,8 @@ class FirebaseApi {
       .post('', { email, password, returnSecureToken: true })
       .then(({ data }) => data)
       .catch(
-
-        erroMessageRegister()
-
+        erroMessageRegister(),
+        // console.log(erroMessageRegister)
       );
   }
 
@@ -69,8 +70,7 @@ class FirebaseApi {
       .then(({ data }) => data)
       .catch(function (error) {
         console.log(error);
-      })
-      .then(console.log);
+      });
   }
 
   postQueueData(data) {
@@ -80,8 +80,7 @@ class FirebaseApi {
       .then(({ data }) => data)
       .catch(function (error) {
         console.log(error);
-      })
-      .then(console.log);
+      });
   }
 
   getWatchedData() {
@@ -110,9 +109,7 @@ class FirebaseApi {
     this.setBaseUrlDB(this.#userInfo.idToken);
     return instance
       .delete(/users/ + this.#userInfo.localId + '/' + 'watchedMovies' + '/' + nameId + '.json')
-      .then(({ data }) => {
-        console.log(data);
-      })
+      .then(({ data }) => data)
       .catch(function (error) {
         console.log(error);
       });
@@ -122,7 +119,7 @@ class FirebaseApi {
     this.setBaseUrlDB(this.#userInfo.idToken);
     return instance
       .delete(/users/ + this.#userInfo.localId + '/' + 'queueMovies' + '/' + nameId + '.json')
-      .then(console.log)
+      .then(({ data }) => data)
       .catch(function (error) {
         console.log(error);
       });
@@ -130,13 +127,11 @@ class FirebaseApi {
 
   findWatchedMovie(movieId) {
     return this.getWatchedData().then(result => {
-      if (result === null)
-      {
+      if (result === null) {
         return;
       }
       const nameId = Object.entries(result).find(([id, obj]) => obj.id === movieId);
-      if (nameId !== undefined)
-      {
+      if (nameId !== undefined) {
         return nameId[0];
       }
     });
@@ -144,9 +139,7 @@ class FirebaseApi {
 
   findQueueMovie(movieId) {
     return this.getQueueData().then(result => {
-      console.log(result);
-      if (result === null)
-      {
+      if (result === null) {
         return;
       }
       const nameId = Object.entries(result).find(([id, obj]) => obj.id === movieId);
@@ -159,8 +152,7 @@ const firebaseApi = new FirebaseApi();
 export default firebaseApi;
 
 function transformToArr(obj) {
-  if (obj !== undefined || null)
-  {
+  if (obj !== undefined || null) {
     return Object.entries(obj).map(([id, data]) => ({ id, ...data }));
   }
 }
@@ -190,7 +182,7 @@ function onSignIn(e) {
   firebaseApi.signIn({ email, password }).then(() => {
     regModal.onRegModalWindowCloseBtn();
     const LogInBtnEl = document.querySelector('.LogIn-btn');
-    LogInBtnEl.textContent = `${ email } logged in`;
+    LogInBtnEl.textContent = `${email} logged in`;
   });
   showMyLibrary();
 }

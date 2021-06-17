@@ -14,6 +14,7 @@ import showMessage from '../components/showMessage';
 
 import getFilmGenres from '../components/getFilmGenres';
 import getFullYear from '../components/getFullYear';
+import { changeHomePage, showTrailer } from '../components/trailer.js';
 
 const { filmListGallery, filmCard, paginationList } = refs;
 
@@ -63,53 +64,78 @@ export function getFilmInModal(e) {
     .then(getFilmGenres)
     .then(result => {
       changeFilmPath(result);
+      changeHomePage(result);
       renderFilmMarkup(result);
-
-      firebaseApi.findWatchedMovie(result.id).then(res => {
-        addWatchedBtnEl.addEventListener('click', onAddWatchedBtnClick);
-        if (res !== undefined) {
-          addWatchedBtnEl.classList.add('press-btn');
-          addWatchedBtnEl.textContent = 'Remove from Watched';
+      if (refs.navigationLibraryEl.classList.contains('hidden')) {
+        const addWatchedBtnEl = document.querySelector('.add-watched_button');
+        const addQueueBtnEl = document.querySelector('.add-queue_button');
+        addWatchedBtnEl.addEventListener('click', onAddWatchedBtnClickNotSignedIn);
+        function onAddWatchedBtnClickNotSignedIn() {
+          alert('Please Sign In/Sign Up');
         }
-
-        function onAddWatchedBtnClick() {
-          firebaseApi.findWatchedMovie(result.id).then(matched => {
-            if (matched !== undefined) {
-              firebaseApi.deleteWatchedData(matched);
-              addWatchedBtnEl.classList.remove('press-btn');
-              addWatchedBtnEl.textContent = 'Add to Watched';
-            } else {
-              firebaseApi.postWatchedData(result);
-              addWatchedBtnEl.classList.add('press-btn');
-              addWatchedBtnEl.textContent = 'Remove from Watched';
-            }
-          });
+        addQueueBtnEl.addEventListener('click', onAddQueueBtnClickNotSignedIn);
+        function onAddQueueBtnClickNotSignedIn() {
+          alert('Please Sign In/Sign Up');
         }
-      });
+      } else {
+        firebaseApi.findWatchedMovie(result.id).then(res => {
+          addWatchedBtnEl.addEventListener('click', onAddWatchedBtnClick);
+          if (res !== undefined) {
+            addWatchedBtnEl.classList.add('press-btn');
+            addWatchedBtnEl.textContent = 'Remove from Watched';
+          }
 
-      firebaseApi.findQueueMovie(result.id).then(res => {
-        addQueueBtnEl.addEventListener('click', onAddQueueBtnClick);
-        if (res !== undefined) {
-          addQueueBtnEl.classList.add('press-btn');
-          addQueueBtnEl.textContent = 'Remove from Queue';
-        }
+          function onAddWatchedBtnClick() {
+            firebaseApi.findWatchedMovie(result.id).then(matched => {
+              if (matched !== undefined) {
+                firebaseApi.deleteWatchedData(matched);
+                addWatchedBtnEl.classList.remove('press-btn');
+                addWatchedBtnEl.textContent = 'Add to Watched';
+              } else {
+                firebaseApi.postWatchedData(result);
+                addWatchedBtnEl.classList.add('press-btn');
+                addWatchedBtnEl.textContent = 'Remove from Watched';
+              }
+            });
+          }
+        });
 
-        function onAddQueueBtnClick() {
-          firebaseApi.findQueueMovie(result.id).then(matched => {
-            if (matched !== undefined) {
-              firebaseApi.deleteQueueData(matched);
-              addQueueBtnEl.classList.remove('press-btn');
-              addQueueBtnEl.textContent = 'Add to Queue';
-            } else {
-              firebaseApi.postQueueData(result);
-              addQueueBtnEl.classList.add('press-btn');
-              addQueueBtnEl.textContent = 'Remove from Queue';
-            }
-          });
-        }
-      });
+        firebaseApi.findQueueMovie(result.id).then(res => {
+          addQueueBtnEl.addEventListener('click', onAddQueueBtnClick);
+          if (res !== undefined) {
+            addQueueBtnEl.classList.add('press-btn');
+            addQueueBtnEl.textContent = 'Remove from Queue';
+          }
+
+          function onAddQueueBtnClick() {
+            firebaseApi.findQueueMovie(result.id).then(matched => {
+              if (matched !== undefined) {
+                firebaseApi.deleteQueueData(matched);
+                addQueueBtnEl.classList.remove('press-btn');
+                addQueueBtnEl.textContent = 'Add to Queue';
+              } else {
+                firebaseApi.postQueueData(result);
+                addQueueBtnEl.classList.add('press-btn');
+                addQueueBtnEl.textContent = 'Remove from Queue';
+              }
+            });
+          }
+        });
+      }
       const addWatchedBtnEl = document.querySelector('.add-watched_button');
       const addQueueBtnEl = document.querySelector('.add-queue_button');
+      addQueueBtnEl.addEventListener('click', onAddQueueBtnClick);
+      function onAddQueueBtnClick() {
+        firebaseApi.postQueueData(result);
+        addWatchedBtnEl.classList.add('press-btn');
+        addWatchedBtnEl.textContent = 'Added to Queue';
+        addWatchedBtnEl.disabled = true;
+      }
+      const linkTrailer = document.querySelector('.film-trailer');
+      linkTrailer.addEventListener('click', e => {
+        e.preventDefault();
+        showTrailer(e.target.getAttribute('href'));
+      });
     })
     .catch(error => console.log(error))
     .finally(() => spinner.stop(filmCard));
