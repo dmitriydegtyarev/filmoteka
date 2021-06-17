@@ -130,6 +130,7 @@ a.navigation_library-link {
 }
 .navigation {
   display: flex;
+  justify-content: space-between;
   padding-top: 48px;
   margin-bottom: 41px;
   @media screen and (min-width: 321px) {
@@ -214,7 +215,7 @@ a.navigation_library-link {
 .registration-btn {
   // width: 136px;
   height: 44px;
-  margin-right: 0;
+  margin-right: 15px;
   background: transparent;
   box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
   border-radius: 5px;
@@ -246,4 +247,25 @@ a.navigation_library-link {
     justify-content: flex-end;
     margin-top: 35px;
   }
+}
+
+.exit-btn {
+  width: 80px;
+  height: 44px;
+  background: transparent;
+  box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+  border-radius: 5px;
+  border-color: $secondary-text-color;
+  padding: 5px 5px 5px;
+  color: $secondary-text-color;
+  font-family: $font;
+  @include font(500, 12px, 1.33px);
+}
+.exit-btn:focus {
+  background-color: $accent-color;
+}
+.exit-btn_text {
+  @include font(100, 12px, 12px);
+  color: $secondary-text-color;
+  font-family: $font;
 }

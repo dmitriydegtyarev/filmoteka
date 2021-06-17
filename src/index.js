@@ -12,3 +12,5 @@ import './js/components/pagination';
 import './js/components/regModal';
 import './js/components/firebase';
 import './js/components/mylibrary';
+import './js/components/exit-btn';
+import './js/components/errorMassageRegister';

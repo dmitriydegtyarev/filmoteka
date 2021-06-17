@@ -2,6 +2,8 @@ import axios from 'axios';
 import { refs } from '../refs';
 import api from '../api/apiService';
 import regModal from '../components/regModal';
+import { showMyLibrary } from '../components/exit-btn';
+import erroMessageRegister from '../components/errorMassageRegister';
 
 const instance = axios.create({
   baseURL: 'https://filmoteka-zero-team-default-rtdb.firebaseio.com/',
@@ -29,8 +31,10 @@ class FirebaseApi {
   }
 
   setBaseUrlDB(token) {
-    instance.defaults.baseURL = this.#apiSets.dbBaseUrl;
-    instance.defaults.params = { auth: token };
+    if (token !== null) {
+      instance.defaults.baseURL = this.#apiSets.dbBaseUrl;
+      instance.defaults.params = { auth: token };
+    }
   }
 
   signUp({ email, password }) {
@@ -39,9 +43,10 @@ class FirebaseApi {
     return instance
       .post('', { email, password, returnSecureToken: true })
       .then(({ data }) => data)
-      .catch(function (error) {
-        alert(error);
-      });
+      .catch(
+        erroMessageRegister(),
+        // console.log(erroMessageRegister)
+      );
   }
 
   signIn({ email, password }) {
@@ -65,8 +70,7 @@ class FirebaseApi {
       .then(({ data }) => data)
       .catch(function (error) {
         console.log(error);
-      })
-      .then(console.log);
+      });
   }
 
   postQueueData(data) {
@@ -76,8 +80,7 @@ class FirebaseApi {
       .then(({ data }) => data)
       .catch(function (error) {
         console.log(error);
-      })
-      .then(console.log);
+      });
   }
 
   getWatchedData() {
@@ -87,8 +90,8 @@ class FirebaseApi {
       .then(({ data }) => data)
       .catch(function (error) {
         console.log(error);
-      })
-      .then(transformToArr);
+      });
+    // .then(transformToArr);
   }
 
   getQueueData() {
@@ -98,12 +101,50 @@ class FirebaseApi {
       .then(({ data }) => data)
       .catch(function (error) {
         console.log(error);
-      })
-      .then(transformToArr);
+      });
+    // .then(transformToArr);
+  }
+
+  deleteWatchedData(nameId) {
+    this.setBaseUrlDB(this.#userInfo.idToken);
+    return instance
+      .delete(/users/ + this.#userInfo.localId + '/' + 'watchedMovies' + '/' + nameId + '.json')
+      .then(({ data }) => data)
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  deleteQueueData(nameId) {
+    this.setBaseUrlDB(this.#userInfo.idToken);
+    return instance
+      .delete(/users/ + this.#userInfo.localId + '/' + 'queueMovies' + '/' + nameId + '.json')
+      .then(({ data }) => data)
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   findWatchedMovie(movieId) {
-    return Object.entries().find(([id, obj]) => obj.id === movieId)[0];
+    return this.getWatchedData().then(result => {
+      if (result === null) {
+        return;
+      }
+      const nameId = Object.entries(result).find(([id, obj]) => obj.id === movieId);
+      if (nameId !== undefined) {
+        return nameId[0];
+      }
+    });
+  }
+
+  findQueueMovie(movieId) {
+    return this.getQueueData().then(result => {
+      if (result === null) {
+        return;
+      }
+      const nameId = Object.entries(result).find(([id, obj]) => obj.id === movieId);
+      if (nameId !== undefined) return nameId[0];
+    });
   }
 }
 
@@ -111,7 +152,9 @@ const firebaseApi = new FirebaseApi();
 export default firebaseApi;
 
 function transformToArr(obj) {
-  return Object.entries(obj).map(([id, data]) => ({ id, ...data }));
+  if (obj !== undefined || null) {
+    return Object.entries(obj).map(([id, data]) => ({ id, ...data }));
+  }
 }
 
 refs.signUpBtn.addEventListener('click', onSignUp);
@@ -126,6 +169,7 @@ function onSignUp(e) {
   console.log({ email, password });
 
   firebaseApi.signUp({ email, password });
+  showMyLibrary();
 }
 
 function onSignIn(e) {
@@ -134,12 +178,13 @@ function onSignIn(e) {
     email: refs.modalEl.elements['email'].value,
     password: refs.modalEl.elements['password'].value,
   };
-  console.log({ email, password });
+  // console.log({ email, password });
 
   firebaseApi.signIn({ email, password }).then(() => {
     regModal.onRegModalWindowCloseBtn();
     const regBtnText = document.querySelector('.registration-btn_text');
     regBtnText.textContent = `${email} logged in`;
-    console.log('Successfully logged in');
+    // console.log('Successfully logged in');
   });
+  showMyLibrary();
 }

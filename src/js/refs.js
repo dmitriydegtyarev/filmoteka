@@ -24,6 +24,7 @@ const refs = {
   modalEl: document.querySelector('.rf-form'),
   myWatchedBtn: document.querySelector('.my-library_btn-watched'),
   myQueueBtn: document.querySelector('.my-library_btn-queue'),
+  navigationLibraryEl: document.querySelector('.navigation_library'),
 };
 
 export { refs };
