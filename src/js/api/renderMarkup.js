@@ -14,6 +14,7 @@ import showMessage from '../components/showMessage';
 
 import getFilmGenres from '../components/getFilmGenres';
 import getFullYear from '../components/getFullYear';
+import changeHomePage from '../components/trailer.js';
 
 const { filmListGallery, filmCard, paginationList } = refs;
 
@@ -63,6 +64,7 @@ export function getFilmInModal(e) {
     .then(getFilmGenres)
     .then(result => {
       changeFilmPath(result);
+      changeHomePage(result);
       renderFilmMarkup(result);
       // console.log(firebaseApi.findWatchedMovie(result.id));
       const addWatchedBtnEl = document.querySelector('.add-watched_button');

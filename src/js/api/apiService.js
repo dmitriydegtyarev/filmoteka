@@ -75,7 +75,9 @@ class GetMovi {
   }
 
   async getMovieById() {
-    return await axios.get(`/movie/${this.id}`);
+    let response = await axios.get(`/movie/${this.id}`);
+    response.data.trailers = await (await api.getShortInfoMovieById()).data.results;
+    return response;
   }
 
   async getShortInfoMovieById() {
