@@ -64,23 +64,52 @@ export function getFilmInModal(e) {
     .then(result => {
       changeFilmPath(result);
       renderFilmMarkup(result);
-      // console.log(firebaseApi.findWatchedMovie(result.id));
+
+      firebaseApi.findWatchedMovie(result.id).then(res => {
+        addWatchedBtnEl.addEventListener('click', onAddWatchedBtnClick);
+        if (res !== undefined) {
+          addWatchedBtnEl.classList.add('press-btn');
+          addWatchedBtnEl.textContent = 'Remove from Watched';
+        }
+
+        function onAddWatchedBtnClick() {
+          firebaseApi.findWatchedMovie(result.id).then(matched => {
+            if (matched !== undefined) {
+              firebaseApi.deleteWatchedData(matched);
+              addWatchedBtnEl.classList.remove('press-btn');
+              addWatchedBtnEl.textContent = 'Add to Watched';
+            } else {
+              firebaseApi.postWatchedData(result);
+              addWatchedBtnEl.classList.add('press-btn');
+              addWatchedBtnEl.textContent = 'Remove from Watched';
+            }
+          });
+        }
+      });
+
+      firebaseApi.findQueueMovie(result.id).then(res => {
+        addQueueBtnEl.addEventListener('click', onAddQueueBtnClick);
+        if (res !== undefined) {
+          addQueueBtnEl.classList.add('press-btn');
+          addQueueBtnEl.textContent = 'Remove from Queue';
+        }
+
+        function onAddQueueBtnClick() {
+          firebaseApi.findQueueMovie(result.id).then(matched => {
+            if (matched !== undefined) {
+              firebaseApi.deleteQueueData(matched);
+              addQueueBtnEl.classList.remove('press-btn');
+              addQueueBtnEl.textContent = 'Add to Queue';
+            } else {
+              firebaseApi.postQueueData(result);
+              addQueueBtnEl.classList.add('press-btn');
+              addQueueBtnEl.textContent = 'Remove from Queue';
+            }
+          });
+        }
+      });
       const addWatchedBtnEl = document.querySelector('.add-watched_button');
-      addWatchedBtnEl.addEventListener('click', onAddWatchedBtnClick);
-      function onAddWatchedBtnClick() {
-        firebaseApi.postWatchedData(result);
-        addWatchedBtnEl.classList.add('press-btn');
-        addWatchedBtnEl.textContent = 'Added to Watched';
-        addWatchedBtnEl.disabled = true;
-      }
       const addQueueBtnEl = document.querySelector('.add-queue_button');
-      addQueueBtnEl.addEventListener('click', onAddQueueBtnClick);
-      function onAddQueueBtnClick() {
-        firebaseApi.postQueueData(result);
-        addWatchedBtnEl.classList.add('press-btn');
-        addWatchedBtnEl.textContent = 'Added to Queue';
-        addWatchedBtnEl.disabled = true;
-      }
     })
     .catch(error => console.log(error))
     .finally(() => spinner.stop(filmCard));
