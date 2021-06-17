@@ -1,14 +1,7 @@
 import { refs } from '../refs';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
-import '@pnotify/core/dist/PNotify.css';
-import '@pnotify/core/dist/BrightTheme.css';
-import * as PNotify from '@pnotify/core';
-
-PNotify.defaults.styling = 'brighttheme';
-PNotify.defaults.icons = 'brighttheme';
-PNotify.defaults.maxTextHeight = null;
-
+import toastify from 'toastify-js';
 
 export async function changeHomePage(result) {
   const trailers = result.trailers;
@@ -22,15 +15,15 @@ export async function changeHomePage(result) {
 
 export function showTrailer(url) {
   if(url === 'target="_blank"'){
-    PNotify.error({
+    toastify({
       text: 'No trailers',
-      width: '360px',
-      delay: 1000,
-    });
+      duration: 2500,
+      className: 'toastify-center_error',
+    }).showToast();
    return;
   }
   console.log(url);
-  const innerHtml = `<iframe id="ytplayer" src="${url}" allowfullscreen width="640" height="360" frameborder="0"></iframe>`;
+  const innerHtml = `<iframe id="ytplayer" src="${url}" allowfullscreen width="60%" height="60%" frameborder="0"></iframe>`;
   const instance = basicLightbox.create(innerHtml, {
     onShow: instance => {
       refs.lightbox.classList.remove('is-open');
