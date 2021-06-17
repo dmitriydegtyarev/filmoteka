@@ -74,11 +74,13 @@ class GetMovi {
     return await axios.get(`/search/movie?query=${this.searchQuery}&page=${this.page}`);
   }
 
-  async getMovieById(id) {
-    return await axios.get(`/movie/${this.id}`);
+  async getMovieById() {
+    let response = await axios.get(`/movie/${this.id}`);
+    response.data.trailers = await (await api.getShortInfoMovieById()).data.results;
+    return response;
   }
 
-  async getShortInfoMovieById(id) {
+  async getShortInfoMovieById() {
     return await axios.get(`/movie/${this.id}/videos`);
   }
 }
