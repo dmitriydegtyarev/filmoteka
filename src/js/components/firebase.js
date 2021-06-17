@@ -70,8 +70,7 @@ class FirebaseApi {
       .then(({ data }) => data)
       .catch(function (error) {
         console.log(error);
-      })
-      .then(console.log);
+      });
   }
 
   postQueueData(data) {
@@ -81,8 +80,7 @@ class FirebaseApi {
       .then(({ data }) => data)
       .catch(function (error) {
         console.log(error);
-      })
-      .then(console.log);
+      });
   }
 
   getWatchedData() {
@@ -111,9 +109,7 @@ class FirebaseApi {
     this.setBaseUrlDB(this.#userInfo.idToken);
     return instance
       .delete(/users/ + this.#userInfo.localId + '/' + 'watchedMovies' + '/' + nameId + '.json')
-      .then(({ data }) => {
-        console.log(data);
-      })
+      .then(({ data }) => data)
       .catch(function (error) {
         console.log(error);
       });
@@ -123,7 +119,7 @@ class FirebaseApi {
     this.setBaseUrlDB(this.#userInfo.idToken);
     return instance
       .delete(/users/ + this.#userInfo.localId + '/' + 'queueMovies' + '/' + nameId + '.json')
-      .then(console.log)
+      .then(({ data }) => data)
       .catch(function (error) {
         console.log(error);
       });
@@ -143,7 +139,6 @@ class FirebaseApi {
 
   findQueueMovie(movieId) {
     return this.getQueueData().then(result => {
-      console.log(result);
       if (result === null) {
         return;
       }
@@ -183,13 +178,13 @@ function onSignIn(e) {
     email: refs.modalEl.elements['email'].value,
     password: refs.modalEl.elements['password'].value,
   };
-  console.log({ email, password });
+  // console.log({ email, password });
 
   firebaseApi.signIn({ email, password }).then(() => {
     regModal.onRegModalWindowCloseBtn();
     const regBtnText = document.querySelector('.registration-btn_text');
     regBtnText.textContent = `${email} logged in`;
-    console.log('Successfully logged in');
+    // console.log('Successfully logged in');
   });
   showMyLibrary();
 }

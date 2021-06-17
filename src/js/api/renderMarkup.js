@@ -76,7 +76,6 @@ export function getFilmInModal(e) {
           alert('Please Sign In/Sign Up');
         }
       } else {
-        console.log('zaregan');
         firebaseApi.findWatchedMovie(result.id).then(res => {
           addWatchedBtnEl.addEventListener('click', onAddWatchedBtnClick);
           if (res !== undefined) {
