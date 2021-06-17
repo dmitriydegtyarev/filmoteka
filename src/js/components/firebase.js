@@ -42,9 +42,10 @@ class FirebaseApi {
       .post('', { email, password, returnSecureToken: true })
       .then(({ data }) => data)
       .catch(
+
         erroMessageRegister()
-        // console.log(erroMessageRegister)
-       );
+
+      );
   }
 
   signIn({ email, password }) {
@@ -57,7 +58,7 @@ class FirebaseApi {
         localStorage.setItem('userInfo', JSON.stringify({ localId, idToken, email }));
       })
       .catch(function (error) {
-        console.log(error);
+        alert(error);
       });
   }
 
@@ -129,11 +130,13 @@ class FirebaseApi {
 
   findWatchedMovie(movieId) {
     return this.getWatchedData().then(result => {
-      if (result === null) {
+      if (result === null)
+      {
         return;
       }
       const nameId = Object.entries(result).find(([id, obj]) => obj.id === movieId);
-      if (nameId !== undefined) {
+      if (nameId !== undefined)
+      {
         return nameId[0];
       }
     });
@@ -142,7 +145,8 @@ class FirebaseApi {
   findQueueMovie(movieId) {
     return this.getQueueData().then(result => {
       console.log(result);
-      if (result === null) {
+      if (result === null)
+      {
         return;
       }
       const nameId = Object.entries(result).find(([id, obj]) => obj.id === movieId);
@@ -155,7 +159,8 @@ const firebaseApi = new FirebaseApi();
 export default firebaseApi;
 
 function transformToArr(obj) {
-  if (obj !== undefined || null) {
+  if (obj !== undefined || null)
+  {
     return Object.entries(obj).map(([id, data]) => ({ id, ...data }));
   }
 }
@@ -181,13 +186,11 @@ function onSignIn(e) {
     email: refs.modalEl.elements['email'].value,
     password: refs.modalEl.elements['password'].value,
   };
-  console.log({ email, password });
 
   firebaseApi.signIn({ email, password }).then(() => {
     regModal.onRegModalWindowCloseBtn();
-    const regBtnText = document.querySelector('.registration-btn_text');
-    regBtnText.textContent = `${ email } logged in`;
-    console.log('Successfully logged in');
+    const LogInBtnEl = document.querySelector('.LogIn-btn');
+    LogInBtnEl.textContent = `${ email } logged in`;
   });
   showMyLibrary();
 }
