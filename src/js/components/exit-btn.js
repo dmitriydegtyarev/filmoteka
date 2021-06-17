@@ -7,7 +7,6 @@ const userInfo = localStorage.getItem('userInfo');
 import { refs } from '../refs';
 
 const regBtnText = document.querySelector('.registration-btn_text');
-const exitBtnEl = document.querySelector('.exit-btn');
 
 exitBtnEl.addEventListener('click', OnExitBtnClick);
 
