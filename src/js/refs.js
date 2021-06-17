@@ -8,7 +8,6 @@ const refs = {
   aboutUs: document.querySelector('#about-us'),
   btnUp: document.querySelector('#btn-up'),
   filmListItem: document.querySelector('.film-list_item'),
-  linkTrailer: document.querySelector('.link film-trailer'),
   mainSection: document.querySelector('.section-main'),
 
   modal: document.querySelector('.modal'),

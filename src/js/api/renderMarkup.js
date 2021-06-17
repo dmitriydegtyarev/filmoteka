@@ -14,7 +14,7 @@ import showMessage from '../components/showMessage';
 
 import getFilmGenres from '../components/getFilmGenres';
 import getFullYear from '../components/getFullYear';
-import changeHomePage from '../components/trailer.js';
+import {changeHomePage, showTrailer} from '../components/trailer.js';
 
 const { filmListGallery, filmCard, paginationList } = refs;
 
@@ -83,6 +83,11 @@ export function getFilmInModal(e) {
         addWatchedBtnEl.textContent = 'Added to Queue';
         addWatchedBtnEl.disabled = true;
       }
+      const linkTrailer = document.querySelector('.film-trailer');
+      linkTrailer.addEventListener('click', e => {
+        e.preventDefault();
+        showTrailer(e.target.getAttribute("href"));
+      });
     })
     .catch(error => console.log(error))
     .finally(() => spinner.stop(filmCard));
