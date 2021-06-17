@@ -1,14 +1,14 @@
+import { refs } from '../refs';
+
 const regBtnText = document.querySelector('.registration-btn_text');
-const exitBtnEl = document.querySelector('.exit-btn')
-const navigationLibraryEl = document.querySelector('.navigation_library');
+const exitBtnEl = document.querySelector('.exit-btn');
 
 exitBtnEl.addEventListener('click', OnExitBtnClick);
 
 export function OnExitBtnClick() {
-    window.location.reload();
-
+  window.location.reload();
 }
 
 export function showMyLibrary() {
-    navigationLibraryEl.classList.remove('hidden');
+  refs.navigationLibraryEl.classList.remove('hidden');
 }

@@ -31,8 +31,10 @@ class FirebaseApi {
   }
 
   setBaseUrlDB(token) {
-    instance.defaults.baseURL = this.#apiSets.dbBaseUrl;
-    instance.defaults.params = { auth: token };
+    if (token !== null) {
+      instance.defaults.baseURL = this.#apiSets.dbBaseUrl;
+      instance.defaults.params = { auth: token };
+    }
   }
 
   signUp({ email, password }) {
@@ -42,9 +44,9 @@ class FirebaseApi {
       .post('', { email, password, returnSecureToken: true })
       .then(({ data }) => data)
       .catch(
-        erroMessageRegister()
+        erroMessageRegister(),
         // console.log(erroMessageRegister)
-       );
+      );
   }
 
   signIn({ email, password }) {
@@ -186,7 +188,7 @@ function onSignIn(e) {
   firebaseApi.signIn({ email, password }).then(() => {
     regModal.onRegModalWindowCloseBtn();
     const regBtnText = document.querySelector('.registration-btn_text');
-    regBtnText.textContent = `${ email } logged in`;
+    regBtnText.textContent = `${email} logged in`;
     console.log('Successfully logged in');
   });
   showMyLibrary();
