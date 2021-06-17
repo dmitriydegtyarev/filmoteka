@@ -87,8 +87,8 @@ class FirebaseApi {
       .then(({ data }) => data)
       .catch(function (error) {
         console.log(error);
-      })
-      .then(transformToArr);
+      });
+    // .then(transformToArr);
   }
 
   getQueueData() {
@@ -98,12 +98,53 @@ class FirebaseApi {
       .then(({ data }) => data)
       .catch(function (error) {
         console.log(error);
+      });
+    // .then(transformToArr);
+  }
+
+  deleteWatchedData(nameId) {
+    this.setBaseUrlDB(this.#userInfo.idToken);
+    return instance
+      .delete(/users/ + this.#userInfo.localId + '/' + 'watchedMovies' + '/' + nameId + '.json')
+      .then(({ data }) => {
+        console.log(data);
       })
-      .then(transformToArr);
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  deleteQueueData(nameId) {
+    this.setBaseUrlDB(this.#userInfo.idToken);
+    return instance
+      .delete(/users/ + this.#userInfo.localId + '/' + 'queueMovies' + '/' + nameId + '.json')
+      .then(console.log)
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   findWatchedMovie(movieId) {
-    return Object.entries().find(([id, obj]) => obj.id === movieId)[0];
+    return this.getWatchedData().then(result => {
+      if (result === null) {
+        return;
+      }
+      const nameId = Object.entries(result).find(([id, obj]) => obj.id === movieId);
+      if (nameId !== undefined) {
+        return nameId[0];
+      }
+    });
+  }
+
+  findQueueMovie(movieId) {
+    return this.getQueueData().then(result => {
+      console.log(result);
+      if (result === null) {
+        return;
+      }
+      const nameId = Object.entries(result).find(([id, obj]) => obj.id === movieId);
+      if (nameId !== undefined) return nameId[0];
+    });
   }
 }
 
@@ -111,7 +152,9 @@ const firebaseApi = new FirebaseApi();
 export default firebaseApi;
 
 function transformToArr(obj) {
-  return Object.entries(obj).map(([id, data]) => ({ id, ...data }));
+  if (obj !== undefined || null) {
+    return Object.entries(obj).map(([id, data]) => ({ id, ...data }));
+  }
 }
 
 refs.signUpBtn.addEventListener('click', onSignUp);
