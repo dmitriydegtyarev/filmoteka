@@ -1,0 +1,23 @@
+.trailer {
+  position: relative;
+
+  &-player {
+    width: 60vw;
+    height: 60vh;
+
+    &-close {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      color: $primary-text-color;
+      line-height: 0;
+      box-shadow: 0 0 3px $primary-text-color;
+
+      &:after {
+        content: '\2715';
+        line-height: 0.8;
+        font-size: 18px;
+      }
+    }
+  }
+}

@@ -11,7 +11,7 @@ function openModalWindow(e) {
 
   refs.modalCloseBtn.addEventListener('click', onModalWindowCloseBtn);
   refs.lightbox.addEventListener('click', onOverlayClick);
-  window.addEventListener('keydown', onEscPress);
+  registerEscape();
 
   refs.lightbox.classList.add('is-open');
 
@@ -64,7 +64,7 @@ function openModalWindow(e) {
 function onModalWindowCloseBtn() {
   refs.lightbox.classList.remove('is-open');
   refs.lightbox.removeEventListener('click', onOverlayClick);
-  window.removeEventListener('keydown', onEscPress);
+  unregisterEscape();
   refs.modalCloseBtn.removeEventListener('click', onModalWindowCloseBtn);
   document.documentElement.style.overflow = 'scroll';
   document.body.scroll = "yes";
@@ -84,6 +84,24 @@ function onEscPress(e) {
 
 function resetModal() {
   refs.filmCard.innerHTML = '';
+}
+
+function registerEscape(){
+  window.addEventListener('keydown', onEscPress);
+}
+
+function unregisterEscape(){
+  window.removeEventListener('keydown', onEscPress);
+}
+
+export function Hide(){
+  unregisterEscape();
+  refs.lightbox.classList.remove('is-open');
+}
+
+export function Restore(){
+  refs.lightbox.classList.add('is-open');
+  registerEscape();
 }
 
 refs.modalCloseBtn.removeEventListener('click', onModalWindowCloseBtn);
