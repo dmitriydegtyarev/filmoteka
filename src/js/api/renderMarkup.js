@@ -16,6 +16,7 @@ import getFilmGenres from '../components/getFilmGenres';
 import getFullYear from '../components/getFullYear';
 import { renderPaginationOnSearchQuery } from '../components/paginationOnSearchQuery';
 import { renderPagination } from '../components/pagination';
+import { changeHomePage, showTrailer } from '../components/trailer.js';
 
 const { filmListGallery, filmCard, paginationList } = refs;
 
@@ -65,6 +66,7 @@ export function getFilmInModal(e) {
     .then(getFilmGenres)
     .then(result => {
       changeFilmPath(result);
+      changeHomePage(result);
       renderFilmMarkup(result);
       if (refs.navigationLibraryEl.classList.contains('hidden')) {
         const addWatchedBtnEl = document.querySelector('.add-watched_button');
@@ -124,6 +126,18 @@ export function getFilmInModal(e) {
       }
       const addWatchedBtnEl = document.querySelector('.add-watched_button');
       const addQueueBtnEl = document.querySelector('.add-queue_button');
+      addQueueBtnEl.addEventListener('click', onAddQueueBtnClick);
+      function onAddQueueBtnClick() {
+        firebaseApi.postQueueData(result);
+        addWatchedBtnEl.classList.add('press-btn');
+        addWatchedBtnEl.textContent = 'Added to Queue';
+        addWatchedBtnEl.disabled = true;
+      }
+      const linkTrailer = document.querySelector('.film-trailer');
+      linkTrailer.addEventListener('click', e => {
+        e.preventDefault();
+        showTrailer(e.target.getAttribute('href'));
+      });
     })
     .catch(error => console.log(error))
     .finally(() => spinner.stop(filmCard));

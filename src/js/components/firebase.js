@@ -59,7 +59,7 @@ class FirebaseApi {
         localStorage.setItem('userInfo', JSON.stringify({ localId, idToken, email }));
       })
       .catch(function (error) {
-        console.log(error);
+        alert(error);
       });
   }
 
@@ -178,13 +178,11 @@ function onSignIn(e) {
     email: refs.modalEl.elements['email'].value,
     password: refs.modalEl.elements['password'].value,
   };
-  // console.log({ email, password });
 
   firebaseApi.signIn({ email, password }).then(() => {
     regModal.onRegModalWindowCloseBtn();
-    const regBtnText = document.querySelector('.registration-btn_text');
-    regBtnText.textContent = `${email} logged in`;
-    // console.log('Successfully logged in');
+    const LogInBtnEl = document.querySelector('.LogIn-btn');
+    LogInBtnEl.textContent = `${email} logged in`;
   });
   showMyLibrary();
 }
