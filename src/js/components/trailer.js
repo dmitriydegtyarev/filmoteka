@@ -7,27 +7,27 @@ import toastify from 'toastify-js';
 export async function changeHomePage(result) {
   const trailers = result.trailers;
   if (trailers.length == 0) {
-    console.log('Нет трейлера');
+    // console.log('Нет трейлера');
     return null;
   }
-  console.log('Есть ключ для трейлера');
-  result.homepage = `https://www.youtube.com/embed/${trailers[trailers.length-1].key}`;
+  // console.log('Есть ключ для трейлера');
+  result.homepage = `https://www.youtube.com/embed/${trailers[trailers.length - 1].key}`;
 }
 
-class TrailerModal{
-  constructor(){
+class TrailerModal {
+  constructor() {
     this.instance = null;
   }
   showTrailer(url) {
-    if(url === 'target="_blank"'){
+    if (url === 'target="_blank"') {
       toastify({
         text: 'No trailers',
         duration: 2500,
         className: 'toastify-center_error',
       }).showToast();
-     return;
+      return;
     }
-    console.log(url);
+    // console.log(url);
     const innerHtml = `<div class="trailer">
     <button class="trailer-player-close"></button>
     <iframe id="ytplayer" class="trailer-player" src="${url}" allowfullscreen frameborder="0"></iframe>
@@ -46,9 +46,8 @@ class TrailerModal{
     });
     this.instance.show();
   }
-  onEscapeKeydown(e){
-    if(e.key === "Escape")
-    {
+  onEscapeKeydown(e) {
+    if (e.key === 'Escape') {
       e.preventDefault();
       this.instance.close();
     }
