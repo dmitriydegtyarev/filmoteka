@@ -1,7 +1,5 @@
 import { refs } from '../refs.js';
 
-import LogInUser from '../components/LogInBtn';
-
 refs.registrationBtn.addEventListener('click', openRegModalWindow);
 
 function openRegModalWindow(e) {
@@ -9,7 +7,6 @@ function openRegModalWindow(e) {
   refs.regModalCloseBtn.addEventListener('click', onRegModalWindowCloseBtn);
   refs.regLightbox.addEventListener('click', onOverlayClick);
   window.addEventListener('keydown', onEscPress);
-  LogInUser(); //Добавив Влад.
 }
 
 function onRegModalWindowCloseBtn(e) {
@@ -22,15 +19,13 @@ function onRegModalWindowCloseBtn(e) {
 function onOverlayClick(e) {
   // console.log('e.target :>> ', e.target);
   // console.log('e.currentTarget :>> ', e.currentTarget);
-  if (e.target === e.currentTarget)
-  {
+  if (e.target === e.currentTarget) {
     onRegModalWindowCloseBtn();
   }
 }
 
 function onEscPress(e) {
-  if (e.code === 'Escape')
-  {
+  if (e.code === 'Escape') {
     onRegModalWindowCloseBtn();
   }
 }
