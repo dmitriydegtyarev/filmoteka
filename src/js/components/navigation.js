@@ -32,7 +32,7 @@ function onNavLinkHomeClick(e) {
   navigationLibraryEl.classList.remove('accent-library');
   inputDivEl.classList.remove('hidden');
   myLibraryBtnsEl.classList.add('hidden');
-  exitBtnEl.classList.remove('hidden');
+  exitBtnEl.classList.add('hidden');
   changeHomeImg();
 
   api.resetPage();
@@ -50,7 +50,7 @@ function onNavLinkLibraryClick() {
   inputDivEl.classList.add('hidden');
   myLibraryBtnsEl.classList.remove('hidden');
   registrationBtnEl.classList.add('hidden');
-  exitBtnEl.classList.add('hidden');
+  exitBtnEl.classList.remove('hidden');
   LogInBtnEl.classList.add('hidden');
   changeLbImg();
 }
