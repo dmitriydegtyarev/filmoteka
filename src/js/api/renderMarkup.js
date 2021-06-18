@@ -21,6 +21,9 @@ import { changeHomePage, trailerModal } from '../components/trailer.js';
 const { filmListGallery, filmCard, paginationList } = refs;
 
 export function renderPopularMovie() {
+  const spinnerG = new Spinner(modalSpinner);
+  spinnerG.spin(filmListGallery);
+
   api
     .getPopularMovies()
     .then(response => response.data.results)
@@ -31,10 +34,13 @@ export function renderPopularMovie() {
       clearMarkup();
       renderMarkup(result);
     })
-    .catch(error => console.log(error));
+    .catch(error => console.log(error))
+    .finally(() => spinnerG.stop(filmListGallery));;
 }
 
 export function renderMoviesBySearchQuery(query) {
+  const spinnerS = new Spinner(modalSpinner);
+  spinnerS.spin(filmListGallery);
   if (query !== '') {
     api
       .getMovieOnSearchQuery(query)
@@ -49,7 +55,8 @@ export function renderMoviesBySearchQuery(query) {
         clearMarkup();
         renderMarkup(result);
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error))
+      .finally(() => spinnerS.stop(filmListGallery));
   } else {
     renderPopularMovie();
   }
