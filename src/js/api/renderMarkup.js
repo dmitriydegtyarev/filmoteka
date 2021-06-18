@@ -14,6 +14,8 @@ import showMessage from '../components/showMessage';
 
 import getFilmGenres from '../components/getFilmGenres';
 import getFullYear from '../components/getFullYear';
+import { renderPaginationOnSearchQuery } from '../components/paginationOnSearchQuery';
+import { renderPagination } from '../components/pagination';
 import { changeHomePage, showTrailer } from '../components/trailer.js';
 
 const { filmListGallery, filmCard, paginationList } = refs;
@@ -167,6 +169,15 @@ export function clearMarkup() {
 export function clearMarkupPagination() {
   paginationList.innerHTML = '';
 }
+
+// export function tooglePagination() {
+//   if ((api.paginationPopularMovie = true)) {
+//     renderPagination();
+//     return;
+//   } else {
+//     renderPaginationOnSearchQuery();
+//   }
+// }
 
 // api
 //   .getShortInfoMovieById()

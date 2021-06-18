@@ -1,5 +1,5 @@
 import api from '../api/apiService';
-import { paginationChange } from '../components/pagination';
+import { paginationChange, renderPagination } from '../components/pagination';
 import { renderPopularMovie, clearMarkup, clearMarkupPagination } from '../api/renderMarkup';
 import { clearInput } from '../components/input';
 
@@ -32,24 +32,13 @@ function onNavLinkHomeClick(e) {
   inputDivEl.classList.remove('hidden');
   myLibraryBtnsEl.classList.add('hidden');
   exitBtnEl.classList.remove('hidden');
-
-  if (LogInBtnEl.classList.remove('hidden') !== true)
-  {
-    LogInBtnEl.classList.remove('hidden');
-  } else
-  {
-    return;
-  }
-
   changeHomeImg();
 
   api.resetPage();
   clearInput();
   clearMarkup();
-  // clearMarkupPagination();
   renderPopularMovie();
   paginationChange(api.page);
-  // renderPagination();
 }
 
 function onNavLinkLibraryClick() {
