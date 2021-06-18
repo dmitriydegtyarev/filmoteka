@@ -130,13 +130,13 @@ function onClickPrevMobile(allPages) {
 
 function onClickItemMobile(child, allPages) {
   child.addEventListener('click', function () {
-    console.log(api.page);
+    // console.log(api.page);
     removeClassMobile();
     child.classList.add('current-item');
-    console.log(child.textContent);
+    // console.log(child.textContent);
     const currentItemNum = +child.textContent;
     api.page = currentItemNum;
-    console.log(currentItemNum);
+    // console.log(currentItemNum);
     renderPopularMovie();
     paginationRefs.buttonMobilePrev.classList.remove('visually-hidden');
     if (currentItemNum < 4) {
