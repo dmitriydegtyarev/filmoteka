@@ -48,7 +48,7 @@ export function renderPagination() {
           if (wiewportWigth < 767) {
             paginationRefs.pagination.classList.add('visually-hidden');
             paginationRefs.paginationMobile.classList.remove('visually-hidden');
-            renderPaginationMobile(result.page, result.total_pages);
+            renderPaginationMobile(result.page);
             for (let child of paginationListMobile.children) {
               onClickItemMobile(child, result.total_pages);
             }
@@ -70,7 +70,7 @@ const renderMarkupPagination = result => {
   paginationListMobile.insertAdjacentHTML('beforeend', markup);
 };
 
-function renderPaginationMobile(pageNum, allPages) {
+export function renderPaginationMobile(pageNum) {
   // api.page = pageNum;
   removeClassMobile();
   renderPopularMovie();
@@ -400,6 +400,8 @@ function onClickNext(allPages) {
 
 export function paginationChange(pageNum) {
   removeClass();
+  paginationList.children[7].classList.remove('visually-hidden');
+  paginationRefs.buttonNext.classList.remove('visually-hidden');
   paginationList.children[1].classList.add('visually-hidden');
   paginationList.children[2].textContent = pageNum + 1;
   paginationList.children[3].textContent = pageNum + 2;
