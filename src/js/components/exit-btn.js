@@ -6,8 +6,6 @@ const registrationBtnEl = document.querySelector('.registration-btn');
 const userInfo = localStorage.getItem('userInfo');
 import { refs } from '../refs';
 
-const regBtnText = document.querySelector('.registration-btn_text');
-
 refs.exitBtnEl.addEventListener('click', OnExitBtnClick);
 
 function ClearLocalStorage() {

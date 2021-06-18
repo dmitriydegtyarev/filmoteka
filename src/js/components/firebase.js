@@ -55,7 +55,8 @@ class FirebaseApi {
         showMyLibrary();
         return data;
       })
-      .catch(erroMessageRegister());
+      .then(console.log)
+      .catch(erroMessageRegister);
   }
 
   signIn({ email, password }) {
@@ -68,6 +69,10 @@ class FirebaseApi {
         localStorage.setItem('userInfo', JSON.stringify({ localId, idToken, email }));
         this.setuserInfo({ localId, idToken, email });
         refs.exitBtnEl.classList.remove('hidden');
+        const LogInBtnEl = document.querySelector('.LogIn-btn');
+        LogInBtnEl.textContent = `${email} logged in`;
+        LogInBtnEl.classList.remove('hidden');
+        refs.registrationBtn.classList.add('hidden');
       })
       .catch(function (error) {
         alert(error);
@@ -178,7 +183,6 @@ function onSignUp(e) {
     email: refs.modalEl.elements['email'].value,
     password: refs.modalEl.elements['password'].value,
   };
-  console.log({ email, password });
 
   firebaseApi.signUp({ email, password });
 }
@@ -192,8 +196,8 @@ function onSignIn(e) {
 
   firebaseApi.signIn({ email, password }).then(() => {
     regModal.onRegModalWindowCloseBtn();
-    const LogInBtnEl = document.querySelector('.LogIn-btn');
-    LogInBtnEl.textContent = `${email} logged in`;
+    // const LogInBtnEl = document.querySelector('.LogIn-btn');
+    // LogInBtnEl.textContent = `${email} logged in`;
   });
   showMyLibrary();
 }
