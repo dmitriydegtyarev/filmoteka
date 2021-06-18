@@ -19,8 +19,8 @@ export default function getFullYear(results) {
       const fullYear2 = newDate2.getFullYear();
       return { id, poster_path, original_title, name, genre_ids, fullYear2, vote_average };
     } else {
-      console.log('У данного фильма нет даты');
-      return;
+      // console.log('У данного фильма нет даты');
+      return { id, poster_path, original_title, name, genre_ids, vote_average };
     }
   });
   // console.log('newResults :>> ', newResults);
