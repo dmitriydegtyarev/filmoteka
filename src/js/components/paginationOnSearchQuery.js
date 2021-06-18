@@ -27,6 +27,9 @@ export function renderPaginationOnSearchQuery() {
   paginationList.innerHTML = `<li class="pagination-item first-item">
           <a class="button-item">1</a>
         </li>`;
+  paginationListMobile.innerHTML = `<li class="pagination-mobile-item first-item">
+          <a class="button-item">1</a>
+        </li>`;
   api
     .getMovieOnSearchQuery()
     .then(response => response.data)
@@ -58,6 +61,7 @@ export function renderPaginationOnSearchQuery() {
           if (wiewportWigth < 767) {
             paginationRefs.pagination.classList.add('visually-hidden');
             paginationRefs.paginationMobile.classList.remove('visually-hidden');
+            paginationRefs.firstItem.classList.add('visually-hidden');
             renderPaginationMobileS(result.page, result.total_pages, api.query);
 
             for (let child of paginationListMobile.children) {
@@ -247,7 +251,7 @@ function onClickNextMobileS(allPages, query) {
 
 function onClickPrevS(allPages, query) {
   paginationRefs.buttonPrev.addEventListener('click', function () {
-    api.page -= 1;
+    // api.page -= 1;
     renderMoviesBySearchQuery(query);
     for (let child of paginationList.children) {
       if (child.classList.contains('current-item')) {
@@ -374,7 +378,7 @@ function onClickItemS(child, allPages, query) {
 
 function onClickNextS(allPages, query) {
   paginationRefs.buttonNext.addEventListener('click', function () {
-    api.page += 1;
+    // api.page += 1;
     renderMoviesBySearchQuery(query);
     if (api.page === allPages) {
       paginationRefs.buttonNext.classList.add('visually-hidden');

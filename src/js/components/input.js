@@ -13,7 +13,7 @@ function onInputSearch(e) {
   api.query = e.target.value;
   api.resetPage();
   renderMoviesBySearchQuery(api.query);
-  // renderPaginationOnSearchQuery();
+  renderPaginationOnSearchQuery();
 }
 
 export function clearInput() {
