@@ -55,7 +55,6 @@ class FirebaseApi {
         showMyLibrary();
         return data;
       })
-      .then(console.log)
       .catch(erroMessageRegister);
   }
 
@@ -184,7 +183,9 @@ function onSignUp(e) {
     password: refs.modalEl.elements['password'].value,
   };
 
-  firebaseApi.signUp({ email, password });
+  firebaseApi.signUp({ email, password }).then(() => {
+    onSignIn(e);
+  });
 }
 
 function onSignIn(e) {
