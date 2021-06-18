@@ -126,13 +126,7 @@ export function getFilmInModal(e) {
       }
       const addWatchedBtnEl = document.querySelector('.add-watched_button');
       const addQueueBtnEl = document.querySelector('.add-queue_button');
-      addQueueBtnEl.addEventListener('click', onAddQueueBtnClick);
-      function onAddQueueBtnClick() {
-        firebaseApi.postQueueData(result);
-        addWatchedBtnEl.classList.add('press-btn');
-        addWatchedBtnEl.textContent = 'Added to Queue';
-        addWatchedBtnEl.disabled = true;
-      }
+
       const linkTrailer = document.querySelector('.film-trailer');
       linkTrailer.addEventListener('click', e => {
         e.preventDefault();

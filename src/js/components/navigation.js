@@ -2,6 +2,7 @@ import api from '../api/apiService';
 import { paginationChange, renderPagination } from '../components/pagination';
 import { renderPopularMovie, clearMarkup, clearMarkupPagination } from '../api/renderMarkup';
 import { clearInput } from '../components/input';
+import onMyWatchedBtn from './mylibrary';
 
 const navigationHomeEl = document.querySelector('.navigation_home');
 const navigationLibraryEl = document.querySelector('.navigation_library');
@@ -42,6 +43,7 @@ function onNavLinkHomeClick(e) {
 }
 
 function onNavLinkLibraryClick() {
+  onMyWatchedBtn();
   navigationHomeEl.classList.remove('accent-home');
   navigationLibraryEl.classList.add('accent-library');
   inputDivEl.classList.add('hidden');

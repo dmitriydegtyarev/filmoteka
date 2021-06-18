@@ -3,8 +3,6 @@ import moviesTemplate from '../../templates/film-list.hbs';
 import firebaseApi from './firebase';
 import { changePath, changeFilmPath } from './changePathForPoster';
 import { clearMarkup, getFilmsWithGanres } from '../api/renderMarkup';
-import getFilmGenres from '../components/getFilmGenres';
-import getFullYear from '../components/getFullYear';
 
 const renderMarkup = result => {
   const markup = moviesTemplate(result);
@@ -14,7 +12,7 @@ const renderMarkup = result => {
 refs.myWatchedBtn.addEventListener('click', onMyWatchedBtn);
 refs.myQueueBtn.addEventListener('click', onMyQueueBtn);
 
-function onMyWatchedBtn() {
+export default function onMyWatchedBtn() {
   firebaseApi
     .getWatchedData()
     // .then(getFullYear)
