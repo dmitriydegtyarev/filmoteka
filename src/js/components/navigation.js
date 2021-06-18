@@ -1,6 +1,6 @@
 import api from '../api/apiService';
-import { paginationChange, renderPagination } from '../components/pagination';
-import { renderPopularMovie, clearMarkup, clearMarkupPagination } from '../api/renderMarkup';
+import { paginationChange, renderPaginationMobile } from '../components/pagination';
+import { renderPopularMovie, clearMarkup } from '../api/renderMarkup';
 import { clearInput } from '../components/input';
 import onMyWatchedBtn from './mylibrary';
 
@@ -40,6 +40,7 @@ function onNavLinkHomeClick(e) {
   clearMarkup();
   renderPopularMovie();
   paginationChange(api.page);
+  renderPaginationMobile(api.page);
 }
 
 function onNavLinkLibraryClick() {

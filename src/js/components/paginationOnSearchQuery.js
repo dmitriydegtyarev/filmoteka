@@ -36,11 +36,17 @@ export function renderPaginationOnSearchQuery() {
       paginationRefs.pagination.classList.remove('visually-hidden');
       paginationRefs.paginationMobile.classList.add('visually-hidden');
       paginationChangeS(result.page, result.total_pages);
-      for (let child of paginationList.children) {
-        onClickItemS(child, result.total_pages, api.query);
+      if (result.total_pages <= 4) {
+        paginationRefs.buttonNext.classList.add('visually-hidden');
+        paginationRefs.buttonPrev.classList.add('visually-hidden');
+        onClickMobileMin(api.query);
+      } else {
+        for (let child of paginationList.children) {
+          onClickItemS(child, result.total_pages, api.query);
+        }
+        onClickPrevS(result.total_pages, api.query);
+        onClickNextS(result.total_pages, api.query);
       }
-      onClickPrevS(result.total_pages, api.query);
-      onClickNextS(result.total_pages, api.query);
 
       window.addEventListener(
         'resize',
@@ -53,6 +59,7 @@ export function renderPaginationOnSearchQuery() {
             paginationRefs.pagination.classList.add('visually-hidden');
             paginationRefs.paginationMobile.classList.remove('visually-hidden');
             renderPaginationMobileS(result.page, result.total_pages, api.query);
+
             for (let child of paginationListMobile.children) {
               onClickItemMobileS(child, result.total_pages, api.query);
             }
@@ -132,15 +139,39 @@ function onClickPrevMobileS(allPages, query) {
   });
 }
 
+function onClickMobileMin(query) {
+  paginationRefs.firstItem.addEventListener('click', function () {
+    api.page = 1;
+    renderMoviesBySearchQuery(query);
+    removeClass();
+    paginationRefs.firstItem.classList.add('current-item');
+  });
+  paginationList.children[2].addEventListener('click', function () {
+    api.page = 2;
+    renderMoviesBySearchQuery(query);
+    removeClass();
+    paginationList.children[2].classList.add('current-item');
+  });
+  paginationList.children[3].addEventListener('click', function () {
+    api.page = 3;
+    renderMoviesBySearchQuery(query);
+    removeClass();
+    paginationList.children[3].classList.add('current-item');
+  });
+  paginationList.children[4].addEventListener('click', function () {
+    api.page = 4;
+    renderMoviesBySearchQuery(query);
+    removeClass();
+    paginationList.children[4].classList.add('current-item');
+  });
+}
+
 function onClickItemMobileS(child, allPages, query) {
   child.addEventListener('click', function () {
-    console.log(api.page);
     removeClassMobile();
     child.classList.add('current-item');
-    console.log(child.textContent);
     const currentItemNum = +child.textContent;
     api.page = currentItemNum;
-    console.log(currentItemNum);
     renderMoviesBySearchQuery(query);
     paginationRefs.buttonMobilePrev.classList.remove('visually-hidden');
     if (currentItemNum < 4) {
@@ -404,62 +435,62 @@ export function paginationChangeS(pageNum, allPages) {
   paginationList.children[5].textContent = pageNum + 4;
   paginationList.children[6].textContent = pageNum + 5;
   paginationRefs.firstItem.classList.add('current-item');
-  // if (allPages === 1) {
-  //   // paginationRefs.firstItem.classList.add('current-item');
-  //   paginationList.children[1].classList.add('visually-hidden');
-  //   paginationList.children[2].classList.add('visually-hidden');
-  //   paginationList.children[3].classList.add('visually-hidden');
-  //   paginationList.children[4].classList.add('visually-hidden');
-  //   paginationList.children[5].classList.add('visually-hidden');
-  //   paginationList.children[6].classList.add('visually-hidden');
-  //   paginationList.children[7].classList.add('visually-hidden');
-  //   paginationList.children[8].classList.add('visually-hidden');
-  // }
-  // if (allPages <= 2) {
-  //   // paginationRefs.firstItem.classList.add('current-item');
-  //   paginationList.children[1].classList.add('visually-hidden');
+  if (allPages === 1) {
+    // paginationRefs.firstItem.classList.add('current-item');
+    paginationList.children[1].classList.add('visually-hidden');
+    paginationList.children[2].classList.add('visually-hidden');
+    paginationList.children[3].classList.add('visually-hidden');
+    paginationList.children[4].classList.add('visually-hidden');
+    paginationList.children[5].classList.add('visually-hidden');
+    paginationList.children[6].classList.add('visually-hidden');
+    paginationList.children[7].classList.add('visually-hidden');
+    paginationList.children[8].classList.add('visually-hidden');
+  }
+  if (allPages <= 2) {
+    // paginationRefs.firstItem.classList.add('current-item');
+    paginationList.children[1].classList.add('visually-hidden');
 
-  //   paginationList.children[3].classList.add('visually-hidden');
-  //   paginationList.children[4].classList.add('visually-hidden');
-  //   paginationList.children[5].classList.add('visually-hidden');
-  //   paginationList.children[6].classList.add('visually-hidden');
-  //   paginationList.children[7].classList.add('visually-hidden');
-  //   paginationList.children[8].classList.add('visually-hidden');
-  // }
-  // if (allPages <= 3) {
-  //   // paginationRefs.firstItem.classList.add('current-item');
-  //   paginationList.children[1].classList.add('visually-hidden');
+    paginationList.children[3].classList.add('visually-hidden');
+    paginationList.children[4].classList.add('visually-hidden');
+    paginationList.children[5].classList.add('visually-hidden');
+    paginationList.children[6].classList.add('visually-hidden');
+    paginationList.children[7].classList.add('visually-hidden');
+    paginationList.children[8].classList.add('visually-hidden');
+  }
+  if (allPages <= 3) {
+    // paginationRefs.firstItem.classList.add('current-item');
+    paginationList.children[1].classList.add('visually-hidden');
 
-  //   paginationList.children[4].classList.add('visually-hidden');
-  //   paginationList.children[5].classList.add('visually-hidden');
-  //   paginationList.children[6].classList.add('visually-hidden');
-  //   paginationList.children[7].classList.add('visually-hidden');
-  //   paginationList.children[8].classList.add('visually-hidden');
-  // }
-  // if (allPages <= 4) {
-  //   // paginationRefs.firstItem.classList.add('current-item');
-  //   paginationList.children[1].classList.add('visually-hidden');
+    paginationList.children[4].classList.add('visually-hidden');
+    paginationList.children[5].classList.add('visually-hidden');
+    paginationList.children[6].classList.add('visually-hidden');
+    paginationList.children[7].classList.add('visually-hidden');
+    paginationList.children[8].classList.add('visually-hidden');
+  }
+  if (allPages <= 4) {
+    // paginationRefs.firstItem.classList.add('current-item');
+    paginationList.children[1].classList.add('visually-hidden');
 
-  //   paginationList.children[5].classList.add('visually-hidden');
-  //   paginationList.children[6].classList.add('visually-hidden');
-  //   paginationList.children[7].classList.add('visually-hidden');
-  //   paginationList.children[8].classList.add('visually-hidden');
-  // }
-  // if (allPages <= 5) {
-  //   // paginationRefs.firstItem.classList.add('current-item');
-  //   paginationList.children[1].classList.add('visually-hidden');
+    paginationList.children[5].classList.add('visually-hidden');
+    paginationList.children[6].classList.add('visually-hidden');
+    paginationList.children[7].classList.add('visually-hidden');
+    paginationList.children[8].classList.add('visually-hidden');
+  }
+  if (allPages <= 5) {
+    // paginationRefs.firstItem.classList.add('current-item');
+    paginationList.children[1].classList.add('visually-hidden');
 
-  //   paginationList.children[6].classList.add('visually-hidden');
-  //   paginationList.children[7].classList.add('visually-hidden');
-  //   paginationList.children[8].classList.add('visually-hidden');
-  // }
-  // if (allPages <= 6) {
-  //   // paginationRefs.firstItem.classList.add('current-item');
-  //   paginationList.children[1].classList.add('visually-hidden');
+    paginationList.children[6].classList.add('visually-hidden');
+    paginationList.children[7].classList.add('visually-hidden');
+    paginationList.children[8].classList.add('visually-hidden');
+  }
+  if (allPages <= 6) {
+    // paginationRefs.firstItem.classList.add('current-item');
+    paginationList.children[1].classList.add('visually-hidden');
 
-  //   paginationList.children[7].classList.add('visually-hidden');
-  //   paginationList.children[8].classList.add('visually-hidden');
-  // }
+    paginationList.children[7].classList.add('visually-hidden');
+    paginationList.children[8].classList.add('visually-hidden');
+  }
 }
 
 function removeClass() {

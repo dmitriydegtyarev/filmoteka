@@ -14,4 +14,3 @@ import './js/components/firebase';
 import './js/components/mylibrary';
 import './js/components/exit-btn';
 import './js/components/errorMassageRegister';
-import './js/components/LogInBtn';
