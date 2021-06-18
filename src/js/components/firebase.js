@@ -4,6 +4,7 @@ import api from '../api/apiService';
 import regModal from '../components/regModal';
 import { showMyLibrary } from '../components/exit-btn';
 import erroMessageRegister from '../components/errorMassageRegister';
+import toastify from 'toastify-js';
 
 const instance = axios.create({
   baseURL: 'https://filmoteka-zero-team-default-rtdb.firebaseio.com/',
@@ -51,7 +52,11 @@ class FirebaseApi {
     return instance
       .post('', { email, password, returnSecureToken: true })
       .then(({ data }) => {
-        alert('Successfully registered');
+        toastify({
+          text: 'Successfully registered',
+          duration: 2500,
+          className: 'toastify-center_successful',
+        }).showToast();
         showMyLibrary();
         return data;
       })
@@ -74,7 +79,7 @@ class FirebaseApi {
         refs.registrationBtn.classList.add('hidden');
       })
       .catch(function (error) {
-        alert(error);
+        // alert(error);
       });
   }
 
