@@ -16,7 +16,7 @@ import getFilmGenres from '../components/getFilmGenres';
 import getFullYear from '../components/getFullYear';
 import { renderPaginationOnSearchQuery } from '../components/paginationOnSearchQuery';
 import { renderPagination } from '../components/pagination';
-import { changeHomePage, showTrailer } from '../components/trailer.js';
+import { changeHomePage, trailerModal } from '../components/trailer.js';
 
 const { filmListGallery, filmCard, paginationList } = refs;
 
@@ -130,7 +130,7 @@ export function getFilmInModal(e) {
       const linkTrailer = document.querySelector('.film-trailer');
       linkTrailer.addEventListener('click', e => {
         e.preventDefault();
-        showTrailer(e.target.getAttribute('href'));
+        trailerModal.showTrailer(e.target.getAttribute('href'));
       });
     })
     .catch(error => console.log(error))
