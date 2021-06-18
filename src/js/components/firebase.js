@@ -67,6 +67,7 @@ class FirebaseApi {
       .then(({ localId, idToken }) => {
         localStorage.setItem('userInfo', JSON.stringify({ localId, idToken, email }));
         this.setuserInfo({ localId, idToken, email });
+        refs.exitBtnEl.classList.remove('hidden');
       })
       .catch(function (error) {
         alert(error);

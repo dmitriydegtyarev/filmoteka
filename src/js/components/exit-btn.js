@@ -8,7 +8,7 @@ import { refs } from '../refs';
 
 const regBtnText = document.querySelector('.registration-btn_text');
 
-exitBtnEl.addEventListener('click', OnExitBtnClick);
+refs.exitBtnEl.addEventListener('click', OnExitBtnClick);
 
 function ClearLocalStorage() {
   try {
