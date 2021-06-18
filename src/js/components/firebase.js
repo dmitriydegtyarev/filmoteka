@@ -3,7 +3,7 @@ import { refs } from '../refs';
 import api from '../api/apiService';
 import regModal from '../components/regModal';
 import { showMyLibrary } from '../components/exit-btn';
-import erroMessageRegister from '../components/errorMassageRegister';
+import {erroMessageRegister, erroMessageLogin} from '../components/errorMassageRegister';
 import toastify from 'toastify-js';
 
 const instance = axios.create({
@@ -59,8 +59,7 @@ class FirebaseApi {
         }).showToast();
         showMyLibrary();
         return data;
-      })
-      .catch(erroMessageRegister);
+      });
   }
 
   signIn({ email, password }) {
@@ -77,9 +76,6 @@ class FirebaseApi {
         LogInBtnEl.textContent = `${email} logged in`;
         LogInBtnEl.classList.remove('hidden');
         refs.registrationBtn.classList.add('hidden');
-      })
-      .catch(function (error) {
-        // alert(error);
       });
   }
 
@@ -190,7 +186,7 @@ function onSignUp(e) {
 
   firebaseApi.signUp({ email, password }).then(() => {
     onSignIn(e);
-  });
+  }).catch(erroMessageRegister);
 }
 
 function onSignIn(e) {
@@ -204,6 +200,8 @@ function onSignIn(e) {
     regModal.onRegModalWindowCloseBtn();
     // const LogInBtnEl = document.querySelector('.LogIn-btn');
     // LogInBtnEl.textContent = `${email} logged in`;
-  });
+  })
+  .catch(erroMessageLogin);
+
   showMyLibrary();
 }
