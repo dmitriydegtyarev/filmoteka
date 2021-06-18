@@ -1,5 +1,5 @@
 import api from '../api/apiService';
-import { paginationChange } from '../components/pagination';
+import { paginationChange, renderPagination } from '../components/pagination';
 import { renderPopularMovie, clearMarkup, clearMarkupPagination } from '../api/renderMarkup';
 import { clearInput } from '../components/input';
 
@@ -13,6 +13,7 @@ const libraryQueueEl = document.querySelector('.my-library_btn-queue');
 const logoFilmEl = document.querySelector('.logo-search_film');
 const registrationBtnEl = document.querySelector('.registration-btn');
 const exitBtnEl = document.querySelector('.exit-btn');
+const LogInBtnEl = document.querySelector('.LogIn-btn');
 
 navigationHomeEl.addEventListener('click', onNavLinkHomeClick);
 navigationLibraryEl.addEventListener('click', onNavLinkLibraryClick);
@@ -25,22 +26,19 @@ window.onload = function () {
   navigationHomeEl.classList.add('accent-home');
 };
 
-function onNavLinkHomeClick() {
+function onNavLinkHomeClick(e) {
   navigationHomeEl.classList.add('accent-home');
   navigationLibraryEl.classList.remove('accent-library');
   inputDivEl.classList.remove('hidden');
   myLibraryBtnsEl.classList.add('hidden');
-  registrationBtnEl.classList.remove('hidden');
   exitBtnEl.classList.remove('hidden');
-    changeHomeImg();
+  changeHomeImg();
 
   api.resetPage();
   clearInput();
   clearMarkup();
-  // clearMarkupPagination();
   renderPopularMovie();
   paginationChange(api.page);
-  // renderPagination();
 }
 
 function onNavLinkLibraryClick() {
@@ -50,6 +48,7 @@ function onNavLinkLibraryClick() {
   myLibraryBtnsEl.classList.remove('hidden');
   registrationBtnEl.classList.add('hidden');
   exitBtnEl.classList.add('hidden');
+  LogInBtnEl.classList.add('hidden');
   changeLbImg();
 }
 

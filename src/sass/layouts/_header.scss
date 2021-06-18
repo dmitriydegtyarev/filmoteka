@@ -57,7 +57,7 @@ input::placeholder {
   display: block;
   content: '';
   background: $accent-color;
-  @media screen and (min-width: 321px) {
+  @media screen and (min-width: 320px) {
     top: 70px;
   }
   @media screen and (min-width: 768px) {
@@ -72,7 +72,7 @@ input::placeholder {
   display: block;
   content: '';
   background: $accent-color;
-  @media screen and (min-width: 321px) {
+  @media screen and (min-width: 320px) {
     top: 70px;
   }
   @media screen and (min-width: 768px) {
@@ -101,7 +101,7 @@ a.navigation_library-link {
   color: $secondary-text-color;
 }
 .input-div {
-  display: block;
+  display: flex;
   position: relative;
   width: 280px;
   margin-right: auto;
@@ -131,12 +131,10 @@ a.navigation_library-link {
 .navigation {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-top: 48px;
   margin-bottom: 41px;
-  @media screen and (min-width: 321px) {
-    align-items: center;
-  }
-  @media screen and (min-width: 321px) {
+  @media screen and (min-width: 767px) {
     justify-content: center;
   }
 }
@@ -213,8 +211,8 @@ a.navigation_library-link {
 }
 
 .registration-btn {
-  // width: 136px;
-  height: 44px;
+  width: 200px;
+  height: 35px;
   margin-right: 15px;
   background: transparent;
   box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
@@ -235,23 +233,25 @@ a.navigation_library-link {
 }
 
 .registration-btn-div {
-  margin-left: 0;
-  margin-right: auto;
-  margin-top: 40px;
+   justify-content: flex-end;
+  // margin-left: 0;
+  // margin-right: auto;
+  margin-top: 5px;
   // width: 280px;
   display: flex;
   height: auto;
-  justify-content: center;
+  // justify-content: center;
   align-content: flex-end;
   @media screen and (min-width: 768px) {
     justify-content: flex-end;
-    margin-top: 35px;
+    margin-top: 5px;
   }
 }
 
 .exit-btn {
-  width: 80px;
-  height: 44px;
+  // flex-grow: 1;
+  flex-basis: 80px;
+  height: 35px;
   background: transparent;
   box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
   border-radius: 5px;
@@ -260,6 +260,7 @@ a.navigation_library-link {
   color: $secondary-text-color;
   font-family: $font;
   @include font(500, 12px, 1.33px);
+
 }
 .exit-btn:focus {
   background-color: $accent-color;
@@ -269,3 +270,24 @@ a.navigation_library-link {
   color: $secondary-text-color;
   font-family: $font;
 }
+
+.LogIn-btn{
+  // flex-grow: 2;
+  min-width: 80px;
+  height: 35px;
+  background: transparent;
+  box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+  border-radius: 5px;
+  border-color: $secondary-text-color;
+  padding: 2px 2px 2px;
+  color: $secondary-text-color;
+  font-family: $font;
+  @include font(500, 12px, 1.33px);
+ }
+
+.LogIn-btn_div{
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
