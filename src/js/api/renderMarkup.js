@@ -14,6 +14,8 @@ import showMessage from '../components/showMessage';
 
 import getFilmGenres from '../components/getFilmGenres';
 import getFullYear from '../components/getFullYear';
+import { renderPaginationOnSearchQuery } from '../components/paginationOnSearchQuery';
+import { renderPagination } from '../components/pagination';
 import { changeHomePage, trailerModal } from '../components/trailer.js';
 
 const { filmListGallery, filmCard, paginationList } = refs;
@@ -124,13 +126,7 @@ export function getFilmInModal(e) {
       }
       const addWatchedBtnEl = document.querySelector('.add-watched_button');
       const addQueueBtnEl = document.querySelector('.add-queue_button');
-      addQueueBtnEl.addEventListener('click', onAddQueueBtnClick);
-      function onAddQueueBtnClick() {
-        firebaseApi.postQueueData(result);
-        addWatchedBtnEl.classList.add('press-btn');
-        addWatchedBtnEl.textContent = 'Added to Queue';
-        addWatchedBtnEl.disabled = true;
-      }
+
       const linkTrailer = document.querySelector('.film-trailer');
       linkTrailer.addEventListener('click', e => {
         e.preventDefault();
@@ -167,6 +163,15 @@ export function clearMarkup() {
 export function clearMarkupPagination() {
   paginationList.innerHTML = '';
 }
+
+// export function tooglePagination() {
+//   if ((api.paginationPopularMovie = true)) {
+//     renderPagination();
+//     return;
+//   } else {
+//     renderPaginationOnSearchQuery();
+//   }
+// }
 
 // api
 //   .getShortInfoMovieById()

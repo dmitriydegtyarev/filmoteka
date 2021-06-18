@@ -8,7 +8,7 @@ import erroMessageRegister from '../components/errorMassageRegister';
 const instance = axios.create({
   baseURL: 'https://filmoteka-zero-team-default-rtdb.firebaseio.com/',
 });
-instance.defaults.headers.common['Authorization'] = 'AIzaSyAh4y3XVG_lP - Xp7JCesja84DGK8K - GOc0';
+instance.defaults.headers.common['Authorization'] = 'AIzaSyAh4y3XVG_lP-Xp7JCesja84DGK8K-GOc0';
 
 class FirebaseApi {
   #apiSets = {
@@ -19,6 +19,14 @@ class FirebaseApi {
   };
   email = '';
   #userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+  get userInfo() {
+    return this.#userInfo;
+  }
+
+  setuserInfo({ localId, idToken, email }) {
+    this.#userInfo = { localId, idToken, email };
+  }
 
   setBaseUrlSignUp() {
     instance.defaults.baseURL = this.#apiSets.signUp;
@@ -42,11 +50,13 @@ class FirebaseApi {
 
     return instance
       .post('', { email, password, returnSecureToken: true })
-      .then(({ data }) => data)
-      .catch(
-        erroMessageRegister(),
-        // console.log(erroMessageRegister)
-      );
+      .then(({ data }) => {
+        alert('Successfully registered');
+        showMyLibrary();
+        return data;
+      })
+      .then(console.log)
+      .catch(erroMessageRegister);
   }
 
   signIn({ email, password }) {
@@ -57,9 +67,15 @@ class FirebaseApi {
       .then(({ data }) => data)
       .then(({ localId, idToken }) => {
         localStorage.setItem('userInfo', JSON.stringify({ localId, idToken, email }));
+        this.setuserInfo({ localId, idToken, email });
+        refs.exitBtnEl.classList.remove('hidden');
+        const LogInBtnEl = document.querySelector('.LogIn-btn');
+        LogInBtnEl.textContent = `${email} logged in`;
+        LogInBtnEl.classList.remove('hidden');
+        refs.registrationBtn.classList.add('hidden');
       })
       .catch(function (error) {
-        console.log(error);
+        alert(error);
       });
   }
 
@@ -84,6 +100,7 @@ class FirebaseApi {
   }
 
   getWatchedData() {
+    console.log(this.setBaseUrlDB(this.#userInfo.idToken));
     this.setBaseUrlDB(this.#userInfo.idToken);
     return instance
       .get(/users/ + this.#userInfo.localId + '/' + 'watchedMovies' + '.json')
@@ -166,10 +183,8 @@ function onSignUp(e) {
     email: refs.modalEl.elements['email'].value,
     password: refs.modalEl.elements['password'].value,
   };
-  console.log({ email, password });
 
   firebaseApi.signUp({ email, password });
-  showMyLibrary();
 }
 
 function onSignIn(e) {
@@ -178,13 +193,11 @@ function onSignIn(e) {
     email: refs.modalEl.elements['email'].value,
     password: refs.modalEl.elements['password'].value,
   };
-  // console.log({ email, password });
 
   firebaseApi.signIn({ email, password }).then(() => {
     regModal.onRegModalWindowCloseBtn();
-    const regBtnText = document.querySelector('.registration-btn_text');
-    regBtnText.textContent = `${email} logged in`;
-    // console.log('Successfully logged in');
+    // const LogInBtnEl = document.querySelector('.LogIn-btn');
+    // LogInBtnEl.textContent = `${email} logged in`;
   });
   showMyLibrary();
 }
