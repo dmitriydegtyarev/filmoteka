@@ -6,8 +6,9 @@ import { renderPopularMovie } from '../api/renderMarkup';
 import api from '../api/apiService';
 import { refs } from '../refs';
 import debounce from 'lodash.debounce';
+import { onInputSearch } from '../components/input';
 
-const { paginationList, paginationListMobile, filmListGallery } = refs;
+const { paginationList, paginationListMobile, inputEl } = refs;
 
 const paginationRefs = {
   pagination: document.querySelector('.pagination'),
@@ -23,20 +24,23 @@ const paginationRefs = {
 };
 
 export function renderPaginationOnSearchQuery() {
+  paginationList.innerHTML = `<li class="pagination-item first-item">
+          <a class="button-item">1</a>
+        </li>`;
   api
     .getMovieOnSearchQuery()
     .then(response => response.data)
     .then(result => {
-      renderMarkupPagination(result);
+      renderMarkupPaginationS(result);
 
       paginationRefs.pagination.classList.remove('visually-hidden');
       paginationRefs.paginationMobile.classList.add('visually-hidden');
-      paginationChange(result.page);
+      paginationChangeS(result.page, result.total_pages);
       for (let child of paginationList.children) {
-        onClickItem(child, result.total_pages);
+        onClickItemS(child, result.total_pages, api.query);
       }
-      onClickPrev(result.total_pages);
-      onClickNext(result.total_pages);
+      onClickPrevS(result.total_pages, api.query);
+      onClickNextS(result.total_pages, api.query);
 
       window.addEventListener(
         'resize',
@@ -48,12 +52,12 @@ export function renderPaginationOnSearchQuery() {
           if (wiewportWigth < 767) {
             paginationRefs.pagination.classList.add('visually-hidden');
             paginationRefs.paginationMobile.classList.remove('visually-hidden');
-            renderPaginationMobile(result.page, result.total_pages);
+            renderPaginationMobileS(result.page, result.total_pages, api.query);
             for (let child of paginationListMobile.children) {
-              onClickItemMobile(child, result.total_pages);
+              onClickItemMobileS(child, result.total_pages, api.query);
             }
-            onClickPrevMobile(result.total_pages);
-            onClickNextMobile(result.total_pages);
+            onClickPrevMobileS(result.total_pages, api.query);
+            onClickNextMobileS(result.total_pages, api.query);
           } else {
             paginationRefs.pagination.classList.remove('visually-hidden');
             paginationRefs.paginationMobile.classList.add('visually-hidden');
@@ -64,16 +68,16 @@ export function renderPaginationOnSearchQuery() {
     .catch(error => console.log(error));
 }
 
-const renderMarkupPagination = result => {
+const renderMarkupPaginationS = result => {
   const markup = paginationListTpl(result);
   paginationList.insertAdjacentHTML('beforeend', markup);
   paginationListMobile.insertAdjacentHTML('beforeend', markup);
 };
 
-function renderPaginationMobile(pageNum, allPages) {
+function renderPaginationMobileS(pageNum, allPages, query) {
   // api.page = pageNum;
   removeClassMobile();
-  renderPopularMovie();
+  renderMoviesBySearchQuery(query);
   paginationRefs.paginationMobileItem.classList.add('visually-hidden');
   paginationListMobile.children[1].classList.add('visually-hidden');
   paginationListMobile.children[7].classList.add('visually-hidden');
@@ -86,10 +90,10 @@ function renderPaginationMobile(pageNum, allPages) {
   paginationListMobile.children[6].textContent = pageNum + 4;
 }
 
-function onClickPrevMobile(allPages) {
+function onClickPrevMobileS(allPages, query) {
   paginationRefs.buttonMobilePrev.addEventListener('click', function () {
     api.page -= 1;
-    renderPopularMovie();
+    renderMoviesBySearchQuery(query);
     for (let child of paginationListMobile.children) {
       if (child.classList.contains('current-item')) {
         removeClassMobile();
@@ -128,7 +132,7 @@ function onClickPrevMobile(allPages) {
   });
 }
 
-function onClickItemMobile(child, allPages) {
+function onClickItemMobileS(child, allPages, query) {
   child.addEventListener('click', function () {
     console.log(api.page);
     removeClassMobile();
@@ -137,7 +141,7 @@ function onClickItemMobile(child, allPages) {
     const currentItemNum = +child.textContent;
     api.page = currentItemNum;
     console.log(currentItemNum);
-    renderPopularMovie();
+    renderMoviesBySearchQuery(query);
     paginationRefs.buttonMobilePrev.classList.remove('visually-hidden');
     if (currentItemNum < 4) {
       removeClassMobile();
@@ -168,10 +172,10 @@ function onClickItemMobile(child, allPages) {
   });
 }
 
-function onClickNextMobile(allPages) {
+function onClickNextMobileS(allPages, query) {
   paginationRefs.buttonMobileNext.addEventListener('click', function () {
     api.page += 1;
-    renderPopularMovie();
+    renderMoviesBySearchQuery(query);
     for (let child of paginationListMobile.children) {
       if (child.classList.contains('current-item')) {
         removeClassMobile();
@@ -210,10 +214,10 @@ function onClickNextMobile(allPages) {
   });
 }
 
-function onClickPrev(allPages) {
+function onClickPrevS(allPages, query) {
   paginationRefs.buttonPrev.addEventListener('click', function () {
     api.page -= 1;
-    renderPopularMovie();
+    renderMoviesBySearchQuery(query);
     for (let child of paginationList.children) {
       if (child.classList.contains('current-item')) {
         removeClass();
@@ -272,7 +276,7 @@ function onClickPrev(allPages) {
   });
 }
 
-function onClickItem(child, allPages) {
+function onClickItemS(child, allPages, query) {
   child.addEventListener('click', function () {
     removeClass();
     child.classList.add('current-item');
@@ -288,7 +292,7 @@ function onClickItem(child, allPages) {
       paginationRefs.buttonPrev.classList.add('visually-hidden');
     }
 
-    renderPopularMovie();
+    renderMoviesBySearchQuery(query);
 
     if (currentItemNum <= 4) {
       paginationList.children[1].classList.add('visually-hidden');
@@ -337,10 +341,10 @@ function onClickItem(child, allPages) {
   });
 }
 
-function onClickNext(allPages) {
+function onClickNextS(allPages, query) {
   paginationRefs.buttonNext.addEventListener('click', function () {
     api.page += 1;
-    renderPopularMovie();
+    renderMoviesBySearchQuery(query);
     if (api.page === allPages) {
       paginationRefs.buttonNext.classList.add('visually-hidden');
     }
@@ -391,7 +395,7 @@ function onClickNext(allPages) {
   });
 }
 
-export function paginationChange(pageNum) {
+export function paginationChangeS(pageNum, allPages) {
   removeClass();
   paginationList.children[1].classList.add('visually-hidden');
   paginationList.children[2].textContent = pageNum + 1;
@@ -400,6 +404,62 @@ export function paginationChange(pageNum) {
   paginationList.children[5].textContent = pageNum + 4;
   paginationList.children[6].textContent = pageNum + 5;
   paginationRefs.firstItem.classList.add('current-item');
+  // if (allPages === 1) {
+  //   // paginationRefs.firstItem.classList.add('current-item');
+  //   paginationList.children[1].classList.add('visually-hidden');
+  //   paginationList.children[2].classList.add('visually-hidden');
+  //   paginationList.children[3].classList.add('visually-hidden');
+  //   paginationList.children[4].classList.add('visually-hidden');
+  //   paginationList.children[5].classList.add('visually-hidden');
+  //   paginationList.children[6].classList.add('visually-hidden');
+  //   paginationList.children[7].classList.add('visually-hidden');
+  //   paginationList.children[8].classList.add('visually-hidden');
+  // }
+  // if (allPages <= 2) {
+  //   // paginationRefs.firstItem.classList.add('current-item');
+  //   paginationList.children[1].classList.add('visually-hidden');
+
+  //   paginationList.children[3].classList.add('visually-hidden');
+  //   paginationList.children[4].classList.add('visually-hidden');
+  //   paginationList.children[5].classList.add('visually-hidden');
+  //   paginationList.children[6].classList.add('visually-hidden');
+  //   paginationList.children[7].classList.add('visually-hidden');
+  //   paginationList.children[8].classList.add('visually-hidden');
+  // }
+  // if (allPages <= 3) {
+  //   // paginationRefs.firstItem.classList.add('current-item');
+  //   paginationList.children[1].classList.add('visually-hidden');
+
+  //   paginationList.children[4].classList.add('visually-hidden');
+  //   paginationList.children[5].classList.add('visually-hidden');
+  //   paginationList.children[6].classList.add('visually-hidden');
+  //   paginationList.children[7].classList.add('visually-hidden');
+  //   paginationList.children[8].classList.add('visually-hidden');
+  // }
+  // if (allPages <= 4) {
+  //   // paginationRefs.firstItem.classList.add('current-item');
+  //   paginationList.children[1].classList.add('visually-hidden');
+
+  //   paginationList.children[5].classList.add('visually-hidden');
+  //   paginationList.children[6].classList.add('visually-hidden');
+  //   paginationList.children[7].classList.add('visually-hidden');
+  //   paginationList.children[8].classList.add('visually-hidden');
+  // }
+  // if (allPages <= 5) {
+  //   // paginationRefs.firstItem.classList.add('current-item');
+  //   paginationList.children[1].classList.add('visually-hidden');
+
+  //   paginationList.children[6].classList.add('visually-hidden');
+  //   paginationList.children[7].classList.add('visually-hidden');
+  //   paginationList.children[8].classList.add('visually-hidden');
+  // }
+  // if (allPages <= 6) {
+  //   // paginationRefs.firstItem.classList.add('current-item');
+  //   paginationList.children[1].classList.add('visually-hidden');
+
+  //   paginationList.children[7].classList.add('visually-hidden');
+  //   paginationList.children[8].classList.add('visually-hidden');
+  // }
 }
 
 function removeClass() {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { renderPopularMovie, clearMarkup, clearMarkupPagination } from './renderMarkup';
+import { renderPopularMovie, clearMarkup } from './renderMarkup';
 import { renderPagination } from '../components/pagination';
 
 const AUTH_TOKEN =
@@ -19,10 +19,9 @@ class GetMovi {
 
   async init() {
     clearMarkup();
-    // clearMarkupPagination();
     await this.getGanres();
     renderPopularMovie();
-    // renderPagination();
+    renderPagination();
   }
 
   get query() {

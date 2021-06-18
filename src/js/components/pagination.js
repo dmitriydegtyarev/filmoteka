@@ -73,7 +73,7 @@ const renderMarkupPagination = result => {
 function renderPaginationMobile(pageNum, allPages) {
   // api.page = pageNum;
   removeClassMobile();
-  renderMoviesBySearchQuery(query);
+  renderPopularMovie();
   paginationRefs.paginationMobileItem.classList.add('visually-hidden');
   paginationListMobile.children[1].classList.add('visually-hidden');
   paginationListMobile.children[7].classList.add('visually-hidden');
@@ -89,7 +89,7 @@ function renderPaginationMobile(pageNum, allPages) {
 function onClickPrevMobile(allPages) {
   paginationRefs.buttonMobilePrev.addEventListener('click', function () {
     api.page -= 1;
-    renderMoviesBySearchQuery(query);
+    renderPopularMovie();
     for (let child of paginationListMobile.children) {
       if (child.classList.contains('current-item')) {
         removeClassMobile();
@@ -137,7 +137,7 @@ function onClickItemMobile(child, allPages) {
     const currentItemNum = +child.textContent;
     api.page = currentItemNum;
     console.log(currentItemNum);
-    renderMoviesBySearchQuery(query);
+    renderPopularMovie();
     paginationRefs.buttonMobilePrev.classList.remove('visually-hidden');
     if (currentItemNum < 4) {
       removeClassMobile();
@@ -171,7 +171,7 @@ function onClickItemMobile(child, allPages) {
 function onClickNextMobile(allPages) {
   paginationRefs.buttonMobileNext.addEventListener('click', function () {
     api.page += 1;
-    renderMoviesBySearchQuery(query);
+    renderPopularMovie();
     for (let child of paginationListMobile.children) {
       if (child.classList.contains('current-item')) {
         removeClassMobile();
@@ -213,7 +213,7 @@ function onClickNextMobile(allPages) {
 function onClickPrev(allPages) {
   paginationRefs.buttonPrev.addEventListener('click', function () {
     api.page -= 1;
-    renderMoviesBySearchQuery(query);
+    renderPopularMovie();
     for (let child of paginationList.children) {
       if (child.classList.contains('current-item')) {
         removeClass();
@@ -280,15 +280,22 @@ function onClickItem(child, allPages) {
     const currentItemNum = +currentItem.textContent;
     api.page = currentItemNum;
 
-    if (currentItemNum > 1) {
+    if (currentItemNum === allPages) {
+      paginationRefs.buttonNext.classList.add('visually-hidden');
       paginationRefs.buttonPrev.classList.remove('visually-hidden');
+    }
+
+    if (currentItemNum > 1 && currentItemNum < allPages) {
+      paginationRefs.buttonPrev.classList.remove('visually-hidden');
+      paginationRefs.buttonNext.classList.remove('visually-hidden');
     }
 
     if (currentItemNum === 1) {
       paginationRefs.buttonPrev.classList.add('visually-hidden');
+      paginationRefs.buttonNext.classList.remove('visually-hidden');
     }
 
-    renderMoviesBySearchQuery(query);
+    renderPopularMovie();
 
     if (currentItemNum <= 4) {
       paginationList.children[1].classList.add('visually-hidden');
@@ -340,7 +347,7 @@ function onClickItem(child, allPages) {
 function onClickNext(allPages) {
   paginationRefs.buttonNext.addEventListener('click', function () {
     api.page += 1;
-    renderMoviesBySearchQuery(query);
+    renderPopularMovie();
     if (api.page === allPages) {
       paginationRefs.buttonNext.classList.add('visually-hidden');
     }

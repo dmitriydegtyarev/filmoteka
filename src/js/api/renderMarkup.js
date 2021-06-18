@@ -15,6 +15,7 @@ import showMessage from '../components/showMessage';
 import getFilmGenres from '../components/getFilmGenres';
 import getFullYear from '../components/getFullYear';
 import { renderPaginationOnSearchQuery } from '../components/paginationOnSearchQuery';
+import { renderPagination } from '../components/pagination';
 
 const { filmListGallery, filmCard, paginationList } = refs;
 
@@ -46,7 +47,6 @@ export function renderMoviesBySearchQuery(query) {
         changePath(result);
         clearMarkup();
         renderMarkup(result);
-        renderPaginationOnSearchQuery();
       })
       .catch(error => console.log(error));
   } else {
@@ -155,6 +155,15 @@ export function clearMarkup() {
 export function clearMarkupPagination() {
   paginationList.innerHTML = '';
 }
+
+// export function tooglePagination() {
+//   if ((api.paginationPopularMovie = true)) {
+//     renderPagination();
+//     return;
+//   } else {
+//     renderPaginationOnSearchQuery();
+//   }
+// }
 
 // api
 //   .getShortInfoMovieById()
