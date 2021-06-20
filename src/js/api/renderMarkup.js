@@ -5,6 +5,7 @@ import firebaseApi from '../components/firebase';
 
 import moviesTemplate from '../../templates/film-list.hbs';
 import movieTemplate from '../../templates/film-card.hbs';
+import movieRWTemplate from '../../templates/filmRW.hbs'
 
 import { refs } from '../refs';
 
@@ -18,7 +19,7 @@ import { renderPaginationOnSearchQuery } from '../components/paginationOnSearchQ
 import { renderPagination } from '../components/pagination';
 import { changeHomePage, trailerModal } from '../components/trailer.js';
 
-const { filmListGallery, filmCard, paginationList } = refs;
+const { filmListGallery, filmCard, recentlyViewed, paginationList } = refs;
 
 export function renderPopularMovie() {
   const spinnerG = new Spinner(modalSpinner);
@@ -171,6 +172,22 @@ export function clearMarkupPagination() {
   paginationList.innerHTML = '';
 }
 
+
+export function getFilmInRecentlyViewed(e) {
+  api.id = e.target.id;
+  api
+    .getMovieById()
+    .then(response => response.data)
+    .then(result => {
+      changeFilmPath(result);
+      renderFilmRWMarkup(result);
+    })  
+}
+
+function renderFilmRWMarkup(film) {
+  const markup = movieRWTemplate(film);
+  recentlyViewed.insertAdjacentHTML('afterbegin', markup);
+}
 // export function tooglePagination() {
 //   if ((api.paginationPopularMovie = true)) {
 //     renderPagination();
