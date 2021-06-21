@@ -26,6 +26,7 @@ const refs = {
   myQueueBtn: document.querySelector('.my-library_btn-queue'),
   navigationLibraryEl: document.querySelector('.navigation_library'),
   exitBtnEl: document.querySelector('.exit-btn'),
+  recentlyViewed:document.querySelector('.recently-viewed'),
 };
 
 export { refs };
